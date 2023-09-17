@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="using:RFIDSQLite.Model"
+             x:Class="RFIDSQLite.View.MainPage"
+             Title="">
+
+    <ContentPage.Resources>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="CornerRadius"
+                    Value="5" />
+            <Setter Property="TextColor"
+                    Value="White" />
+            <Setter Property="FontSize"
+                    Value="24" />
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource ButtonColor}" />
+            <Setter Property="HeightRequest"
+                    Value="44" />
+            <Setter Property="Margin"
+                    Value="0,8,20,0"/>
+            <Setter Property="Padding" 
+                    Value="5,5,5,10" />
+
+        </Style>
+
+        <Style x:Key="labelStyle" TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{StaticResource ListTextColor}" />
+            <Setter Property="FontSize"
+                    Value="22" />
+            <Setter Property="HeightRequest"
+                    Value="50" />
+            <Setter Property="Margin"
+                    Value="30,0,20,0"/>
+            <Setter Property="Padding" 
+                    Value="5,5,5,5" />
+        </Style>
+    </ContentPage.Resources>
+
+
+    <Grid RowDefinitions="64,52,52,68,Auto,*" BackgroundColor="{StaticResource BackGroundColor}">
+
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <!-- StartPoint defaults to (0,0) -->
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#7FBDEE"
+                                  Offset="0.1" />
+                    <GradientStop Color="#1F2E54"
+                                  Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Label Text="AABB系统" FontSize="30" TextColor="White" Margin="24,11,0,0"/>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*">
+            <Button Grid.Column="0" Command="{Binding AddDataCommand}" Text="新增" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="1" Command="{Binding DeleteDataCommand}" Text="删除" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="2" Command="{Binding ReadDataCommand}" Text="读取信息" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="3" Command="{Binding OutputCsvCommand}" Text="数据导出" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="4" Command="{Binding WriteFileCommand}" Text="数据同步" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="5" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource buttonStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,3*,*,0.5*,1.5*,1.5*">
+            <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="主页" Style="{StaticResource buttonStyle}"/>
+            <Entry Grid.Column="1" Text="{Binding SearchQuery}" FontSize="22"  Margin="0,8,20,0"/>
+            <Button Grid.Column="2" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource buttonStyle}"/>
+
+            <Label Grid.Column="4" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text=" 当前数量   " />
+                        <Span Text="{Binding TodoList.Count}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Grid.Column="6" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text=" 选中数量   " />
+                        <Span Text="{Binding SelectedList.Count}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+
+        <Grid Grid.Row="3" ColumnDefinitions="*,2*,5*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
+            <Label Grid.Column="1" Margin="0,0,20,0" Text="设备编号"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+            <Label Grid.Column="2" Margin="0,0,20,0" Text="属性"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+        </Grid>
+
+        <BoxView Grid.Row="4" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" Margin="0,5,30,0" Color="{StaticResource ListLineColor}"/>
+
+        <CollectionView Grid.Row="5"
+                        BackgroundColor="{StaticResource ListLineColor}"
+                        ItemsSource="{Binding TodoList}"
+                        SelectionMode="Multiple"
+                        SelectedItems="{Binding SelectedList}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:TodoSQLite">
+                    <StackLayout>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource ListLineColor}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Cyan300Accent}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid ColumnDefinitions="*,2*,6*">
+                            <Label Grid.Column="0" Text="{Binding Id}" Style="{StaticResource labelStyle}"/>
+                            <Label Grid.Column="1" Text="{Binding serial}"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+                            <Label Grid.Column="2" Text="{Binding remark}"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" VerticalOptions="End" Margin="0,5,30,0" Color="{StaticResource Gray200}"/>
+
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
+     

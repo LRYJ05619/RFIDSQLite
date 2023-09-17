@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="RFIDSQLite.View.PopUp.PortsPage"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <Grid Background="White" WidthRequest="350" HeightRequest="185">
+        <Frame BorderColor="Black" >
+            <VerticalStackLayout>
+                <Label Text="设备管理" HorizontalOptions="Center" FontSize="18" Padding="0,10,0,10"/>
+
+                <HorizontalStackLayout HeightRequest="55" HorizontalOptions="Start">
+                    <Label Text="端口号" FontSize="18" Padding="55,13,15,0"/>
+                    <Picker WidthRequest="125" Margin="5,5,5,5" ItemsSource="{Binding PortList}" SelectedItem="{Binding Port}"/>
+                </HorizontalStackLayout>
+
+                <Grid ColumnDefinitions="*,*">
+                    <Button HeightRequest="44" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="0,10,10,20" Command="{Binding SelectPortCommand}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding PortState}" Value="true">
+                                <Setter Property="Text" Value="关闭串口"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding PortState}" Value="false">
+                                <Setter Property="Text" Value="打开串口"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <Button Grid.Column="1" HeightRequest="44" Text="取消" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="10,10,10,20" Command="{Binding CancelCommand}"/>
+                </Grid>
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</toolkit:Popup>
