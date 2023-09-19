@@ -18,9 +18,6 @@ namespace RFIDSQLite.ViewModel.PopUp
             {
                 Serial = SQLiteService.BufferSerial;
                 Remark = SQLiteService.BufferRemark;
-
-                SQLiteService.BufferRemark = null;
-                SQLiteService.BufferSerial = null;
             }
         }
 

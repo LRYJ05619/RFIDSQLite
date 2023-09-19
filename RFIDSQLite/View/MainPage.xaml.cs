@@ -17,6 +17,7 @@ namespace RFIDSQLite.View
         public MainPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
+
             this.viewModel = viewModel; // 初始化 viewModel 变量
             BindingContext = this.viewModel;
 

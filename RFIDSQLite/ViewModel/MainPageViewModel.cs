@@ -5,11 +5,15 @@ using RFIDSQLite.Service;
 using RFIDSQLite.ViewModel.PopUp;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Storage;
+using Microsoft.Maui;
 
 namespace RFIDSQLite.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
+        [ObservableProperty]
+        string title;
+
         private List<TodoSQLite> todoList;
 
         public List<TodoSQLite> TodoList
@@ -48,6 +52,8 @@ namespace RFIDSQLite.ViewModel
 
         public MainPageViewModel(IFileSaver fileSaver)
         {
+            Title = TitleGet.get();
+
             var RfidService = new RFIDService();
             //订阅接收事件
             RFIDService.ReceivedDataEvent += ReceivedData;

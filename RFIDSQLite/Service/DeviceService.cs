@@ -19,8 +19,17 @@ namespace RFIDSQLite.Service
                     //连接设备
                     device.Connect();
 
-                    //写入路径
-                    var remoteFilePath = "内部共享存储空间\\FZD\\RFID_SQLite.db";
+                    var subdirectories = device.GetDirectories("/");
+                    var RootPath = subdirectories.First().TrimStart('\\');
+
+                    var remotePath = $"{RootPath}/Android/data/com.companyname.rfid_android";
+
+                    var remoteFilePath = $"{RootPath}/Android/data/com.companyname.rfid_android/RFID_SQLite.db";
+
+                    if (!device.DirectoryExists(remotePath))
+                    {
+                        device.CreateDirectory(remotePath);
+                    }
 
                     //如果文件已经存在，删除文件
                     if (device.FileExists(remoteFilePath))

@@ -51,7 +51,19 @@
                                   Offset="1.0" />
                 </LinearGradientBrush>
             </Grid.Background>
-            <Label Text="AABB系统" FontSize="30" TextColor="White" Margin="24,11,0,0"/>
+
+            <HorizontalStackLayout>
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding TitleTappedCommand}"/>
+                </HorizontalStackLayout.GestureRecognizers>
+                
+                <Label Text="{Binding Title}"
+                       FontSize="30" TextColor="White" Margin="14,11,0,0"
+                       IsVisible="{Binding IsNotTapped}">
+                </Label>
+
+                <Label Text="v1.0" FontSize="30" TextColor="White" Margin="10,11,0,0"/>
+            </HorizontalStackLayout>
         </Grid>
 
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*">
@@ -87,9 +99,9 @@
             </Label>
         </Grid>
 
-        <Grid Grid.Row="3" ColumnDefinitions="*,2*,5*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
+        <Grid Grid.Row="3" ColumnDefinitions="180,*,20,4*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
             <Label Grid.Column="1" Margin="0,0,20,0" Text="设备编号"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
-            <Label Grid.Column="2" Margin="0,0,20,0" Text="属性"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+            <Label Grid.Column="3" Margin="0,0,20,0" Text="属性"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
         </Grid>
 
         <BoxView Grid.Row="4" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" Margin="0,5,30,0" Color="{StaticResource ListLineColor}"/>
@@ -122,13 +134,15 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Grid ColumnDefinitions="*,2*,6*">
-                            <Label Grid.Column="0" Text="{Binding Id}" Style="{StaticResource labelStyle}"/>
-                            <Label Grid.Column="1" Text="{Binding serial}"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
-                            <Label Grid.Column="2" Text="{Binding remark}"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+                        <Grid ColumnDefinitions="140,Auto,*,Auto,4*">
+                            <Label Grid.Column="0" Text="{Binding Id}" Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+                            <BoxView Grid.Column="1" WidthRequest="1" Color="{StaticResource Gray200}"/>
+                            <Label Grid.Column="2" Text="{Binding serial}"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+                            <BoxView Grid.Column="3" WidthRequest="1" Color="{StaticResource Gray200}"/>
+                            <Label Grid.Column="4" Text="{Binding remark}"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
                         </Grid>
 
-                        <BoxView HeightRequest="1" VerticalOptions="End" Margin="0,5,30,0" Color="{StaticResource Gray200}"/>
+                        <BoxView HeightRequest="1" VerticalOptions="End" Margin="0,0,30,0" Color="{StaticResource Gray200}"/>
 
                     </StackLayout>
                 </DataTemplate>
