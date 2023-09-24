@@ -1,13 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
-using Microsoft.UI.Xaml.Input;
 using RFIDSQLite.View.PopUp;
 using RFIDSQLite.ViewModel;
 using RFIDSQLite.ViewModel.PopUp;
-using System.Collections.ObjectModel;
-using Windows.System;
-using RFIDSQLite.Model;
-using CommunityToolkit.Maui.Storage;
-using Microsoft.Maui.Controls;
 
 namespace RFIDSQLite.View
 {

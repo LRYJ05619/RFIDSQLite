@@ -21,7 +21,6 @@
                     Value="0,8,20,0"/>
             <Setter Property="Padding" 
                     Value="5,5,5,10" />
-
         </Style>
 
         <Style x:Key="labelStyle" TargetType="Label">
@@ -75,16 +74,21 @@
             <Button Grid.Column="5" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource buttonStyle}"/>
         </Grid>
 
-        <Grid Grid.Row="2" ColumnDefinitions="*,3*,*,0.5*,1.5*,1.5*">
+        <Grid Grid.Row="2" ColumnDefinitions="*,2*,*,*,0.5*,1.5*,1.5*">
             <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="主页" Style="{StaticResource buttonStyle}"/>
-            <Entry Grid.Column="1" Text="{Binding SearchQuery}" FontSize="22"  Margin="0,8,20,0"/>
-            <Button Grid.Column="2" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource buttonStyle}"/>
 
-            <Label Grid.Column="4" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
+            <Entry 
+                   Grid.Column="1" Text="{Binding SearchQuery}" Placeholder="搜索" FontSize="22"  Margin="0,8,20,0"
+                   ReturnCommand="{Binding SearchCommand}"/>
+
+            <Button Grid.Column="2" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="3" Command="{Binding SearchCommand}" Text="属性管理" Style="{StaticResource buttonStyle}"/>
+
+            <Label Grid.Column="5" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text=" 当前数量   " />
-                        <Span Text="{Binding TodoList.Count}" />
+                        <Span Text=" 当前数量  "/>
+                        <Span Text="{Binding TodoList.Count}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -92,7 +96,7 @@
             <Label Grid.Column="6" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text=" 选中数量   " />
+                        <Span Text=" 选中数量  " />
                         <Span Text="{Binding SelectedList.Count}" />
                     </FormattedString>
                 </Label.FormattedText>

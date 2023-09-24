@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RFIDSQLite.Service
 {
-    public class TitleGet
+    public class TitleGetService
     {
         public static string get()
         {

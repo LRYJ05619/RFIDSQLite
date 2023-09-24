@@ -5,7 +5,6 @@ using RFIDSQLite.Service;
 using RFIDSQLite.ViewModel.PopUp;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Storage;
-using Microsoft.Maui;
 
 namespace RFIDSQLite.ViewModel
 {
@@ -52,7 +51,7 @@ namespace RFIDSQLite.ViewModel
 
         public MainPageViewModel(IFileSaver fileSaver)
         {
-            Title = TitleGet.get();
+            Title = TitleGetService.get();
 
             var RfidService = new RFIDService();
             //订阅接收事件
@@ -164,7 +163,6 @@ namespace RFIDSQLite.ViewModel
                 MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
                 return;
             }
-
             MessagingCenter.Send(this, "OpenAddDataPage");
         }
 
