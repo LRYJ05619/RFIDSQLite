@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using RFIDSQLite.Model;
 using RFIDSQLite.View.PopUp;
 using RFIDSQLite.ViewModel;
 using RFIDSQLite.ViewModel.PopUp;
@@ -7,13 +8,10 @@ namespace RFIDSQLite.View
 {
     public partial class MainPage : ContentPage
     {
-        private MainPageViewModel viewModel; // 添加一个类级别的 viewModel 变量
         public MainPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
-
-            this.viewModel = viewModel; // 初始化 viewModel 变量
-            BindingContext = this.viewModel;
+            BindingContext = viewModel;
 
             //添加按钮
             MessagingCenter.Subscribe<MainPageViewModel>(this, "OpenAddDataPage", (sender) =>
@@ -84,6 +82,45 @@ namespace RFIDSQLite.View
                 var popup = new NotifyPage(new NotifyPageViewModel(message));
                 this.ShowPopup(popup);
             });
+
+            //删除按钮
+            MessagingCenter.Subscribe<MainPageViewModel>(this, "OpenManagerPage", (sender) =>
+            {
+                // 打开 Popup，并使用传递的文本内容
+                var popup = new PropertyPage(new PropertyPageViewModel())
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
+                this.ShowPopup(popup);
+            });
+
+            //串口成功回调
+            MessagingCenter.Subscribe<PropertyPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
+            {
+                // 打开 Popup，并使用传递的文本内容
+                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                this.ShowPopup(popup);
+            });
+
+            //双击修改
+            MessagingCenter.Subscribe<MainPageViewModel,TodoSQLite>(this, "OpenModifyDataPage", (sender,message) =>
+            {
+                //打开popup
+                var popup = new ModifyDataPage(new ModifyDataPageViewModel(message))
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
+                this.ShowPopup(popup);
+            });
+
+            //修改回调
+            MessagingCenter.Subscribe<ModifyDataPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
+            {
+                // 打开 Popup，并使用传递的文本内容
+                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                this.ShowPopup(popup);
+            });
+
         }
     }
 }

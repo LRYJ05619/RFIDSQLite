@@ -5,6 +5,7 @@ using RFIDSQLite.Service;
 using RFIDSQLite.ViewModel.PopUp;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Storage;
+using System;
 
 namespace RFIDSQLite.ViewModel
 {
@@ -49,15 +50,23 @@ namespace RFIDSQLite.ViewModel
 
         readonly IFileSaver fileSaver;
 
-        public MainPageViewModel(IFileSaver fileSaver)
+        public  MainPageViewModel(IFileSaver fileSaver)
         {
+            //获取标签
             Title = TitleGetService.get();
+
+            SQLiteService.InitProperty();
 
             var RfidService = new RFIDService();
             //订阅接收事件
             RFIDService.ReceivedDataEvent += ReceivedData;
 
             this.fileSaver = fileSaver;
+
+            MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshPage", async (sender) =>
+            {
+                await HomePageAsync();
+            });
 
             MessagingCenter.Subscribe<DeletePageViewModel>(this, "DeleteMessage", async (sender) =>
             {
@@ -76,13 +85,7 @@ namespace RFIDSQLite.ViewModel
                         }
                     }
 
-                    var list = await SQLiteService.GetData();
-                    list.Reverse();
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        list[i].Id = i + 1;
-                    }
-                    TodoList = list;
+                    TodoList = await SQLiteService.GetData();
                     MessagingCenter.Send(this, "OpenNotifyPage", "删除成功！");
                 }
             });
@@ -109,11 +112,6 @@ namespace RFIDSQLite.ViewModel
                     if (search.Count != 0)
                     {
                         MessagingCenter.Send(this, "OpenNotifyPage", "读取成功！");
-                        search.Reverse();
-                        for (int i = 0; i < search.Count; i++)
-                        {
-                            search[i].Id = i + 1;
-                        }
                         TodoList = search;
                     }
                     else
@@ -125,22 +123,16 @@ namespace RFIDSQLite.ViewModel
                     return;
                 //格式31，写入成功回调
                 case 31:
-                    await SQLiteService.AddData(SQLiteService.Serial, SQLiteService.Remark);
+                    await SQLiteService.AddData();
 
                     SearchQuery = SQLiteService.Serial;
 
-                    SQLiteService.BufferRemark = null;
+                    SQLiteService.BufferProperty = null;
                     SQLiteService.BufferSerial = null;
 
                     MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
 
-                    var list = await SQLiteService.SearchData(SQLiteService.Serial);
-                    list.Reverse();
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        list[i].Id = i + 1;
-                    }
-                    TodoList = list;
+                    TodoList = await SQLiteService.SearchData(SQLiteService.Serial);
 
                     return;
                 //格式43，未修改PC值前
@@ -247,26 +239,31 @@ namespace RFIDSQLite.ViewModel
         [RelayCommand]
         async Task HomePageAsync()
         {
-            var list = await SQLiteService.GetData();
-            list.Reverse();
-            for (int i = 0; i < list.Count; i++)
-            {
-                list[i].Id = i+1;
-            }
-            TodoList = list;
+            TodoList = await SQLiteService.GetData();
         }
 
         //搜索
         [RelayCommand]
         async Task SearchAsync()
         {
-            var list = await SQLiteService.SearchData(SearchQuery);
-            list.Reverse();
-            for (int i = 0; i < list.Count; i++)
-            {
-                list[i].Id = i + 1;
-            }
-            TodoList = list;
+            TodoList = await SQLiteService.SearchData(SearchQuery);
+        }
+
+        //属性管理按钮
+        [RelayCommand]
+        void Property()
+        {
+            MessagingCenter.Send(this, "OpenManagerPage");
+        }
+
+        //双击编辑事件
+        [RelayCommand]
+        void DoubleClick(TodoSQLite todo)
+        {
+            if (todo == null)
+                return;
+
+            MessagingCenter.Send(this, "OpenModifyDataPage", todo);
         }
     }
 }

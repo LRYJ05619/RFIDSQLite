@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using RFIDSQLite.Model;
 using RFIDSQLite.Service;
 
 namespace RFIDSQLite.ViewModel.PopUp
@@ -29,6 +30,11 @@ namespace RFIDSQLite.ViewModel.PopUp
                 MessagingCenter.Send(this, "OpenAddDataPage");
             }
 
+            if (Message == "请输入编号！")
+            {
+                MessagingCenter.Send(this, "OpenAddDataPage");
+            }
+
             if (Message == "编号重复，请重新输入！")
             {
                 MessagingCenter.Send(this, "OpenAddDataPage");
@@ -41,10 +47,17 @@ namespace RFIDSQLite.ViewModel.PopUp
 
             if (Message == "请检查芯片位置！")
             {
-                if (SQLiteService.BufferRemark != null && SQLiteService.BufferRemark != null)
-                {
-                    MessagingCenter.Send(this, "OpenAddDataPage");
-                }
+                MessagingCenter.Send(this, "OpenAddDataPage");
+            }
+
+            if (Message == "修改成功！")
+            {
+                MessagingCenter.Send(this, "RefreshPage");
+            }
+
+            if (Message == "保存成功！")
+            {
+                MessagingCenter.Send(this, "RefreshPage");
             }
         }
     }

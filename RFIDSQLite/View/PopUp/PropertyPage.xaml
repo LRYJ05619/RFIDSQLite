@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:model="using:RFIDSQLite.Model"
+               x:Class="RFIDSQLite.View.PopUp.PropertyPage">
+
+    <Grid Background="White" WidthRequest="1200" HeightRequest="620">
+        <Frame BorderColor="Black">
+            <Grid RowDefinitions="Auto,*,Auto">
+
+                <Label Text="属性管理" FontSize="18" HorizontalOptions="Center" Padding="0,10,0,10"/>
+
+                <CollectionView Grid.Row="1" 
+                                HeightRequest="450"
+                                ItemsSource="{Binding PropertyList}"
+                                SelectionMode="None">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout  Orientation="Horizontal"
+                                          Span="4"
+                                          HorizontalItemSpacing="10"
+                                          VerticalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:TodoSQLite">
+                            <Frame BorderColor="{StaticResource ButtonColor}">
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Id}" FontSize="18" Padding="10,10,20,10"/>
+                                    <Entry Text="{Binding serial}" WidthRequest="180" FontSize="18" HorizontalOptions="Start"/>
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*">
+                    <Button Command="{Binding AddPropertyCommand}" Text="添加" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
+                    <Button Grid.Column="1" Command="{Binding DeletePropertyCommand}" Text="删除" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
+                    <Button Grid.Column="2" Command="{Binding SavePropertyCommand}" Text="保存" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
+                    <Button Grid.Column="3" Command="{Binding CancelCommand}" Text="取消" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
+                </Grid>
+
+            </Grid>
+        </Frame>
+    </Grid>
+
+</views:Popup>

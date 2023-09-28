@@ -1,29 +1,24 @@
 using CommunityToolkit.Maui.Views;
-using RFIDSQLite.ViewModel;
 using RFIDSQLite.ViewModel.PopUp;
+using RFIDSQLite.ViewModel;
 
 namespace RFIDSQLite.View.PopUp;
 
-public partial class AddDataPage : Popup
+public partial class ModifyDataPage : Popup
 {
-    public AddDataPage(AddDataPageViewModel viewModel)
-    {
-        InitializeComponent();
+	public ModifyDataPage(ModifyDataPageViewModel viewModel)
+	{
+		InitializeComponent();
+
         BindingContext = viewModel;
 
         Entry.TextChanged += NumericEntry_TextChanged;
 
-        MessagingCenter.Subscribe<MainPageViewModel>(this, "ClosePopupMessage", (sender) =>
-        {
-            CloseAsync();
-        });
-
-        MessagingCenter.Subscribe<AddDataPageViewModel>(this, "ClosePopupMessage", (sender) =>
+        MessagingCenter.Subscribe<ModifyDataPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();
         });
     }
-
 
     //限制只能输入数字
     private void NumericEntry_TextChanged(object sender, TextChangedEventArgs e)

@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using RFIDSQLite.Model;
 using RFIDSQLite.Service;
+using System.Collections.ObjectModel;
 
 namespace RFIDSQLite.ViewModel.PopUp
 {
@@ -10,14 +12,18 @@ namespace RFIDSQLite.ViewModel.PopUp
         string serial;
 
         [ObservableProperty]
-        string remark;
+        ObservableCollection<TodoSQLite> attributes;
 
         public AddDataPageViewModel()
         {
-            if(SQLiteService.BufferRemark != null && SQLiteService.BufferRemark != null)
+            if (SQLiteService.BufferSerial != null || SQLiteService.BufferProperty != null)
             {
                 Serial = SQLiteService.BufferSerial;
-                Remark = SQLiteService.BufferRemark;
+                Attributes = SQLiteService.BufferProperty;
+            }
+            else
+            {
+                Attributes = SQLiteService.Property;
             }
         }
 
@@ -25,7 +31,14 @@ namespace RFIDSQLite.ViewModel.PopUp
         async Task PopUpAddDataAsync()
         {
             SQLiteService.BufferSerial = Serial;
-            SQLiteService.BufferRemark = Remark;
+            SQLiteService.BufferProperty = Attributes;
+
+            if (Serial == null || Serial == "")
+            {
+                MessagingCenter.Send(this, "ClosePopupMessage");
+                MessagingCenter.Send(this, "OpenNotifyPage", "请输入编号！");
+                return;
+            }
 
             // 检查 Serial 的长度是否为额定值
             if (Serial.Length < 12)
@@ -69,7 +82,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             else
             {
                 SQLiteService.Serial = Serial;
-                SQLiteService.Remark = Remark;
+                SQLiteService.Property = Attributes;
             }
         }
 
