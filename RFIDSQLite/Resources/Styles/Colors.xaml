@@ -50,4 +50,6 @@
     <Color x:Key="SearchBoxColor">#D9D9D9</Color>
     <Color x:Key="HeaderColor">#666666</Color>
 
+    <Color x:Key="PaginationColor">#00A2FF</Color>
+
 </ResourceDictionary>

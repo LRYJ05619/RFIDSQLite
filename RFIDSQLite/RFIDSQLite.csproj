@@ -34,6 +34,7 @@
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<AppInstallerUri>C:\Users\15569\Desktop\RFIDSQLite</AppInstallerUri>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+		<Platforms>AnyCPU;x64;x64</Platforms>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -55,13 +56,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Interface\**" />
+	  <EmbeddedResource Remove="Interface\**" />
+	  <MauiCss Remove="Interface\**" />
+	  <MauiXaml Remove="Interface\**" />
+	  <None Remove="Interface\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="MediaDevices" Version="1.10.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="SerialPortStream" Version="2.4.1" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.6" />
+		<PackageReference Include="System.IO.Ports" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -82,10 +91,6 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Interface\" />
-	</ItemGroup>
-
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(Configuration)' == 'Release'">
 		<AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
 		<PackageCertificateThumbprint>7C8D1F9F5FB53EFF2175E97AD750A2E4AF4D0DB2</PackageCertificateThumbprint>
@@ -93,5 +98,8 @@
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(RuntimeIdentifierOverride)' != ''">
 		<RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
 	</PropertyGroup>
+	<ItemGroup>
+	  <PRIResource Remove="Interface\**" />
+	</ItemGroup>
 
 </Project>

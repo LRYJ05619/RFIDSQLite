@@ -11,11 +11,14 @@ namespace RFIDSQLite.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
+        //每页数据数量
+        private int ItemsPerPage = 12;
+
         [ObservableProperty]
         string title;
-
+        
+        //原始数据
         private List<TodoSQLite> todoList;
-
         public List<TodoSQLite> TodoList
         {
             get { return todoList; }
@@ -23,11 +26,37 @@ namespace RFIDSQLite.ViewModel
             {
                 if (SetProperty(ref todoList, value))
                 {
+                    // 检查列表是否为空
+                    if (TodoList == null || TodoList.Count == 0)
+                    {
+                        TotalPages = 1; // 如果为空，设置 TotalPages 为最小页数
+                        UpdateItems();
+                    }
+                    else
+                    {
+                        //重新计算分页数
+                        TotalPages = (int)Math.Ceiling((double)TodoList.Count / ItemsPerPage);
+                        UpdateItems();
+                    }
+                }
+            }
+        }
+
+        //绑定数据
+        private List<TodoSQLite> visibleList;
+        public List<TodoSQLite> VisibleList
+        {
+            get { return visibleList; }
+            set
+            {
+                if (SetProperty(ref visibleList, value))
+                {
                     // 当 TodoList 发生变化时，手动清空 SelectedList
                     SelectedList.Clear();
                 }
             }
         }
+
 
         [ObservableProperty]
         string searchQuery;
@@ -50,12 +79,46 @@ namespace RFIDSQLite.ViewModel
 
         readonly IFileSaver fileSaver;
 
-        public  MainPageViewModel(IFileSaver fileSaver)
+        //当前页码
+        private int currentPageCount;
+        public int CurrentPageCount
+        {
+            get => currentPageCount;
+            set
+            {
+                if (SetProperty(ref currentPageCount, value))
+                {
+                    UpdateItems();
+                }
+            }
+        }
+
+        //总页数
+        private int totalPages;
+
+        public int TotalPages
+        {
+            get => totalPages;
+            set
+            {
+                if (SetProperty(ref totalPages, value))
+                {
+                    CurrentPageCount = 1;
+                }
+            }
+        }
+
+
+        public MainPageViewModel(IFileSaver fileSaver)
         {
             //获取标签
             Title = TitleGetService.get();
 
-            SQLiteService.InitProperty();
+            //初始化属性列表
+            _ = SQLiteService.InitProperty();
+
+            TotalPages = 1;
+            CurrentPageCount = 1;
 
             var RfidService = new RFIDService();
             //订阅接收事件
@@ -264,6 +327,24 @@ namespace RFIDSQLite.ViewModel
                 return;
 
             MessagingCenter.Send(this, "OpenModifyDataPage", todo);
+        }
+
+        private void UpdateItems()
+        {
+            if (TodoList == null)
+                return;
+
+            int startIndex = (CurrentPageCount - 1) * ItemsPerPage;
+            int endIndex = Math.Min(startIndex + ItemsPerPage, TodoList.Count);
+
+            var list = new List<TodoSQLite>();
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                list.Add(TodoList[i]);
+            }
+
+            VisibleList = new List<TodoSQLite>(list);
         }
     }
 }

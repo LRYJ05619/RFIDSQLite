@@ -14,13 +14,12 @@ namespace RFIDSQLite.ViewModel.PopUp
 
         public PropertyPageViewModel()
         {
-            PropertyList = SQLiteService.Property;
+            PropertyList = new ObservableCollection<TodoSQLite>(SQLiteService.Property);
         }
 
         [RelayCommand]
         void AddProperty()
         {
-
             PropertyList.Add(new TodoSQLite() { Id = PropertyList.Count + 1 });
         }
 
@@ -32,10 +31,11 @@ namespace RFIDSQLite.ViewModel.PopUp
         }
 
         [RelayCommand]
-        void SaveProperty()
+        async Task SavePropertyAsync()
         {
             //保存属性列表
-            SQLiteService.ChangeProperty(PropertyList);
+            await SQLiteService.ChangeProperty(PropertyList);
+            await SQLiteService.InitProperty();
 
             MessagingCenter.Send(this, "ClosePopupMessage");
             MessagingCenter.Send(this, "OpenNotifyPage", "保存成功！");

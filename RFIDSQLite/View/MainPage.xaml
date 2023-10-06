@@ -3,46 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="using:RFIDSQLite.Model"
              xmlns:viewModel="using:RFIDSQLite.ViewModel"
+             xmlns:styles="using:RFIDSQLite.Resources.Styles"
              x:Class="RFIDSQLite.View.MainPage"
              x:DataType="viewModel:MainPageViewModel"
              Title=""
              x:Name="Page">
 
-    <ContentPage.Resources>
-
-        <Style x:Key="buttonStyle" TargetType="Button">
-            <Setter Property="CornerRadius"
-                    Value="5" />
-            <Setter Property="TextColor"
-                    Value="White" />
-            <Setter Property="FontSize"
-                    Value="24" />
-            <Setter Property="BackgroundColor"
-                    Value="{StaticResource ButtonColor}" />
-            <Setter Property="HeightRequest"
-                    Value="44" />
-            <Setter Property="Margin"
-                    Value="0,8,20,0"/>
-            <Setter Property="Padding" 
-                    Value="5,5,5,10" />
-        </Style>
-
-        <Style x:Key="labelStyle" TargetType="Label">
-            <Setter Property="TextColor"
-                    Value="{StaticResource ListTextColor}" />
-            <Setter Property="FontSize"
-                    Value="22" />
-            <Setter Property="HeightRequest"
-                    Value="50" />
-            <Setter Property="Margin"
-                    Value="30,0,20,0"/>
-            <Setter Property="Padding" 
-                    Value="5,5,5,5" />
-        </Style>
-    </ContentPage.Resources>
-
-
-    <Grid RowDefinitions="64,52,52,68,Auto,*" BackgroundColor="{StaticResource BackGroundColor}">
+    <Grid RowDefinitions="64,52,52,68,Auto,*,Auto" BackgroundColor="{StaticResource BackGroundColor}">
 
         <Grid Grid.Row="0">
             <Grid.Background>
@@ -57,37 +24,36 @@
 
             <HorizontalStackLayout>
                 <Label Text="{Binding Title}"
-                       FontSize="30" TextColor="White" Margin="14,11,0,0">
-                </Label>
+                       FontSize="30" TextColor="White" Margin="14,11,0,0"/>
 
                 <Label Text="v1.0" FontSize="30" TextColor="White" Margin="10,11,0,0"/>
             </HorizontalStackLayout>
         </Grid>
 
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*">
-            <Button Grid.Column="0" Command="{Binding AddDataCommand}" Text="新增" Style="{StaticResource buttonStyle}"/>
-            <Button Grid.Column="1" Command="{Binding DeleteDataCommand}" Text="删除" Style="{StaticResource buttonStyle}"/>
-            <Button Grid.Column="2" Command="{Binding ReadDataCommand}" Text="读取信息" Style="{StaticResource buttonStyle}"/>
-            <Button Grid.Column="3" Command="{Binding OutputCsvCommand}" Text="数据导出" Style="{StaticResource buttonStyle}"/>
-            <Button Grid.Column="4" Command="{Binding WriteFileCommand}" Text="数据同步" Style="{StaticResource buttonStyle}"/>
-            <Button Grid.Column="5" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="0" Command="{Binding AddDataCommand}" Text="新增" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="1" Command="{Binding DeleteDataCommand}" Text="删除" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="2" Command="{Binding ReadDataCommand}" Text="读取信息" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="3" Command="{Binding OutputCsvCommand}" Text="数据导出" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="4" Command="{Binding WriteFileCommand}" Text="数据同步" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="5" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource ButtonStyle}"/>
         </Grid>
 
         <Grid Grid.Row="2" ColumnDefinitions="*,2*,*,1.2*,1.5*,1.5*">
 
-            <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="主页" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="主页" Style="{StaticResource ButtonStyle}"/>
 
             <Entry Grid.Column="1" Text="{Binding SearchQuery}" Placeholder="搜索" FontSize="22"  Margin="0,8,20,0"
                    ReturnCommand="{Binding SearchCommand}"/>
 
-            <Button Grid.Column="2" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource buttonStyle}"/>
-            <Button Grid.Column="3" Command="{Binding PropertyCommand}" Text="属性管理" Style="{StaticResource buttonStyle}"/>
+            <Button Grid.Column="2" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="3" Command="{Binding PropertyCommand}" Text="属性管理" Style="{StaticResource ButtonStyle}"/>
 
             <Label Grid.Column="4" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text=" 当前数量  "/>
-                        <Span Text="{Binding TodoList.Count}"/>
+                        <Span Text="{Binding VisibleList.Count}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -103,15 +69,15 @@
         </Grid>
 
         <Grid Grid.Row="3" ColumnDefinitions="140,220,20,*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
-            <Label Grid.Column="1" Margin="0,5,20,0" Text="设备编号"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
-            <Label Grid.Column="3" Margin="0,0,20,0" Text="属性"  Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+            <Label Grid.Column="1" Margin="0,5,20,0" Text="设备编号" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
+            <Label Grid.Column="3" Margin="0,0,20,0" Text="属性" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
         </Grid>
 
         <BoxView Grid.Row="4" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" Margin="0,5,30,0" Color="{StaticResource ListLineColor}"/>
 
         <CollectionView Grid.Row="5"
                         BackgroundColor="{StaticResource ListLineColor}"
-                        ItemsSource="{Binding TodoList}"
+                        ItemsSource="{Binding VisibleList}"
                         SelectionMode="Multiple"
                         SelectedItems="{Binding SelectedList}">
 
@@ -145,17 +111,17 @@
 
                         <Grid ColumnDefinitions="110,Auto,220,Auto,*">
 
-                            <Label WidthRequest="40" Text="{Binding Id}" 
-                                       Style="{StaticResource labelStyle}" HorizontalOptions="End"/>
+                            <Label WidthRequest="50" Text="{Binding Id}" 
+                                       Style="{StaticResource LabelStyle}" HorizontalOptions="End"/>
 
                             <BoxView Grid.Column="1" WidthRequest="1" Color="{StaticResource Gray200}"/>
 
                             <Label Grid.Column="2" WidthRequest="215" Text="{Binding serial}"  
-                                   Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+                                   Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
                             <BoxView Grid.Column="3" WidthRequest="1" Color="{StaticResource Gray200}"/>
 
                             <Label Grid.Column="4" Text="{Binding remark}"  
-                                   Style="{StaticResource labelStyle}" HorizontalOptions="Center"/>
+                                   Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
 
                         </Grid>
 
@@ -165,6 +131,15 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <Grid Grid.Row="6" BackgroundColor="White" Padding="0,20,0,32">
+            <styles:CustomPagination HorizontalOptions="End"
+                                     Margin="0,0,40,0"
+                                     TotalPages="{Binding TotalPages}"
+                                     CurrentPage="{Binding CurrentPageCount, Mode=TwoWay}"/>
+        </Grid>
+
+
     </Grid>
 </ContentPage>
      

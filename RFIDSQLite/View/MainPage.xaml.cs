@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
 using RFIDSQLite.Model;
+using RFIDSQLite.Resources.Styles;
 using RFIDSQLite.View.PopUp;
 using RFIDSQLite.ViewModel;
 using RFIDSQLite.ViewModel.PopUp;

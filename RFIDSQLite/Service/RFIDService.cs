@@ -1,10 +1,10 @@
-﻿using RJCP.IO.Ports;
+﻿using System.IO.Ports;
 
 namespace RFIDSQLite.Service
 {
     public class RFIDService
     {
-        public static SerialPortStream serialPort = new();
+        public static SerialPort serialPort = new();
 
         // 自定义事件，用于封装串口数据接收事件
         public static event EventHandler<byte[]> ReceivedDataEvent;
@@ -42,7 +42,7 @@ namespace RFIDSQLite.Service
         //获取串口列表
         public static void GetPorts()
         {
-            ports = SerialPortStream.GetPortNames();
+            ports = SerialPort.GetPortNames();
         }
 
         /*状态判断  返回值0 串口已打开

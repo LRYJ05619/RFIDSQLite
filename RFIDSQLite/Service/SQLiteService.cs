@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using RFIDSQLite.Model;
 using SQLite;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace RFIDSQLite.Service
