@@ -5,11 +5,8 @@ namespace RFIDSQLite.Service
 {
     public class DeviceService
     {
-        private static bool isTry = false;
         public static bool ReplaceFile()
         {
-            if (isTry) return false;
-
             try
             {
                 // 获取可用的存储设备
@@ -23,24 +20,22 @@ namespace RFIDSQLite.Service
                     //连接设备
                     device.Connect();
 
+                    // 获取当前时间
+                    DateTime currentTime = DateTime.Now;
+
+                    // 将时间格式化为字符串，精确到秒
+                    string timeSuffix = currentTime.ToString("yyyyMMddHHmmss");
+
                     var subdirectories = device.GetDirectories("/");
                     var RootPath = subdirectories.First().TrimStart('\\');
 
                     var remotePath = $"{RootPath}/Android/data/com.companyname.rfid_android";
 
-                    var remoteFilePath = $"{RootPath}/Android/data/com.companyname.rfid_android/RFID_SQLite.db";
+                    var remoteFilePath = $"{RootPath}/Android/data/com.companyname.rfid_android/RFID_SQLite{timeSuffix}.db";
 
                     if (!device.DirectoryExists(remotePath))
                     {
                         device.CreateDirectory(remotePath);
-                    }
-
-                    //如果文件已经存在，删除文件
-                    if (device.FileExists(remoteFilePath))
-                    {
-                        device.DeleteFile(remoteFilePath);
-                        isTry = true;
-                        return false;
                     }
 
                     //被复制文件路径
@@ -53,7 +48,6 @@ namespace RFIDSQLite.Service
                     }
 
                     device.Disconnect();
-                    isTry = true;
                     return true;
                 }
                 else

@@ -4,10 +4,10 @@
                x:Class="RFIDSQLite.View.PopUp.PortsPage"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
-    <Grid Background="White" WidthRequest="350" HeightRequest="185">
+    <Grid Background="{StaticResource BackGroundColor}" WidthRequest="350" HeightRequest="185">
         <Frame BorderColor="Black" >
             <VerticalStackLayout>
-                <Label Text="设备管理" HorizontalOptions="Center" FontSize="18" Padding="0,10,0,10"/>
+                <Label Text="设备管理" HorizontalOptions="Center" FontSize="22" Padding="0,5,0,10"/>
 
                 <HorizontalStackLayout HeightRequest="55" HorizontalOptions="Start">
                     <Label Text="端口号" FontSize="18" Padding="55,13,15,0"/>
