@@ -5,15 +5,15 @@
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                xmlns:model="using:RFIDSQLite.Model">
 
-    <Grid BackgroundColor="White" WidthRequest="1200" HeightRequest="720">
+    <Grid BackgroundColor="{StaticResource BackGroundColor}" WidthRequest="1200" HeightRequest="720">
         <Frame BorderColor="Black" >
             <Grid RowDefinitions="Auto,Auto,*,Auto">
 
-                <Label Text="新增物品" FontSize="18" HorizontalOptions="Center" Padding="0,10,0,10"/>
+                <Label Text="新增物品" FontSize="22" HorizontalOptions="Center" Padding="0,5,0,10"/>
 
                 <HorizontalStackLayout Grid.Row="1">
 
-                    <Label Text="设备编号" FontSize="18" Padding="25,10,5,0"/>
+                    <Label Text="设备编号" FontSize="18" Padding="10,10,5,0"/>
                     <Entry x:Name="Entry" Text="{Binding Serial}" FontSize="18" MaxLength="12" WidthRequest="200" Placeholder="设备编号" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20,0,20,0"/>
 
                 </HorizontalStackLayout>

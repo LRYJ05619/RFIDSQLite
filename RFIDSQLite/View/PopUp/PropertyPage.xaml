@@ -5,11 +5,11 @@
                xmlns:model="using:RFIDSQLite.Model"
                x:Class="RFIDSQLite.View.PopUp.PropertyPage">
 
-    <Grid Background="White" WidthRequest="1200" HeightRequest="620">
+    <Grid Background="{StaticResource BackGroundColor}" WidthRequest="1200" HeightRequest="620">
         <Frame BorderColor="Black">
             <Grid RowDefinitions="Auto,*,Auto">
 
-                <Label Text="属性管理" FontSize="18" HorizontalOptions="Center" Padding="0,10,0,10"/>
+                <Label Text="属性管理" FontSize="22" HorizontalOptions="Center" Padding="0,5,0,10"/>
 
                 <CollectionView Grid.Row="1" 
                                 HeightRequest="450"
