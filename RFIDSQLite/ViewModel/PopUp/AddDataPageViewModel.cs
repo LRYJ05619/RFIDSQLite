@@ -23,7 +23,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             }
             else
             {
-                Attributes = SQLiteService.Property;
+                Attributes = new ObservableCollection<TodoSQLite>(SQLiteService.Property);
             }
         }
 

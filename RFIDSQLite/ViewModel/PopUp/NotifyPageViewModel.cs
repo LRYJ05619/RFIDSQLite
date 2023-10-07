@@ -45,7 +45,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                 MessagingCenter.Send(this, "OpenAddDataPage");
             }
 
-            if (Message == "请检查芯片位置！")
+            if (Message == "写入失败，请检查芯片位置！")
             {
                 MessagingCenter.Send(this, "OpenAddDataPage");
             }

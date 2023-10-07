@@ -1,11 +1,15 @@
 ﻿using MediaDevices;
+using Microsoft.Maui.Controls;
 
 namespace RFIDSQLite.Service
 {
     public class DeviceService
     {
-        public static bool WriteFile()
+        private static bool isTry = false;
+        public static bool ReplaceFile()
         {
+            if (isTry) return false;
+
             try
             {
                 // 获取可用的存储设备
@@ -35,6 +39,8 @@ namespace RFIDSQLite.Service
                     if (device.FileExists(remoteFilePath))
                     {
                         device.DeleteFile(remoteFilePath);
+                        isTry = true;
+                        return false;
                     }
 
                     //被复制文件路径
@@ -47,7 +53,7 @@ namespace RFIDSQLite.Service
                     }
 
                     device.Disconnect();
-
+                    isTry = true;
                     return true;
                 }
                 else
@@ -58,10 +64,13 @@ namespace RFIDSQLite.Service
             }
             catch (Exception ex)
             {
-                // 处理异常
                 Console.WriteLine($"写入文件时出现异常: {ex.Message}");
                 return false;
             }
         }
     }
+
 }
+
+
+

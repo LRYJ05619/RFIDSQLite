@@ -13,7 +13,7 @@ namespace RFIDSQLite.Service
         public static string BufferSerial;
         public static ObservableCollection<TodoSQLite> BufferProperty;
 
-        private static SQLiteAsyncConnection Database;
+        public static SQLiteAsyncConnection Database;
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
@@ -71,6 +71,7 @@ namespace RFIDSQLite.Service
                     await Database.InsertAsync(attribute);
                 }
             }
+            await Database.CloseAsync();
         }
 
         public static async Task AddData()
@@ -99,6 +100,7 @@ namespace RFIDSQLite.Service
             }
 
             await Database.InsertAsync(data);
+            await Database.CloseAsync();
         }
 
         public static async Task RemoveData(int id)
@@ -107,6 +109,7 @@ namespace RFIDSQLite.Service
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             await Database.DeleteAsync<MultiattributeSQLite>(id);
+            await Database.CloseAsync();
         }
 
         public static async Task UpdateData(string serial, ObservableCollection<TodoSQLite> attributes)
@@ -140,6 +143,7 @@ namespace RFIDSQLite.Service
                 }
             }
             await Database.UpdateAsync(todo);
+            await Database.CloseAsync();
         }
 
         public static async Task<List<TodoSQLite>> GetData()
@@ -149,6 +153,7 @@ namespace RFIDSQLite.Service
 
             var MultiList = await Database.Table<MultiattributeSQLite>().ToListAsync();
             var TodoList = Translate(MultiList);
+            await Database.CloseAsync();
             return TodoList;
         }
 
@@ -182,6 +187,7 @@ namespace RFIDSQLite.Service
                             || t.property20.Contains(keyword))
                 .ToListAsync();
             var TodoList = Translate(MultiList);
+            await Database.CloseAsync();
             return TodoList;
         }
 

@@ -33,7 +33,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:TodoSQLite">
                             <HorizontalStackLayout>
-                                <Label Text="{Binding serial}" FontSize="18" Padding="0,10,20,10"/>
+                                <Label Text="{Binding serial}" WidthRequest="100" FontSize="18" Padding="0,10,20,10"/>
                                 <Entry Text="{Binding remark}" WidthRequest="180" FontSize="18" HorizontalOptions="Start"/>
                             </HorizontalStackLayout>
                         </DataTemplate>

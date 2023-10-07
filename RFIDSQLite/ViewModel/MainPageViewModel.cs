@@ -11,6 +11,8 @@ namespace RFIDSQLite.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
+        private bool ReadState = false;
+
         //每页数据数量
         private int ItemsPerPage = 12;
 
@@ -190,8 +192,9 @@ namespace RFIDSQLite.ViewModel
 
                     SearchQuery = SQLiteService.Serial;
 
-                    SQLiteService.BufferProperty = null;
-                    SQLiteService.BufferSerial = null;
+                    long number = long.Parse(SQLiteService.Serial);
+                    number++;
+                    SQLiteService.BufferSerial = number.ToString("D12");
 
                     MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
 
@@ -204,7 +207,14 @@ namespace RFIDSQLite.ViewModel
                     return;
                 //读取和写入失败回调
                 case 6:
-                    MessagingCenter.Send(this, "OpenNotifyPage", "请检查芯片位置！");
+                    if (ReadState == true)
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "读取失败，请检查芯片位置！");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "写入失败，请检查芯片位置！");
+                    }
                     return;
             }
         }
@@ -242,6 +252,9 @@ namespace RFIDSQLite.ViewModel
                 MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
                 return;
             }
+
+            ReadState = true;
+
             if (!RFIDService.ReadData())
             {
                 MessagingCenter.Send(this, "OpenNotifyPage", "读取失败！");
@@ -279,15 +292,17 @@ namespace RFIDSQLite.ViewModel
 
         //数据同步
         [RelayCommand]
-        void WriteFile()
+        async Task WriteFileAsync()
         {
-            if (DeviceService.WriteFile())
+            await SQLiteService.Database.CloseAsync();
+
+            if (DeviceService.ReplaceFile())
             {
                 MessagingCenter.Send(this, "OpenNotifyPage", "同步完成！");
             }
             else
             {
-                MessagingCenter.Send(this, "OpenNotifyPage", "同步失败！");
+                MessagingCenter.Send(this, "OpenNotifyPage", "同步失败，请重新连接设备或重启软件！");
             }
         }
 

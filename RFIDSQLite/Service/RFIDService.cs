@@ -42,7 +42,7 @@ namespace RFIDSQLite.Service
         //获取串口列表
         public static void GetPorts()
         {
-            ports = SerialPort.GetPortNames();
+            ports = System.IO.Ports.SerialPort.GetPortNames();
         }
 
         /*状态判断  返回值0 串口已打开
@@ -73,10 +73,10 @@ namespace RFIDSQLite.Service
                         serialPort.Parity = Parity.None; // 设置校验位
                         serialPort.StopBits = StopBits.One; // 设置停止位
 
-                        serialPort.RtsEnable = true;
-                        serialPort.DtrEnable = true;
-                        serialPort.ReceivedBytesThreshold = 1;
+                        serialPort.RtsEnable = false;
+                        serialPort.DtrEnable = false;
 
+                        serialPort.ReceivedBytesThreshold = 1;
 
                         serialPort.Open(); // 打开串口
                         return 1;
