@@ -40,7 +40,7 @@
             <Button Grid.Column="6" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource ButtonStyle}"/>
         </Grid>
 
-        <Grid Grid.Row="2" ColumnDefinitions="*,*,1.5*,0.5*,*,*,*">
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,1.2*,0.8*,*,*,*">
 
             <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="主页" Style="{StaticResource ButtonStyle}"/>
 
