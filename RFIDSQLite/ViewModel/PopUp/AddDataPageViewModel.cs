@@ -18,8 +18,8 @@ namespace RFIDSQLite.ViewModel.PopUp
         {
             if (SQLiteService.BufferSerial != null || SQLiteService.BufferProperty != null)
             {
-                Serial = SQLiteService.BufferSerial;
-                Attributes = SQLiteService.BufferProperty;
+                Serial = new string(SQLiteService.BufferSerial);
+                Attributes = new ObservableCollection<TodoSQLite>(SQLiteService.BufferProperty);
             }
             else
             {
@@ -57,33 +57,19 @@ namespace RFIDSQLite.ViewModel.PopUp
                 return;
             }
 
-            byte[] SerialData = new byte[16];
-            int byteIndex = 0;
+            SQLiteService.Serial = Serial;
+            SQLiteService.Property = Attributes;
 
-            for (int i = 0; i < Serial.Length; i += 2)
-            {
-                // 从输入字符串中获取两个数字字符
-                string digitPair = Serial.Substring(i, 2);
+            await SQLiteService.AddData();
 
-                // 将数字字符解析为字节并存储在字节数组中
-                if (byteIndex < SerialData.Length)
-                {
-                    SerialData[byteIndex] = byte.Parse(digitPair);
-                    byteIndex++;
-                }
-            }
+            //序号自增
+            long number = long.Parse(SQLiteService.Serial);
+            number++;
+            SQLiteService.BufferSerial = number.ToString("D12");
 
             MessagingCenter.Send(this, "ClosePopupMessage");
-
-            if (!RFIDService.WriteData(SerialData))
-            {
-                MessagingCenter.Send(this, "OpenNotifyPage", "写入失败，请检查设备连接！");
-            }
-            else
-            {
-                SQLiteService.Serial = Serial;
-                SQLiteService.Property = Attributes;
-            }
+            MessagingCenter.Send(this, "RefreshPage");
+            MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
         }
 
         [RelayCommand]

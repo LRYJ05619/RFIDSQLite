@@ -7,6 +7,7 @@ namespace RFIDSQLite.Model
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string serial { get; set; }
+        public bool iswrite { get; set; }
         public string property1 { get; set; }
         public string property2 { get; set; }
         public string property3 { get; set; }

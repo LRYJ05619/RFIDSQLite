@@ -4,6 +4,8 @@ namespace RFIDSQLite.Service
 {
     public class RFIDService
     {
+        public static bool IsRFID = false;
+
         public static SerialPort serialPort = new();
 
         // 自定义事件，用于封装串口数据接收事件

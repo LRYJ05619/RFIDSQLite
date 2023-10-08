@@ -30,26 +30,29 @@
             </HorizontalStackLayout>
         </Grid>
 
-        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*">
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*,*">
             <Button Grid.Column="0" Command="{Binding AddDataCommand}" Text="新增" Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="1" Command="{Binding DeleteDataCommand}" Text="删除" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="2" Command="{Binding ReadDataCommand}" Text="读取信息" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="3" Command="{Binding OutputCsvCommand}" Text="数据导出" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="4" Command="{Binding WriteFileCommand}" Text="数据同步" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="5" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="2" Command="{Binding ReadDataCommand}" Text="读取芯片" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="3" Command="{Binding WriteChipCommand}" Text="写入芯片" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="4" Command="{Binding OutputCsvCommand}" Text="数据导出" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="5" Command="{Binding WriteFileCommand}" Text="数据同步" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="6" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource ButtonStyle}"/>
         </Grid>
 
-        <Grid Grid.Row="2" ColumnDefinitions="*,2*,*,1.2*,1.5*,1.5*">
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,1.5*,0.5*,*,*,*">
 
             <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="主页" Style="{StaticResource ButtonStyle}"/>
 
-            <Entry Grid.Column="1" Text="{Binding SearchQuery}" Placeholder="搜索" FontSize="22"  Margin="0,8,20,0"
+            <Button Grid.Column="1" Command="{Binding GetUnsignDataCommand}" Text="待写芯片" Style="{StaticResource ButtonStyle}"/>
+
+            <Entry Grid.Column="2" Text="{Binding SearchQuery}" Placeholder="搜索" FontSize="22"  Margin="0,8,20,0"
                    ReturnCommand="{Binding SearchCommand}"/>
 
-            <Button Grid.Column="2" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="3" Command="{Binding PropertyCommand}" Text="属性管理" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="3" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="4" Command="{Binding PropertyCommand}" Text="属性管理" Style="{StaticResource ButtonStyle}"/>
 
-            <Label Grid.Column="4" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
+            <Label Grid.Column="5" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text=" 当前数量  "/>
@@ -58,7 +61,7 @@
                 </Label.FormattedText>
             </Label>
 
-            <Label Grid.Column="5" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
+            <Label Grid.Column="6" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text=" 选中数量  " />
@@ -69,7 +72,7 @@
         </Grid>
 
         <Grid Grid.Row="3" ColumnDefinitions="140,220,20,*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
-            <Label Grid.Column="1" Margin="0,5,20,0" Text="设备编号" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
+            <Label Grid.Column="1" Margin="0,5,20,0" Text="编号" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
             <Label Grid.Column="3" Margin="0,0,20,0" Text="属性" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
         </Grid>
 

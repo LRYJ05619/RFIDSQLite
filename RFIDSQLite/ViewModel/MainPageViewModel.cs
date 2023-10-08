@@ -133,6 +133,11 @@ namespace RFIDSQLite.ViewModel
                 await HomePageAsync();
             });
 
+            MessagingCenter.Subscribe<AddDataPageViewModel>(this, "RefreshPage", async (sender) =>
+            {
+                await HomePageAsync();
+            });
+
             MessagingCenter.Subscribe<DeletePageViewModel>(this, "DeleteMessage", async (sender) =>
             {
                 if(SelectedList.Count == 0)
@@ -186,25 +191,30 @@ namespace RFIDSQLite.ViewModel
 
                     SearchQuery = data;
                     return;
+
                 //格式31，写入成功回调
                 case 31:
-                    await SQLiteService.AddData();
 
                     SearchQuery = SQLiteService.Serial;
 
+                    //序号自增
                     long number = long.Parse(SQLiteService.Serial);
                     number++;
-                    SQLiteService.BufferSerial = number.ToString("D12");
+                    SQLiteService.WriteSerial = number.ToString("D12");
+
+                    await SQLiteService.SignData();
 
                     MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
 
                     TodoList = await SQLiteService.SearchData(SQLiteService.Serial);
 
                     return;
+
                 //格式43，未修改PC值前
                 case 43:
                     MessagingCenter.Send(this, "OpenNotifyPage", "未找到相应数据！");
                     return;
+
                 //读取和写入失败回调
                 case 6:
                     if (ReadState == true)
@@ -223,11 +233,6 @@ namespace RFIDSQLite.ViewModel
         [RelayCommand]
         void AddData()
         {
-            if (!RFIDService.serialPort.IsOpen)
-            {
-                MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
-                return;
-            }
             MessagingCenter.Send(this, "OpenAddDataPage");
         }
 
@@ -243,7 +248,7 @@ namespace RFIDSQLite.ViewModel
             MessagingCenter.Send(this, "OpenDeletePage");
         }
 
-        //读取信息
+        //读取芯片
         [RelayCommand]
         void ReadData()
         {
@@ -259,6 +264,19 @@ namespace RFIDSQLite.ViewModel
             {
                 MessagingCenter.Send(this, "OpenNotifyPage", "读取失败！");
             }
+        }
+
+        //写入芯片
+        [RelayCommand]
+        void WriteChip()
+        {
+            if (!RFIDService.serialPort.IsOpen)
+            {
+                MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
+                return;
+            }
+
+            MessagingCenter.Send(this, "OpenWriteChipPage");
         }
 
         //数据导出
@@ -302,7 +320,7 @@ namespace RFIDSQLite.ViewModel
             }
             else
             {
-                MessagingCenter.Send(this, "OpenNotifyPage", "同步失败，请重新连接设备或重启软件！");
+                MessagingCenter.Send(this, "OpenNotifyPage", "同步失败，请重新连接设备");
             }
         }
 
@@ -318,6 +336,13 @@ namespace RFIDSQLite.ViewModel
         async Task HomePageAsync()
         {
             TodoList = await SQLiteService.GetData();
+        }
+
+        //待写芯片
+        [RelayCommand]
+        async Task GetUnsignDataAsync()
+        {
+            TodoList = await SQLiteService.GetUnsignData();
         }
 
         //搜索

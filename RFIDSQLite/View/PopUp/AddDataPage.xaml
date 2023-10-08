@@ -13,7 +13,7 @@
 
                 <HorizontalStackLayout Grid.Row="1">
 
-                    <Label Text="设备编号" FontSize="18" Padding="10,10,5,0"/>
+                    <Label Text="编号" FontSize="18" Padding="10,10,5,0"/>
                     <Entry x:Name="Entry" Text="{Binding Serial}" FontSize="18" MaxLength="12" WidthRequest="200" Placeholder="设备编号" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20,0,20,0"/>
 
                 </HorizontalStackLayout>

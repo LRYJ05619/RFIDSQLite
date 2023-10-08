@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using Microsoft.Maui;
 using RFIDSQLite.Model;
+using RFIDSQLite.View.PopUp;
 using SQLite;
 
 
@@ -13,6 +15,8 @@ namespace RFIDSQLite.Service
         public static string BufferSerial;
         public static ObservableCollection<TodoSQLite> BufferProperty;
 
+        public static string WriteSerial;
+
         public static SQLiteAsyncConnection Database;
 
         public const SQLite.SQLiteOpenFlags Flags =
@@ -23,6 +27,7 @@ namespace RFIDSQLite.Service
             // enable multi-threaded database access
             SQLite.SQLiteOpenFlags.SharedCache;
 
+        //数据库初始化
         static async Task Init()
         {
             if (Database != null)
@@ -41,6 +46,7 @@ namespace RFIDSQLite.Service
             Database = new SQLiteAsyncConnection(databasePath, Flags);
         }
 
+        //初始化属性列表
         public static async Task InitProperty()
         {
             await Init();
@@ -51,6 +57,7 @@ namespace RFIDSQLite.Service
             Property = new ObservableCollection<TodoSQLite>(todoList);
         }
 
+        //更改属性列表
         public static async Task ChangeProperty(ObservableCollection<TodoSQLite> Attributes)
         {
             if (Attributes != null && Attributes.Count > 0)
@@ -74,6 +81,7 @@ namespace RFIDSQLite.Service
             await Database.CloseAsync();
         }
 
+        //新增条目
         public static async Task AddData()
         {
             await Init();
@@ -82,6 +90,7 @@ namespace RFIDSQLite.Service
             var data = new MultiattributeSQLite
             {
                 serial = Serial,
+                iswrite = false,
             };
 
             for (int i = 0; i < Property.Count && i < 20; i++)
@@ -103,6 +112,7 @@ namespace RFIDSQLite.Service
             await Database.CloseAsync();
         }
 
+        //删除条目
         public static async Task RemoveData(int id)
         {
             await Init();
@@ -112,14 +122,16 @@ namespace RFIDSQLite.Service
             await Database.CloseAsync();
         }
 
+        //更改条目
         public static async Task UpdateData(string serial, ObservableCollection<TodoSQLite> attributes)
         {
             await Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var todo = await Database
-                .Table<MultiattributeSQLite>().
-                Where(t => t.serial == serial).FirstOrDefaultAsync();
+                .Table<MultiattributeSQLite>()
+                .Where(t => t.serial == serial)
+                .FirstOrDefaultAsync();
 
             for (int i = 0; i < 20; i++)
             {
@@ -146,6 +158,7 @@ namespace RFIDSQLite.Service
             await Database.CloseAsync();
         }
 
+        //获取所有条目
         public static async Task<List<TodoSQLite>> GetData()
         {
             await Init();
@@ -157,6 +170,7 @@ namespace RFIDSQLite.Service
             return TodoList;
         }
 
+        //搜索条目
         public static async Task<List<TodoSQLite>> SearchData(string keyword)
         {
             await Init();
@@ -191,6 +205,39 @@ namespace RFIDSQLite.Service
             return TodoList;
         }
 
+        //标记条目已写入芯片
+        public static async Task SignData()
+        {
+            await Init();
+            await Database.CreateTableAsync<MultiattributeSQLite>();
+
+            var todo = await Database
+                .Table<MultiattributeSQLite>()
+                .Where(t => t.serial == Serial).FirstOrDefaultAsync();
+
+            todo.iswrite = true;
+
+            await Database.UpdateAsync(todo);
+            await Database.CloseAsync();
+        }
+
+        //获取所有未被标记的条目
+        public static async Task<List<TodoSQLite>> GetUnsignData()
+        {
+            await Init();
+            await Database.CreateTableAsync<MultiattributeSQLite>();
+
+            var MultiList = await Database
+                .Table<MultiattributeSQLite>()
+                .Where(t => t.iswrite.Equals(false))
+                .ToListAsync();
+
+            var TodoList = Translate(MultiList);
+            await Database.CloseAsync();
+            return TodoList;
+        }
+
+        //将属性列表转换为条目
         private static List<TodoSQLite> Translate(List<MultiattributeSQLite> Multi)
         {
             List<TodoSQLite> todo = new();

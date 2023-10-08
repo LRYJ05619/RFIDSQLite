@@ -27,20 +27,23 @@ namespace RFIDSQLite.ViewModel.PopUp
 
             if (Message == "写入失败，请检查编号！")
             {
+                if (RFIDService.IsRFID == true)
+                {
+                    MessagingCenter.Send(this, "");
+                }
                 MessagingCenter.Send(this, "OpenAddDataPage");
             }
 
             if (Message == "请输入编号！")
             {
+                if (RFIDService.IsRFID == true)
+                {
+                    MessagingCenter.Send(this, "OpenWriteChipPage");
+                }
                 MessagingCenter.Send(this, "OpenAddDataPage");
             }
 
             if (Message == "编号重复，请重新输入！")
-            {
-                MessagingCenter.Send(this, "OpenAddDataPage");
-            }
-
-            if (Message == "写入失败，请检查设备连接！")
             {
                 MessagingCenter.Send(this, "OpenAddDataPage");
             }
@@ -58,6 +61,16 @@ namespace RFIDSQLite.ViewModel.PopUp
             if (Message == "保存成功！")
             {
                 MessagingCenter.Send(this, "RefreshPage");
+            }
+
+            if (Message == "写入失败，请检查设备连接！")
+            {
+                MessagingCenter.Send(this, "OpenWriteChipPage");
+            }
+
+            if (Message == "请先新增编号！")
+            {
+                MessagingCenter.Send(this, "OpenWriteChipPage");
             }
         }
     }

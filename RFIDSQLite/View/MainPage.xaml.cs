@@ -122,6 +122,36 @@ namespace RFIDSQLite.View
                 this.ShowPopup(popup);
             });
 
+            //写入芯片按钮
+            MessagingCenter.Subscribe<MainPageViewModel>(this, "OpenWriteChipPage", (sender) =>
+            {
+                // 打开 Popup，并使用传递的文本内容
+                var popup = new WriteChipPage(new WriteChipPageViewModel())
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
+                this.ShowPopup(popup);
+            });
+
+            //写入芯片失败
+            MessagingCenter.Subscribe<WriteChipPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
+            {
+                // 打开 Popup，并使用传递的文本内容
+                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                this.ShowPopup(popup);
+            });
+
+            //重新打开写入芯片
+            MessagingCenter.Subscribe<NotifyPageViewModel>(this, "OpenWriteChipPage", (sender) =>
+            {
+                // 打开 Popup，并使用传递的文本内容
+                var popup = new WriteChipPage(new WriteChipPageViewModel())
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
+                this.ShowPopup(popup);
+            });
+
         }
     }
 }
