@@ -92,13 +92,52 @@ namespace RFIDSQLite.ViewModel
         //接收数据处理
         private async void ReceivedData(object sender, byte[] Data)
         {
-            switch (Data.Length)
+            if (Data.Length < 4) 
+                return;
+
+            switch (Data[3])
             {
-                //格式47，标准格式,读数据库判断是否存在
-                case 47:
+                //写回调
+                case 0x82:
+                {
+                    if (Data.Length == 6)
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "写入失败，请检查芯片位置！");
+                        return;
+                    }
+                    var length = Data.Length - 4;
+
+                    if (Data[length] == 0x10)
+                    {
+                        await SQLiteService.AddData(SQLiteService.Serial,SQLiteService.Remark);
+
+                        SearchQuery = SQLiteService.Serial;
+
+                        long number = long.Parse(SQLiteService.Serial);
+                        number++;
+                        SQLiteService.BufferSerial = number.ToString("D12");
+
+                        MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
+
+                        TodoList = await SQLiteService.SearchData(SQLiteService.Serial);
+                        return;
+                    }
+
+                    return;
+                }
+                //读回调
+                case 0x81:
+                {
+                    if (Data.Length == 6)
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "读取失败，请检查芯片位置！");
+                        return;
+                    }
+
+                    var length = Data.Length > 6 ? 6 : Data.Length;
                     string data = "";
 
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < length; i++)
                     {
                         var fire = Data[i + 9].ToString();
                         fire = fire.Length == 1 ? "0" + fire : fire;
@@ -124,34 +163,7 @@ namespace RFIDSQLite.ViewModel
 
                     SearchQuery = data;
                     return;
-                //格式31，写入成功回调
-                case 31:
-                    await SQLiteService.AddData(SQLiteService.Serial, SQLiteService.Remark);
-
-                    SearchQuery = SQLiteService.Serial;
-
-                    SQLiteService.BufferRemark = null;
-                    SQLiteService.BufferSerial = null;
-
-                    MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
-
-                    var list = await SQLiteService.SearchData(SQLiteService.Serial);
-                    list.Reverse();
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        list[i].Id = i + 1;
-                    }
-                    TodoList = list;
-
-                    return;
-                //格式43，未修改PC值前
-                case 43:
-                    MessagingCenter.Send(this, "OpenNotifyPage", "未找到相应数据！");
-                    return;
-                //读取和写入失败回调
-                case 6:
-                    MessagingCenter.Send(this, "OpenNotifyPage", "请检查芯片位置！");
-                    return;
+                }
             }
         }
 
