@@ -57,25 +57,9 @@ namespace RFIDSQLite.ViewModel.PopUp
                 return;
             }
 
-            byte[] SerialData = new byte[16];
-            int byteIndex = 0;
-
-            for (int i = 0; i < Serial.Length; i += 2)
-            {
-                // 从输入字符串中获取两个数字字符
-                string digitPair = Serial.Substring(i, 2);
-
-                // 将数字字符解析为字节并存储在字节数组中
-                if (byteIndex < SerialData.Length)
-                {
-                    SerialData[byteIndex] = byte.Parse(digitPair);
-                    byteIndex++;
-                }
-            }
-
             MessagingCenter.Send(this, "ClosePopupMessage");
 
-            if (!RFIDService.WriteData(SerialData))
+            if (!RFIDService.WriteData(Serial))
             {
                 MessagingCenter.Send(this, "OpenNotifyPage", "写入失败，请检查设备连接！");
             }

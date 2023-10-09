@@ -133,8 +133,10 @@ namespace RFIDSQLite.Service
         }
 
         //写入标签
-        public static bool WriteData(byte[] buf)
+        public static bool WriteData(string serial)
         {
+            byte[] buf = TransToByte(serial);
+
             byte[] DATABuffer = new byte[30];
             //Head(头字符）
             DATABuffer[0] = 0xA0;
@@ -190,5 +192,118 @@ namespace RFIDSQLite.Service
             return uSum;
         }
 
+        //盘存
+        public static bool Inventory()
+        {
+            byte[] Data = new byte[6];
+            Data[0] = 0xA0;
+            Data[1] = 0x04;
+            Data[2] = 0x01;
+            Data[3] = 0x89;
+            Data[4] = 0x01;
+            Data[5] = 0xD1;
+            if (DataSent(Data))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //锁定
+        public static bool Lock(string serial)
+        {
+            byte[] SerialData = TransToByte(serial);
+
+            byte[] DATABuffer = new byte[23];
+            DATABuffer[0] = 0xA0;
+            DATABuffer[1] = 0x15;
+            DATABuffer[2] = 0x01;
+            DATABuffer[3] = 0x85;
+            DATABuffer[4] = 0x00;
+            DATABuffer[5] = 0x10;
+
+            for (int i = 0; i < 16; i++)
+            {
+                DATABuffer[i + 6] = SerialData[i];
+            }
+
+            //校验
+            DATABuffer[22] = CheckSum(DATABuffer, 22);
+
+            if (DataSent(DATABuffer))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //解锁
+        public static bool UnLock()
+        {
+            byte[] Data = new byte[6];
+            Data[0] = 0xA0;
+            Data[1] = 0x04;
+            Data[2] = 0x01;
+            Data[3] = 0x85;
+            Data[4] = 0x01;
+            Data[5] = 0xD5;
+            if (DataSent(Data))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //点亮
+        public static bool Light()
+        {
+            byte[] Data = new byte[8];
+            Data[0] = 0xA0;
+            Data[1] = 0x06;
+            Data[2] = 0x01;
+            Data[3] = 0x81;
+            Data[4] = 0x00;
+            Data[5] = 0x04;
+            Data[6] = 0x01;
+            Data[7] = 0xD3;
+            if (DataSent(Data))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static byte[] TransToByte(string serial)
+        {
+            byte[] SerialData = new byte[16];
+            int byteIndex = 0;
+
+            for (int i = 0; i < 16; i += 2)
+            {
+                // 从输入字符串中获取两个数字字符
+                string digitPair = serial.Substring(i, 2);
+
+                // 将数字字符解析为字节并存储在字节数组中
+                if (byteIndex < SerialData.Length)
+                {
+                    SerialData[byteIndex] = byte.Parse(digitPair);
+                    byteIndex++;
+                }
+            }
+
+            return SerialData;
+        }
     }
 }

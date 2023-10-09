@@ -42,8 +42,6 @@ namespace RFIDSQLite
             builder.Services.AddSingleton<PropertyPageViewModel>();
             builder.Services.AddSingleton<ModifyDataPageViewModel>();
 
-            builder.Services.AddTransient<DeviceService>();
-            builder.Services.AddTransient<OutputService>();
             builder.Services.AddTransient<RFIDService>();
             builder.Services.AddTransient<SQLiteService>();
             builder.Services.AddTransient<TitleGetService>();

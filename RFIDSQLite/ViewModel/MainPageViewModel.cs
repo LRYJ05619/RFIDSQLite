@@ -13,9 +13,6 @@ namespace RFIDSQLite.ViewModel
     {
         private bool ReadState = false;
 
-        //每页数据数量
-        private int ItemsPerPage = 12;
-
         [ObservableProperty]
         string title;
         
@@ -28,37 +25,9 @@ namespace RFIDSQLite.ViewModel
             {
                 if (SetProperty(ref todoList, value))
                 {
-                    // 检查列表是否为空
-                    if (TodoList == null || TodoList.Count == 0)
-                    {
-                        TotalPages = 1; // 如果为空，设置 TotalPages 为最小页数
-                        UpdateItems();
-                    }
-                    else
-                    {
-                        //重新计算分页数
-                        TotalPages = (int)Math.Ceiling((double)TodoList.Count / ItemsPerPage);
-                        UpdateItems();
-                    }
                 }
             }
         }
-
-        //绑定数据
-        private List<TodoSQLite> visibleList;
-        public List<TodoSQLite> VisibleList
-        {
-            get { return visibleList; }
-            set
-            {
-                if (SetProperty(ref visibleList, value))
-                {
-                    // 当 TodoList 发生变化时，手动清空 SelectedList
-                    SelectedList.Clear();
-                }
-            }
-        }
-
 
         [ObservableProperty]
         string searchQuery;
@@ -79,39 +48,8 @@ namespace RFIDSQLite.ViewModel
             }
         }
 
-        readonly IFileSaver fileSaver;
 
-        //当前页码
-        private int currentPageCount;
-        public int CurrentPageCount
-        {
-            get => currentPageCount;
-            set
-            {
-                if (SetProperty(ref currentPageCount, value))
-                {
-                    UpdateItems();
-                }
-            }
-        }
-
-        //总页数
-        private int totalPages;
-
-        public int TotalPages
-        {
-            get => totalPages;
-            set
-            {
-                if (SetProperty(ref totalPages, value))
-                {
-                    CurrentPageCount = 1;
-                }
-            }
-        }
-
-
-        public MainPageViewModel(IFileSaver fileSaver)
+        public MainPageViewModel()
         {
             //获取标签
             Title = TitleGetService.get();
@@ -119,14 +57,9 @@ namespace RFIDSQLite.ViewModel
             //初始化属性列表
             _ = SQLiteService.InitProperty();
 
-            TotalPages = 1;
-            CurrentPageCount = 1;
-
             var RfidService = new RFIDService();
             //订阅接收事件
             RFIDService.ReceivedDataEvent += ReceivedData;
-
-            this.fileSaver = fileSaver;
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshPage", async (sender) =>
             {
@@ -243,67 +176,18 @@ namespace RFIDSQLite.ViewModel
             MessagingCenter.Send(this, "OpenDeletePage");
         }
 
-        //读取信息
+        //搜索
         [RelayCommand]
-        void ReadData()
+        async Task SearchAsync()
         {
-            if (!RFIDService.serialPort.IsOpen)
-            {
-                MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
-                return;
-            }
-
-            ReadState = true;
-
-            if (!RFIDService.ReadData())
-            {
-                MessagingCenter.Send(this, "OpenNotifyPage", "读取失败！");
-            }
+            TodoList = await SQLiteService.SearchData(SearchQuery);
         }
 
-        //数据导出
+        //属性管理按钮
         [RelayCommand]
-        async Task OutputCsvAsync()
+        void Property()
         {
-            if (SelectedList.Count == 0)
-            {
-                MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
-                return;
-            }
-
-            var cancellationTokenSource = new CancellationTokenSource();
-
-            try
-            {
-                // 调用 SaveCSVFile 方法，并传入 CancellationToken
-                await OutputService.SaveCSVFile(cancellationTokenSource.Token, SelectedList);
-            }
-            catch (OperationCanceledException)
-            {
-                // 处理操作被取消的情况
-                MessagingCenter.Send(this, "OpenNotifyPage", "取消导出！");
-            }
-            finally
-            {
-                // 释放 CancellationTokenSource 资源
-                cancellationTokenSource.Dispose();
-            }
-        }
-
-        //数据同步
-        [RelayCommand]
-        async Task WriteFileAsync()
-        {
-            await SQLiteService.Database.CloseAsync();
-
-            if (DeviceService.ReplaceFile())
-            {
-                MessagingCenter.Send(this, "OpenNotifyPage", "同步完成！");
-            }
-            else
-            {
-                MessagingCenter.Send(this, "OpenNotifyPage", "同步失败，请重新连接设备或重启软件！");
-            }
+            MessagingCenter.Send(this, "OpenManagerPage");
         }
 
         //设备管理
@@ -320,18 +204,50 @@ namespace RFIDSQLite.ViewModel
             TodoList = await SQLiteService.GetData();
         }
 
-        //搜索
+        //扫描
         [RelayCommand]
-        async Task SearchAsync()
+        void ScanData()
         {
-            TodoList = await SQLiteService.SearchData(SearchQuery);
+            if (!RFIDService.serialPort.IsOpen)
+            {
+                MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
+                return;
+            }
+
+            ReadState = true;
+
+            if (!RFIDService.ReadData())
+            {
+                MessagingCenter.Send(this, "OpenNotifyPage", "读取失败！");
+            }
         }
 
-        //属性管理按钮
+        //点亮
         [RelayCommand]
-        void Property()
+        async Task LightAsync()
         {
-            MessagingCenter.Send(this, "OpenManagerPage");
+            if (!RFIDService.serialPort.IsOpen)
+            {
+                MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
+                return;
+            }
+
+            if(SelectedList.Count == 0)
+                MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
+
+            foreach (TodoSQLite todo in SelectedList)
+            {
+                RFIDService.Lock(todo.serial);
+                RFIDService.Light();
+                RFIDService.UnLock();
+            }
+        }
+
+        //闪烁
+        [RelayCommand]
+        async Task BlinkAsync()
+        {
+            TodoList = await SQLiteService.GetData();
         }
 
         //双击编辑事件
@@ -342,24 +258,6 @@ namespace RFIDSQLite.ViewModel
                 return;
 
             MessagingCenter.Send(this, "OpenModifyDataPage", todo);
-        }
-
-        private void UpdateItems()
-        {
-            if (TodoList == null)
-                return;
-
-            int startIndex = (CurrentPageCount - 1) * ItemsPerPage;
-            int endIndex = Math.Min(startIndex + ItemsPerPage, TodoList.Count);
-
-            var list = new List<TodoSQLite>();
-
-            for (int i = startIndex; i < endIndex; i++)
-            {
-                list.Add(TodoList[i]);
-            }
-
-            VisibleList = new List<TodoSQLite>(list);
         }
     }
 }
