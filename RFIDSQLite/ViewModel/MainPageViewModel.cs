@@ -133,12 +133,16 @@ namespace RFIDSQLite.ViewModel
                         return;
                     }
 
-                    var length = Data[5] > 6 ? 6 : Data[5];
+                    if (Data[1] == 0xA0)
+                    {
+                        return;
+                    }
+
                     string data = "";
 
-                    for (int i = 0; i < length; i++)
+                    for (int i = 0; i < 6; i++)
                     {
-                        var fire = Data[i + 9].ToString();
+                        var fire = Data[i + 7].ToString();
                         fire = fire.Length == 1 ? "0" + fire : fire;
                         data += fire;
                     }
@@ -147,15 +151,9 @@ namespace RFIDSQLite.ViewModel
 
                     if (search.Count != 0)
                     {
-                        MessagingCenter.Send(this, "OpenNotifyPage", "读取成功！");
-                        TodoList = search;
-                    }
-                    else
-                    {
-                        MessagingCenter.Send(this, "OpenNotifyPage", "未找到相应数据！");
+                        TodoList
                     }
 
-                    SearchQuery = data;
                     return;
                 }
             }
