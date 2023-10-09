@@ -206,7 +206,7 @@ namespace RFIDSQLite.ViewModel
                         return;
                     }
 
-                    var length = Data[5] > 6 ? 6 : Data[5];
+                    var length = Data[6] - 4 > 6 ? 6 : Data[6] - 4;
                     string data = "";
 
                     for (int i = 0; i < length; i++)
