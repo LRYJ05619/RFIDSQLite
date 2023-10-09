@@ -23,7 +23,7 @@ namespace RFIDSQLite.Service
             // enable multi-threaded database access
             SQLite.SQLiteOpenFlags.SharedCache;
 
-        static async Task Init()
+        static void Init()
         {
             if (Database != null)
                 return;
@@ -43,7 +43,7 @@ namespace RFIDSQLite.Service
 
         public static async Task InitProperty()
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<TodoSQLite>();
 
             var todoList = await Database.Table<TodoSQLite>().ToListAsync();
@@ -55,7 +55,7 @@ namespace RFIDSQLite.Service
         {
             if (Attributes != null && Attributes.Count > 0)
             {
-                await Init();
+                Init();
 
                 await Database.CreateTableAsync<TodoSQLite>();
 
@@ -76,7 +76,7 @@ namespace RFIDSQLite.Service
 
         public static async Task AddData()
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var data = new MultiattributeSQLite
@@ -105,7 +105,7 @@ namespace RFIDSQLite.Service
 
         public static async Task RemoveData(int id)
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             await Database.DeleteAsync<MultiattributeSQLite>(id);
@@ -114,7 +114,7 @@ namespace RFIDSQLite.Service
 
         public static async Task UpdateData(string serial, ObservableCollection<TodoSQLite> attributes)
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var todo = await Database
@@ -148,7 +148,7 @@ namespace RFIDSQLite.Service
 
         public static async Task<List<TodoSQLite>> GetData()
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var MultiList = await Database.Table<MultiattributeSQLite>().ToListAsync();
@@ -159,7 +159,7 @@ namespace RFIDSQLite.Service
 
         public static async Task<List<TodoSQLite>> SearchData(string keyword)
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var MultiList = await Database

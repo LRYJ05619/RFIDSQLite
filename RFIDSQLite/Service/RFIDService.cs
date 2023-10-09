@@ -290,7 +290,7 @@ namespace RFIDSQLite.Service
             byte[] SerialData = new byte[16];
             int byteIndex = 0;
 
-            for (int i = 0; i < 16; i += 2)
+            for (int i = 0; i < serial.Length; i += 2)
             {
                 // 从输入字符串中获取两个数字字符
                 string digitPair = serial.Substring(i, 2);

@@ -11,8 +11,6 @@ namespace RFIDSQLite.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
-        private bool ReadState = false;
-
         [ObservableProperty]
         string title;
         
@@ -25,6 +23,7 @@ namespace RFIDSQLite.ViewModel
             {
                 if (SetProperty(ref todoList, value))
                 {
+                    SelectedList.Clear();
                 }
             }
         }
@@ -129,8 +128,7 @@ namespace RFIDSQLite.ViewModel
                 case 0x81:
                 {
                     if (Data.Length == 6)
-                    {
-                        MessagingCenter.Send(this, "OpenNotifyPage", "读取失败，请检查芯片位置！");
+                    { 
                         return;
                     }
 
@@ -224,17 +222,15 @@ namespace RFIDSQLite.ViewModel
                 return;
             }
 
-            ReadState = true;
-
-            if (!RFIDService.ReadData())
+            if (!RFIDService.Inventory())
             {
-                MessagingCenter.Send(this, "OpenNotifyPage", "读取失败！");
+                MessagingCenter.Send(this, "OpenNotifyPage", "扫描失败！");
             }
         }
 
         //点亮
         [RelayCommand]
-        async Task LightAsync()
+         void Light()
         {
             if (!RFIDService.serialPort.IsOpen)
             {
@@ -242,14 +238,17 @@ namespace RFIDSQLite.ViewModel
                 return;
             }
 
-            if(SelectedList.Count == 0)
+            if (SelectedList.Count == 0)
                 MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
 
             foreach (TodoSQLite todo in SelectedList)
             {
                 RFIDService.Lock(todo.serial);
+                Thread.Sleep(10);
                 RFIDService.Light();
+                Thread.Sleep(10);
                 RFIDService.UnLock();
+                Thread.Sleep(150);
             }
         }
 
