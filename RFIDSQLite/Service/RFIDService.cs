@@ -110,28 +110,6 @@ namespace RFIDSQLite.Service
             }
         }
 
-        //读取
-        public static bool ReadData()
-        {
-            byte[] Data = new byte[8];
-            Data[0] = 0xA0;
-            Data[1] = 0x06;
-            Data[2] = 0x01;
-            Data[3] = 0x81;
-            Data[4] = 0x01;
-            Data[5] = 0x02;
-            Data[6] = 0x08;
-            Data[7] = 0xCD;
-            if (DataSent(Data))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         //写入标签
         public static bool WriteData(string serial)
         {

@@ -124,15 +124,16 @@ namespace RFIDSQLite.ViewModel
 
                     return;
                 }
-                //读回调
-                case 0x81:
+                //盘存回调
+                case 0x89:
                 {
                     if (Data.Length == 6)
-                    { 
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "扫秒失败，请检查设备连接！");
                         return;
                     }
 
-                    var length = Data.Length > 6 ? 6 : Data.Length;
+                    var length = Data[5] > 6 ? 6 : Data[5];
                     string data = "";
 
                     for (int i = 0; i < length; i++)
