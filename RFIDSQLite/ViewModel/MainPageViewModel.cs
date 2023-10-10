@@ -278,7 +278,7 @@ namespace RFIDSQLite.ViewModel
                 }
 
                 // 扫描完成后，确保在 UI 线程上更新界面
-                Device.BeginInvokeOnMainThread(() =>
+                MainThread.BeginInvokeOnMainThread(() =>
                 {
                     IsScanning = false;
                 });

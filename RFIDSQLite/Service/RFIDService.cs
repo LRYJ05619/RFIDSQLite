@@ -28,7 +28,7 @@ namespace RFIDSQLite.Service
                 serialPort.Read(buffer, 0, buffer.Length);
 
                 // 在主线程上触发自定义事件，通知主程序接收到数据
-                Device.BeginInvokeOnMainThread(() =>
+                MainThread.BeginInvokeOnMainThread(() =>
                 {
                     ReceivedDataEvent?.Invoke(this, buffer);
                 });
