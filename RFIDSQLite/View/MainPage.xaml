@@ -45,12 +45,20 @@
         <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*,*,*">
 
             <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="主页" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="1" Command="{Binding ScanDataCommand}" Text="扫描" Style="{StaticResource ButtonStyle}"/>
-
+            <Button Grid.Column="1" Command="{Binding ScanDataCommand}" Style="{StaticResource ButtonStyle}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsScanning}" Value="true">
+                        <Setter Property="Text" Value="停止扫描"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsScanning}" Value="false">
+                        <Setter Property="Text" Value="开始扫描"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
 
 
             <Button Grid.Column="2" Command="{Binding LightCommand}" Text="点亮" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="3" Command="{Binding PropertyCommand}" Text="闪烁" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="3" Command="{Binding BlinkCommand}" Text="闪烁" Style="{StaticResource ButtonStyle}"/>
 
             <Label Grid.Column="4" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
                 <Label.FormattedText>

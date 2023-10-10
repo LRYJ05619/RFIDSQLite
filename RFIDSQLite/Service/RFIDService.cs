@@ -170,6 +170,26 @@ namespace RFIDSQLite.Service
             return uSum;
         }
 
+        //重置天线
+        public static bool ResetAntenna()
+        {
+            byte[] Data = new byte[6];
+            Data[0] = 0xA0;
+            Data[1] = 0x04;
+            Data[2] = 0x01;
+            Data[3] = 0x74;
+            Data[4] = 0x00;
+            Data[5] = 0xE7;
+            if (DataSent(Data))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         //盘存
         public static bool Inventory()
         {

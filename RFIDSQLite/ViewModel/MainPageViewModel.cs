@@ -12,6 +12,9 @@ namespace RFIDSQLite.ViewModel
     public partial class MainPageViewModel : ObservableObject
     {
         [ObservableProperty]
+        private bool isScanning = false;
+
+        [ObservableProperty]
         string title;
         
         //原始数据
@@ -47,7 +50,6 @@ namespace RFIDSQLite.ViewModel
             }
         }
 
-
         public MainPageViewModel()
         {
             //获取标签
@@ -56,7 +58,11 @@ namespace RFIDSQLite.ViewModel
             //初始化属性列表
             _ = SQLiteService.InitProperty();
 
+            //实例化RFIDService，不能删除，否则会接收不到回调
             var RfidService = new RFIDService();
+
+            TodoList = new List<TodoSQLite>();
+
             //订阅接收事件
             RFIDService.ReceivedDataEvent += ReceivedData;
 
@@ -133,7 +139,7 @@ namespace RFIDSQLite.ViewModel
                         return;
                     }
 
-                    if (Data[1] == 0xA0)
+                    if (Data[1] == 0x0A)
                     {
                         return;
                     }
@@ -147,11 +153,19 @@ namespace RFIDSQLite.ViewModel
                         data += fire;
                     }
 
-                    var search = await SQLiteService.SearchData(data);
+                    TodoList.Add(new TodoSQLite() { serial = data });
 
-                    if (search.Count != 0)
+                    var originalList = TodoList;
+
+                        // 使用 LINQ 查询来过滤重复的项
+                    TodoList = originalList
+                        .GroupBy(item => item.serial)
+                        .Select(group => group.First())
+                        .ToList();
+
+                    for (int i = 0; i < TodoList.Count; i++)
                     {
-                        TodoList
+                        TodoList[i].Id = i + 1;
                     }
 
                     return;
@@ -211,6 +225,14 @@ namespace RFIDSQLite.ViewModel
             TodoList = await SQLiteService.GetData();
         }
 
+        // 用于更新按钮状态的方法
+        private void UpdateScanButtonState(bool isScanning)
+        {
+            // 在此方法中更新按钮状态
+            IsScanning = isScanning;
+        }
+
+        private Task scanningTask;
         //扫描
         [RelayCommand]
         void ScanData()
@@ -221,10 +243,46 @@ namespace RFIDSQLite.ViewModel
                 return;
             }
 
-            if (!RFIDService.Inventory())
+            if (IsScanning)
             {
-                MessagingCenter.Send(this, "OpenNotifyPage", "扫描失败！");
+                // 如果正在扫描，则停止扫描
+                IsScanning = false;
+                return;
             }
+
+            IsScanning = true;
+
+            TodoList.Clear();
+
+            scanningTask = Task.Run(async () =>
+            {
+                while (IsScanning)
+                {
+                    if (!RFIDService.ResetAntenna())
+                    {
+                        IsScanning = false;
+                        MessagingCenter.Send(this, "OpenNotifyPage", "扫描失败！");
+                        break;
+                    }
+
+                    await Task.Delay(10); // 在新线程中延迟一段时间
+
+                    if (!RFIDService.Inventory())
+                    {
+                        IsScanning = false;
+                        MessagingCenter.Send(this, "OpenNotifyPage", "扫描失败！");
+                        break;
+                    }
+
+                    await Task.Delay(100); // 在新线程中延迟一段时间
+                }
+
+                // 扫描完成后，确保在 UI 线程上更新界面
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    IsScanning = false;
+                });
+            });
         }
 
         //点亮
@@ -238,14 +296,22 @@ namespace RFIDSQLite.ViewModel
             }
 
             if (SelectedList.Count == 0)
+            {
                 MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
+                return;
+            }
 
             foreach (TodoSQLite todo in SelectedList)
             {
                 RFIDService.Lock(todo.serial);
                 Thread.Sleep(10);
-                RFIDService.Light();
-                Thread.Sleep(10);
+
+                for (int i = 0; i < 5; i++)
+                {
+                    RFIDService.Light();
+                    Thread.Sleep(10);
+                }
+
                 RFIDService.UnLock();
                 Thread.Sleep(150);
             }
@@ -253,9 +319,33 @@ namespace RFIDSQLite.ViewModel
 
         //闪烁
         [RelayCommand]
-        async Task BlinkAsync()
+        void Blink()
         {
-            TodoList = await SQLiteService.GetData();
+            if (!RFIDService.serialPort.IsOpen)
+            {
+                MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
+                return;
+            }
+
+            if (SelectedList.Count == 0)
+            {
+                MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
+                return;
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                foreach (TodoSQLite todo in SelectedList)
+                {
+                    RFIDService.Lock(todo.serial);
+                    Thread.Sleep(10);
+                    RFIDService.Light();
+                    Thread.Sleep(10);
+                    RFIDService.UnLock();
+                    Thread.Sleep(150);
+                }
+                Thread.Sleep(1000);
+            }
         }
 
         //双击编辑事件
