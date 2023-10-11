@@ -158,6 +158,11 @@ namespace RFIDSQLite.ViewModel
                         buffer[i] = Data[i + 7];
                     }
 
+                    if (data.Length > 12)
+                    {
+                        data = data.Substring(0, 12);
+                    }
+
                     TodoList.Add(new TodoSQLite() { serial = data });
                     RFIDService.Buffer.Add(buffer);
 
@@ -165,19 +170,18 @@ namespace RFIDSQLite.ViewModel
                     var buf = RFIDService.Buffer;
 
 
-                        // 使用 LINQ 查询来过滤重复的项
+                    // 使用 LINQ 查询来过滤重复的项
                     TodoList = todo
                         .GroupBy(item => item.serial)
                         .Select(group => group.First())
                         .ToList();
 
-                    RFIDService.Buffer = buf.Distinct().ToList();
+                    RFIDService.Buffer = buf.Distinct(new ByteArrayComparer()).ToList();
 
                     for (int i = 0; i < TodoList.Count; i++)
                     {
                         TodoList[i].Id = i + 1;
                     }
-
                     return;
                 }
             }
@@ -245,7 +249,7 @@ namespace RFIDSQLite.ViewModel
         private Task scanningTask;
         //扫描
         [RelayCommand]
-        void ScanData()
+        async Task ScanData()
         {
             if (!RFIDService.serialPort.IsOpen)
             {
@@ -257,6 +261,26 @@ namespace RFIDSQLite.ViewModel
             {
                 // 如果正在扫描，则停止扫描
                 IsScanning = false;
+
+                await Task.Delay(120); // 在新线程中延迟一段时间
+
+                var todolist = TodoList;
+
+                foreach (var todo in todolist)
+                {
+                    var list = await SQLiteService.SearchData(todo.serial);
+
+                    if (list.Count == 0)
+                    {
+                        todo.remark = "未写入标签";
+                        continue;
+                    }
+
+                    var buf = list.FirstOrDefault();
+                    todo.remark = buf.remark;
+                }
+
+                TodoList = new List<TodoSQLite>(todolist);
                 return;
             }
 

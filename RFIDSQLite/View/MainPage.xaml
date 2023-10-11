@@ -79,7 +79,7 @@
             </Label>
         </Grid>
 
-        <Grid Grid.Row="3" ColumnDefinitions="140,600,20,*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
+        <Grid Grid.Row="3" ColumnDefinitions="140,220,20,*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
             <Label Grid.Column="1" Margin="0,5,20,0" Text="设备编号" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
             <Label Grid.Column="3" Margin="0,0,20,0" Text="属性" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
         </Grid>
@@ -120,7 +120,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Grid ColumnDefinitions="110,Auto,600,Auto,*">
+                        <Grid ColumnDefinitions="110,Auto,220,Auto,*">
 
                             <Label WidthRequest="50" Text="{Binding Id}" 
                                        Style="{StaticResource LabelStyle}" HorizontalOptions="End"/>
