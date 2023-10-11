@@ -1,4 +1,5 @@
 ﻿using System.IO.Ports;
+using RFIDSQLite.Model;
 
 namespace RFIDSQLite.Service
 {
@@ -11,6 +12,8 @@ namespace RFIDSQLite.Service
 
         //存放串口列表
         public static string[] ports;
+
+        public static List<byte[]> Buffer { get; set; }
 
         public RFIDService()
         {
@@ -211,25 +214,25 @@ namespace RFIDSQLite.Service
         }
 
         //锁定
-        public static bool Lock(string serial)
+        public static bool Lock(TodoSQLite todo)
         {
-            byte[] SerialData = TransToByte(serial);
+            var buf = Buffer[todo.Id - 1];
 
-            byte[] DATABuffer = new byte[23];
+            byte[] DATABuffer = new byte[buf.Length + 7];
             DATABuffer[0] = 0xA0;
-            DATABuffer[1] = 0x15;
+            DATABuffer[1] = (byte)(buf.Length + 5);
             DATABuffer[2] = 0x01;
             DATABuffer[3] = 0x85;
             DATABuffer[4] = 0x00;
-            DATABuffer[5] = 0x10;
+            DATABuffer[5] = (byte)buf.Length;
 
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < buf.Length; i++)
             {
-                DATABuffer[i + 6] = SerialData[i];
+                DATABuffer[i + 6] = buf[i];
             }
 
             //校验
-            DATABuffer[22] = CheckSum(DATABuffer, 22);
+            DATABuffer[buf.Length + 6] = CheckSum(DATABuffer, (byte)(buf.Length + 6));
 
             if (DataSent(DATABuffer))
             {

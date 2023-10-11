@@ -6,6 +6,7 @@ using RFIDSQLite.ViewModel.PopUp;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Storage;
 using System;
+using System.Linq;
 
 namespace RFIDSQLite.ViewModel
 {
@@ -60,8 +61,6 @@ namespace RFIDSQLite.ViewModel
 
             //实例化RFIDService，不能删除，否则会接收不到回调
             var RfidService = new RFIDService();
-
-            TodoList = new List<TodoSQLite>();
 
             //订阅接收事件
             RFIDService.ReceivedDataEvent += ReceivedData;
@@ -145,23 +144,34 @@ namespace RFIDSQLite.ViewModel
                     }
 
                     string data = "";
+                    byte[] buffer = new byte[Data.Length - 9];
 
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < Data.Length - 9; i++)
                     {
                         var fire = Data[i + 7].ToString();
                         fire = fire.Length == 1 ? "0" + fire : fire;
                         data += fire;
                     }
 
-                    TodoList.Add(new TodoSQLite() { serial = data });
+                    for (int i = 0; i < Data.Length - 9; i++)
+                    {
+                        buffer[i] = Data[i + 7];
+                    }
 
-                    var originalList = TodoList;
+                    TodoList.Add(new TodoSQLite() { serial = data });
+                    RFIDService.Buffer.Add(buffer);
+
+                    var todo = TodoList;
+                    var buf = RFIDService.Buffer;
+
 
                         // 使用 LINQ 查询来过滤重复的项
-                    TodoList = originalList
+                    TodoList = todo
                         .GroupBy(item => item.serial)
                         .Select(group => group.First())
                         .ToList();
+
+                    RFIDService.Buffer = buf.Distinct().ToList();
 
                     for (int i = 0; i < TodoList.Count; i++)
                     {
@@ -252,7 +262,8 @@ namespace RFIDSQLite.ViewModel
 
             IsScanning = true;
 
-            TodoList.Clear();
+            TodoList = new List<TodoSQLite>();
+            RFIDService.Buffer = new List<byte[]>();
 
             scanningTask = Task.Run(async () =>
             {
@@ -303,7 +314,7 @@ namespace RFIDSQLite.ViewModel
 
             foreach (TodoSQLite todo in SelectedList)
             {
-                RFIDService.Lock(todo.serial);
+                RFIDService.Lock(todo);
                 Thread.Sleep(10);
 
                 for (int i = 0; i < 5; i++)
@@ -337,7 +348,7 @@ namespace RFIDSQLite.ViewModel
             {
                 foreach (TodoSQLite todo in SelectedList)
                 {
-                    RFIDService.Lock(todo.serial);
+                    RFIDService.Lock(todo);
                     Thread.Sleep(10);
                     RFIDService.Light();
                     Thread.Sleep(10);
