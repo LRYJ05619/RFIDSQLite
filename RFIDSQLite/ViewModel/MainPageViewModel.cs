@@ -239,13 +239,6 @@ namespace RFIDSQLite.ViewModel
             TodoList = await SQLiteService.GetData();
         }
 
-        // 用于更新按钮状态的方法
-        private void UpdateScanButtonState(bool isScanning)
-        {
-            // 在此方法中更新按钮状态
-            IsScanning = isScanning;
-        }
-
         private Task scanningTask;
         //扫描
         [RelayCommand]

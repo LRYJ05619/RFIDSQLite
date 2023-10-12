@@ -216,6 +216,9 @@ namespace RFIDSQLite.Service
         //锁定
         public static bool Lock(TodoSQLite todo)
         {
+            if(Buffer ==  null || Buffer.Count == 0)
+                return false;
+
             var buf = Buffer[todo.Id - 1];
 
             byte[] DATABuffer = new byte[buf.Length + 7];
