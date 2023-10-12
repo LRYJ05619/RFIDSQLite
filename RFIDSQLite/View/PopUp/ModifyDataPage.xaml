@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:model="using:RFIDSQLite.Model"
+               x:Class="RFIDSQLite.View.PopUp.ModifyDataPage">
+
+    <Grid BackgroundColor="Transparent" WidthRequest="1200" HeightRequest="720">
+        <Frame BorderColor="Black" BackgroundColor="{StaticResource BackGroundColor}">
+            <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+                <Label Text="修改物品" FontSize="22" HorizontalOptions="Center" Padding="0,5,0,10"/>
+
+                <HorizontalStackLayout Grid.Row="1">
+
+                    <Label Text="设备编号" FontSize="18" Padding="10,10,5,0"/>
+                    <Entry x:Name="Entry" IsReadOnly="True" Text="{Binding Serial}" FontSize="18" MaxLength="12" WidthRequest="200" Placeholder="设备编号" TextColor="Black" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20,0,20,0"/>
+
+                </HorizontalStackLayout>
+
+                <CollectionView Grid.Row="2"
+                            HeightRequest="450"
+                            ItemsSource="{Binding Attributes}"
+                            SelectionMode="None">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout  Orientation="Horizontal"
+                                      Span="4"
+                                      HorizontalItemSpacing="10"
+                                      VerticalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:TodoSQLite">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding serial}" WidthRequest="100" FontSize="18" Padding="0,10,20,10"/>
+                                <Entry Text="{Binding remark}" WidthRequest="180" FontSize="18" HorizontalOptions="Start"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Grid Grid.Row="3" ColumnDefinitions="*,*">
+                    <Button WidthRequest="200" Command="{Binding UpdateCommand}" Text="确定" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
+                    <Button WidthRequest="200" Grid.Column="1" Command="{Binding CancelCommand}" Text="取消" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
+                </Grid>
+            </Grid>
+        </Frame>
+    </Grid>
+
+</toolkit:Popup>
