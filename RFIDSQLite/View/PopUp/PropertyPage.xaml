@@ -5,8 +5,8 @@
                xmlns:model="using:RFIDSQLite.Model"
                x:Class="RFIDSQLite.View.PopUp.PropertyPage">
 
-    <Grid Background="{StaticResource BackGroundColor}" WidthRequest="1200" HeightRequest="620">
-        <Frame BorderColor="Black">
+    <Grid BackgroundColor="Transparent" WidthRequest="1200" HeightRequest="620">
+        <Frame BorderColor="Black" BackgroundColor="{StaticResource BackGroundColor}">
             <Grid RowDefinitions="Auto,*,Auto">
 
                 <Label Text="属性管理" FontSize="22" HorizontalOptions="Center" Padding="0,5,0,10"/>
