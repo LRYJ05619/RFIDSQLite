@@ -11,8 +11,6 @@ namespace RFIDSQLite.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
-        private bool ReadState = false;
-
         //每页数据数量
         private int ItemsPerPage = 12;
 
@@ -266,7 +264,6 @@ namespace RFIDSQLite.ViewModel
                 return;
             }
 
-            ReadState = true;
 
             if (!RFIDService.ReadData())
             {
