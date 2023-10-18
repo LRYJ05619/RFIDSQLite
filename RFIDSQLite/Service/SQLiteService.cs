@@ -90,7 +90,7 @@ namespace RFIDSQLite.Service
             var data = new MultiattributeSQLite
             {
                 serial = Serial,
-                iswrite = false,
+                iswrite = 0,
             };
 
             for (int i = 0; i < Property.Count && i < 20; i++)
@@ -166,6 +166,13 @@ namespace RFIDSQLite.Service
 
             var MultiList = await Database.Table<MultiattributeSQLite>().ToListAsync();
             var TodoList = Translate(MultiList);
+
+            TodoList.Reverse();
+            for (int i = 0; i < TodoList.Count; i++)
+            {
+                TodoList[i].Id = i + 1;
+            }
+
             await Database.CloseAsync();
             return TodoList;
         }
@@ -215,7 +222,7 @@ namespace RFIDSQLite.Service
                 .Table<MultiattributeSQLite>()
                 .Where(t => t.serial == Serial).FirstOrDefaultAsync();
 
-            todo.iswrite = true;
+            todo.iswrite = 1;
 
             await Database.UpdateAsync(todo);
             await Database.CloseAsync();
@@ -229,10 +236,17 @@ namespace RFIDSQLite.Service
 
             var MultiList = await Database
                 .Table<MultiattributeSQLite>()
-                .Where(t => t.iswrite.Equals(false))
+                .Where(t => t.iswrite.Equals(0))
                 .ToListAsync();
 
             var TodoList = Translate(MultiList);
+
+            TodoList.Reverse();
+            for (int i = 0; i < TodoList.Count; i++)
+            {
+                TodoList[i].Id = i + 1;
+            }
+
             await Database.CloseAsync();
             return TodoList;
         }
@@ -266,12 +280,6 @@ namespace RFIDSQLite.Service
                     serial = data.serial,
                     remark = value,
                 });
-            }
-
-            todo.Reverse();
-            for (int i = 0; i < todo.Count; i++)
-            {
-                todo[i].Id = i + 1;
             }
 
             return todo;

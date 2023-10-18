@@ -144,6 +144,7 @@ namespace RFIDSQLite.ViewModel
                 {
                     MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
                 }
+
                 else
                 {
                     foreach (TodoSQLite selected in SelectedList)
@@ -154,6 +155,8 @@ namespace RFIDSQLite.ViewModel
                             await SQLiteService.RemoveData(delete.Id);
                         }
                     }
+
+                    Thread.Sleep(100);
 
                     TodoList = await SQLiteService.GetData();
                     MessagingCenter.Send(this, "OpenNotifyPage", "删除成功！");
@@ -181,15 +184,15 @@ namespace RFIDSQLite.ViewModel
 
                     if (Data[length] == 0x10)
                     {
-                        await SQLiteService.AddData();
-
                         SearchQuery = SQLiteService.Serial;
 
                         long number = long.Parse(SQLiteService.Serial);
                         number++;
-                        SQLiteService.BufferSerial = number.ToString("D12");
+                        SQLiteService.WriteSerial = number.ToString("D12");
 
                         MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
+
+                        await SQLiteService.SignData();
 
                         TodoList = await SQLiteService.SearchData(SQLiteService.Serial);
                         return;
@@ -354,7 +357,14 @@ namespace RFIDSQLite.ViewModel
         [RelayCommand]
         async Task SearchAsync()
         {
-            TodoList = await SQLiteService.SearchData(SearchQuery);
+            var todo = await SQLiteService.SearchData(SearchQuery);
+            todo.Reverse();
+            for (int i = 0; i < todo.Count; i++)
+            {
+                todo[i].Id = i + 1;
+            }
+
+            TodoList = todo;
         }
 
         //属性管理按钮

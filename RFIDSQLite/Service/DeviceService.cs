@@ -29,9 +29,9 @@ namespace RFIDSQLite.Service
                     var subdirectories = device.GetDirectories("/");
                     var RootPath = subdirectories.First().TrimStart('\\');
 
-                    var remotePath = $"{RootPath}/Android/data/com.companyname.rfid_android/cache";
+                    var remotePath = $"{RootPath}/Android/data/com.companyname.rfid_android/";
 
-                    var remoteFilePath = $"{RootPath}/Android/data/com.companyname.rfid_android/cache/rfid.db";
+                    var remoteFilePath = $"{RootPath}/Android/data/com.companyname.rfid_android/rfid.db";
 
                     if (!device.DirectoryExists(remotePath))
                     {
