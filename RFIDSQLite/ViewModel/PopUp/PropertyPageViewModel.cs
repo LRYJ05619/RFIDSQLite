@@ -20,6 +20,7 @@ namespace RFIDSQLite.ViewModel.PopUp
         [RelayCommand]
         void AddProperty()
         {
+            if (PropertyList.Count >= 20) { return;}
             PropertyList.Add(new TodoSQLite() { Id = PropertyList.Count + 1 });
         }
 
