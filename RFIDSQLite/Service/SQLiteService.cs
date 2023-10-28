@@ -9,6 +9,8 @@ namespace RFIDSQLite.Service
 {
     public class SQLiteService
     {
+        public static int SerialLength;
+
         public static string Serial;
         public static ObservableCollection<TodoSQLite> Property;
 

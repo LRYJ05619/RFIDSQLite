@@ -12,9 +12,19 @@ namespace RFIDSQLite.ViewModel.PopUp
         [ObservableProperty]
         private ObservableCollection<TodoSQLite> propertyList;
 
+        [ObservableProperty] 
+        private int serialLength;
+
         public PropertyPageViewModel()
         {
             PropertyList = new ObservableCollection<TodoSQLite>(SQLiteService.Property);
+
+            if (SQLiteService.SerialLength == 0)
+                SerialLength = 6;
+            else
+            {
+                SerialLength = SQLiteService.SerialLength;
+            }
         }
 
         [RelayCommand]
@@ -34,9 +44,19 @@ namespace RFIDSQLite.ViewModel.PopUp
         [RelayCommand]
         async Task SavePropertyAsync()
         {
+            if (SerialLength > 18 || SerialLength < 6)
+            {
+                MessagingCenter.Send(this, "ClosePopupMessage");
+                MessagingCenter.Send(this, "OpenNotifyPage", "保存失败，请检查编码长度！");
+                return;
+            }
+
             //保存属性列表
             await SQLiteService.ChangeProperty(PropertyList);
             await SQLiteService.InitProperty();
+
+            SQLiteService.SerialLength = SerialLength;
+            Preferences.Set("SerialLength", SerialLength);
 
             MessagingCenter.Send(this, "ClosePopupMessage");
             MessagingCenter.Send(this, "OpenNotifyPage", "保存成功！");
@@ -47,5 +67,6 @@ namespace RFIDSQLite.ViewModel.PopUp
         {
             MessagingCenter.Send(this, "ClosePopupMessage");
         }
+
     }
 }

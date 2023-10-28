@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
 using RFIDSQLite.Model;
-using RFIDSQLite.Resources.Styles;
 using RFIDSQLite.View.PopUp;
 using RFIDSQLite.ViewModel;
 using RFIDSQLite.ViewModel.PopUp;
@@ -152,6 +151,16 @@ namespace RFIDSQLite.View
                 this.ShowPopup(popup);
             });
 
+            //重新属性管理界面
+            MessagingCenter.Subscribe<NotifyPageViewModel>(this, "OpenPropertyPage", (sender) =>
+            {
+                // 打开 Popup，并使用传递的文本内容
+                var popup = new PropertyPage(new PropertyPageViewModel())
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
+                this.ShowPopup(popup);
+            });
         }
     }
 }

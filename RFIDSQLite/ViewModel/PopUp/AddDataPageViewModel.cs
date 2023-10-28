@@ -12,6 +12,9 @@ namespace RFIDSQLite.ViewModel.PopUp
         string serial;
 
         [ObservableProperty]
+        int serialLength;
+
+        [ObservableProperty]
         ObservableCollection<TodoSQLite> attributes;
 
         public AddDataPageViewModel()
@@ -25,6 +28,8 @@ namespace RFIDSQLite.ViewModel.PopUp
             {
                 Attributes = new ObservableCollection<TodoSQLite>(SQLiteService.Property);
             }
+
+            SerialLength = SQLiteService.SerialLength * 2;
         }
 
         [RelayCommand]

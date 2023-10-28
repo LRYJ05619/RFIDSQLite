@@ -13,7 +13,7 @@
 
                 <HorizontalStackLayout Grid.Row="1">
                     <Label Text="编码长度" WidthRequest="110" FontSize="18" Padding="10,10,20,10"/>
-                    <Entry Text="{Binding serial}" Placeholder="8~15字节" WidthRequest="180" FontSize="18" HorizontalOptions="Start" CursorPosition="{Binding serial.Length}"/>
+                    <Entry TextChanged="InputView_OnTextChanged"  Text="{Binding SerialLength}" Placeholder="6~15(字节)" WidthRequest="120" FontSize="18" HorizontalTextAlignment="Center"/>
                 </HorizontalStackLayout>
 
                 <CollectionView Grid.Row="2" 
@@ -36,9 +36,10 @@
                                     <Entry Text="{Binding serial}" WidthRequest="180" FontSize="18" HorizontalOptions="Start" CursorPosition="{Binding serial.Length}"/>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout Padding="10,3,0,0">
-                                    <CheckBox Color="{StaticResource ButtonColor}"/>
+                                    <CheckBox Color="{StaticResource ButtonColor}" IsChecked="{Binding IsNum}"/>
                                     <Label Text="数字属性" FontSize="18" Padding="0,7,20,0"/>
-                                    <Entry Placeholder="步进量" WidthRequest="90" FontSize="15" HorizontalOptions="Center"/>
+                                    <Entry TextChanged="NumericEntry_TextChanged"  Text="{Binding Num}" Placeholder="步进量" 
+                                           WidthRequest="90" FontSize="15" HorizontalOptions="Center" IsEnabled="{Binding IsNum}"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </DataTemplate>

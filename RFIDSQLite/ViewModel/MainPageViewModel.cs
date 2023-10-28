@@ -114,6 +114,9 @@ namespace RFIDSQLite.ViewModel
             //获取标签
             Title = TitleGetService.get();
 
+            //获取SerialLength
+            SQLiteService.SerialLength = Preferences.Get("SerialLength", defaultValue: 6);
+
             //初始化属性列表
             _ = SQLiteService.InitProperty();
 

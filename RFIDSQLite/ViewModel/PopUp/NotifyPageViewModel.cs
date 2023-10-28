@@ -72,6 +72,11 @@ namespace RFIDSQLite.ViewModel.PopUp
             {
                 MessagingCenter.Send(this, "OpenWriteChipPage");
             }
+
+            if (Message == "保存失败，请检查编码长度！")
+            {
+                MessagingCenter.Send(this, "OpenPropertyPage");
+            }
         }
     }
 }
