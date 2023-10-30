@@ -18,65 +18,65 @@ namespace RFIDSQLite.ViewModel.PopUp
         [RelayCommand]
         void Cancel()
         {
-            MessagingCenter.Send(this, "ClosePopupMessage");
-
-            if (Message == "请选择串口！")
+            switch (Message)
             {
-                MessagingCenter.Send(this, "OpenPortDataPage");
-            }
+                case "请选择串口！":
+                    MessagingCenter.Send(this, "OpenPortDataPage");
+                    break;
 
-            if (Message == "写入失败，请检查编号！")
-            {
-                if (RFIDService.IsRFID == true)
-                {
-                    MessagingCenter.Send(this, "");
-                }
-                MessagingCenter.Send(this, "OpenAddDataPage");
-            }
+                case "写入失败，请检查编号！":
+                    if (RFIDService.IsRFID)
+                    {
+                        RFIDService.IsRFID = false;
+                        MessagingCenter.Send(this, "OpenWriteChipPage");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send(this, "OpenAddDataPage");
+                    }
+                    break;
 
-            if (Message == "请输入编号！")
-            {
-                if (RFIDService.IsRFID == true)
-                {
+                case "请输入编号！":
+                    if (RFIDService.IsRFID)
+                    {
+                        RFIDService.IsRFID = false;
+                        MessagingCenter.Send(this, "OpenWriteChipPage");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send(this, "OpenAddDataPage");
+                    }
+                    break;
+
+                case "编号重复，请重新输入！":
+                    MessagingCenter.Send(this, "OpenAddDataPage");
+                    break;
+
+                case "写入失败，请检查芯片位置！":
+                    MessagingCenter.Send(this, "OpenAddDataPage");
+                    break;
+
+                case "修改成功！":
+                    MessagingCenter.Send(this, "RefreshPage");
+                    break;
+
+                case "保存成功！":
+                    MessagingCenter.Send(this, "RefreshPage");
+                    break;
+
+                case "写入失败，请检查设备连接！":
                     MessagingCenter.Send(this, "OpenWriteChipPage");
-                }
-                MessagingCenter.Send(this, "OpenAddDataPage");
-            }
+                    break;
 
-            if (Message == "编号重复，请重新输入！")
-            {
-                MessagingCenter.Send(this, "OpenAddDataPage");
-            }
+                case "请先新增编号！":
+                    MessagingCenter.Send(this, "OpenWriteChipPage");
+                    break;
 
-            if (Message == "写入失败，请检查芯片位置！")
-            {
-                MessagingCenter.Send(this, "OpenAddDataPage");
+                case "保存失败，请重新设置编码长度！":
+                    MessagingCenter.Send(this, "OpenPropertyPage");
+                    break;
             }
-
-            if (Message == "修改成功！")
-            {
-                MessagingCenter.Send(this, "RefreshPage");
-            }
-
-            if (Message == "保存成功！")
-            {
-                MessagingCenter.Send(this, "RefreshPage");
-            }
-
-            if (Message == "写入失败，请检查设备连接！")
-            {
-                MessagingCenter.Send(this, "OpenWriteChipPage");
-            }
-
-            if (Message == "请先新增编号！")
-            {
-                MessagingCenter.Send(this, "OpenWriteChipPage");
-            }
-
-            if (Message == "保存失败，请检查编码长度！")
-            {
-                MessagingCenter.Send(this, "OpenPropertyPage");
-            }
+            MessagingCenter.Send(this, "ClosePopupMessage");
         }
     }
 }

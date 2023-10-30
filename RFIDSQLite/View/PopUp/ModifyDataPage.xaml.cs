@@ -1,6 +1,9 @@
 using CommunityToolkit.Maui.Views;
 using RFIDSQLite.ViewModel.PopUp;
 using RFIDSQLite.ViewModel;
+using System.Text.RegularExpressions;
+using RFIDSQLite.Model;
+using System;
 
 namespace RFIDSQLite.View.PopUp;
 
@@ -12,8 +15,6 @@ public partial class ModifyDataPage : Popup
 
         BindingContext = viewModel;
 
-        Entry.TextChanged += NumericEntry_TextChanged;
-
         MessagingCenter.Subscribe<ModifyDataPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();
@@ -23,22 +24,13 @@ public partial class ModifyDataPage : Popup
     //限制只能输入数字
     private void NumericEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
-        // 获取 Entry 的文本
-        string newText = e.NewTextValue;
+        string numberPattern = "^[0-9]*(\\.[0-9]*)?$";
 
-        // 检查文本是否为空
-        if (!string.IsNullOrWhiteSpace(newText))
+        string text = e.NewTextValue;
+        if (!Regex.IsMatch(text, numberPattern))
         {
-            // 检查文本中的每个字符
-            foreach (char c in newText)
-            {
-                // 如果字符不是数字，将其从文本中移除
-                if (!char.IsDigit(c))
-                {
-                    Entry.Text = Entry.Text.Remove(Entry.Text.Length - 1);
-                    break;
-                }
-            }
+            // 输入无效，阻止更改
+            ((Entry)sender).Text = e.OldTextValue;
         }
     }
 }

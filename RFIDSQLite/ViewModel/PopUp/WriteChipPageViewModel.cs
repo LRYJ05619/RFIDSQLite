@@ -15,12 +15,17 @@ namespace RFIDSQLite.ViewModel.PopUp
         [ObservableProperty] 
         string serial;
 
+        [ObservableProperty]
+        int serialLength;
+
+
         public WriteChipPageViewModel()
         {
             if (SQLiteService.WriteSerial != null)
             {
                 Serial = new string(SQLiteService.WriteSerial);
             }
+            SerialLength = SQLiteService.SerialLength;
         }
 
         [RelayCommand]
@@ -37,7 +42,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             }
 
             // 检查 Serial 的长度是否为额定值
-            if (Serial.Length < 12)
+            if (Serial.Length != SerialLength)
             {
                 RFIDService.IsRFID = true;
                 MessagingCenter.Send(this, "ClosePopupMessage");
@@ -49,7 +54,6 @@ namespace RFIDSQLite.ViewModel.PopUp
 
             if (searchsSerial.Count == 0)
             {
-                RFIDService.IsRFID = true;
                 MessagingCenter.Send(this, "ClosePopupMessage");
                 MessagingCenter.Send(this, "OpenNotifyPage", "请先新增编号！");
                 return;
@@ -57,7 +61,9 @@ namespace RFIDSQLite.ViewModel.PopUp
 
             //创建待写数组
             byte[] SerialData = new byte[16];
-            int byteIndex = 0;
+            int byteIndex = 1;
+
+            SerialData[0] = Convert.ToByte(SerialLength / 2);
 
             for (int i = 0; i < Serial.Length; i += 2)
             {

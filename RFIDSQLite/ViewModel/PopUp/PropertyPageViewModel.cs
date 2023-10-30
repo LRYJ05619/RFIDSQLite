@@ -44,10 +44,10 @@ namespace RFIDSQLite.ViewModel.PopUp
         [RelayCommand]
         async Task SavePropertyAsync()
         {
-            if (SerialLength > 18 || SerialLength < 6)
+            if (SerialLength > 30 || SerialLength < 6 || SerialLength % 2 != 0)
             {
                 MessagingCenter.Send(this, "ClosePopupMessage");
-                MessagingCenter.Send(this, "OpenNotifyPage", "保存失败，请检查编码长度！");
+                MessagingCenter.Send(this, "OpenNotifyPage", "保存失败，请重新设置编码长度！");
                 return;
             }
 

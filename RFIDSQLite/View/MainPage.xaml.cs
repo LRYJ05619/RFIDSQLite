@@ -39,7 +39,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<AddDataPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
             {
                 // 打开 Popup，并使用传递的文本内容
-                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                var popup = new NotifyPage(new NotifyPageViewModel(message))
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 
@@ -47,7 +50,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<MainPageViewModel>(this, "OpenPortDataPage", (sender) =>
             {
                 //打开popup
-                var popup = new PortsPage(new PortsPageViewModel());
+                var popup = new PortsPage(new PortsPageViewModel())
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 
@@ -55,7 +61,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<MainPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
             {
                 // 打开 Popup，并使用传递的文本内容
-                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                var popup = new NotifyPage(new NotifyPageViewModel(message))
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 
@@ -63,7 +72,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<MainPageViewModel>(this, "OpenDeletePage", (sender) =>
             {
                 // 打开 Popup，并使用传递的文本内容
-                var popup = new DeletePage(new DeletePageViewModel());
+                var popup = new DeletePage(new DeletePageViewModel())
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 
@@ -71,7 +83,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "OpenPortDataPage", (sender) =>
             {
                 // 打开 Popup，并使用传递的文本内容
-                var popup = new PortsPage(new PortsPageViewModel());
+                var popup = new PortsPage(new PortsPageViewModel())
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 
@@ -79,7 +94,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<PortsPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
             {
                 // 打开 Popup，并使用传递的文本内容
-                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                var popup = new NotifyPage(new NotifyPageViewModel(message))
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 
@@ -98,7 +116,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<PropertyPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
             {
                 // 打开 Popup，并使用传递的文本内容
-                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                var popup = new NotifyPage(new NotifyPageViewModel(message))
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 
@@ -117,7 +138,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<ModifyDataPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
             {
                 // 打开 Popup，并使用传递的文本内容
-                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                var popup = new NotifyPage(new NotifyPageViewModel(message))
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 
@@ -136,7 +160,10 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<WriteChipPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
             {
                 // 打开 Popup，并使用传递的文本内容
-                var popup = new NotifyPage(new NotifyPageViewModel(message));
+                var popup = new NotifyPage(new NotifyPageViewModel(message))
+                {
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                };
                 this.ShowPopup(popup);
             });
 

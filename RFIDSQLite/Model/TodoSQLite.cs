@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SQLite;
+using System;
 
 namespace RFIDSQLite.Model
 {
@@ -8,7 +9,14 @@ namespace RFIDSQLite.Model
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string serial { get; set; }
-        public string remark { get; set; }
+
+        private string mark;
+
+        public string remark
+        {
+            get => mark;
+            set => SetProperty(ref mark, value);
+        }
 
         private bool isNum;
         public bool IsNum
@@ -17,6 +25,6 @@ namespace RFIDSQLite.Model
             set => SetProperty(ref isNum, value);
         }
 
-        public double Num { get; set; }
+        public decimal Num { get; set; }
     }
 }

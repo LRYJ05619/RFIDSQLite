@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using RFIDSQLite.Model;
 using RFIDSQLite.Service;
 using System.Collections.ObjectModel;
+using System.Numerics;
 
 namespace RFIDSQLite.ViewModel.PopUp
 {
@@ -29,7 +30,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                 Attributes = new ObservableCollection<TodoSQLite>(SQLiteService.Property);
             }
 
-            SerialLength = SQLiteService.SerialLength * 2;
+            SerialLength = SQLiteService.SerialLength;
         }
 
         [RelayCommand]
@@ -38,7 +39,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             SQLiteService.BufferSerial = Serial;
             SQLiteService.BufferProperty = Attributes;
 
-            if (Serial == null || Serial == "")
+            if (Serial == "")
             {
                 MessagingCenter.Send(this, "ClosePopupMessage");
                 MessagingCenter.Send(this, "OpenNotifyPage", "请输入编号！");
@@ -46,7 +47,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             }
 
             // 检查 Serial 的长度是否为额定值
-            if (Serial.Length < 12)
+            if (Serial.Length != SerialLength)
             {
                 MessagingCenter.Send(this, "ClosePopupMessage");
                 MessagingCenter.Send(this, "OpenNotifyPage", "写入失败，请检查编号！");
@@ -68,9 +69,13 @@ namespace RFIDSQLite.ViewModel.PopUp
             await SQLiteService.AddData();
 
             //序号自增
-            long number = long.Parse(SQLiteService.Serial);
+            BigInteger number = BigInteger.Parse(SQLiteService.Serial);
             number++;
             SQLiteService.BufferSerial = number.ToString("D12");
+            if (SQLiteService.BufferSerial.Length != SQLiteService.SerialLength)
+            {
+                SQLiteService.BufferSerial = "0" + SQLiteService.BufferSerial;
+            };
 
             MessagingCenter.Send(this, "ClosePopupMessage");
             MessagingCenter.Send(this, "RefreshPage");

@@ -6,6 +6,7 @@ using RFIDSQLite.ViewModel.PopUp;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Storage;
 using System;
+using System.Numerics;
 
 namespace RFIDSQLite.ViewModel
 {
@@ -187,9 +188,15 @@ namespace RFIDSQLite.ViewModel
                     {
                         SearchQuery = SQLiteService.Serial;
 
-                        long number = long.Parse(SQLiteService.Serial);
+                        BigInteger number = BigInteger.Parse(SQLiteService.Serial);
+
                         number++;
+
                         SQLiteService.WriteSerial = number.ToString("D12");
+                        if (SQLiteService.WriteSerial.Length != SQLiteService.SerialLength)
+                        {
+                            SQLiteService.WriteSerial = "0" + SQLiteService.WriteSerial;
+                        } ;
 
                         MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
 
@@ -211,11 +218,13 @@ namespace RFIDSQLite.ViewModel
                     }
 
                     var length = Data[6] - 4 > 6 ? 6 : Data[6] - 4;
+
                     string data = "";
 
-                    for (int i = 0; i < length; i++)
+                    //回复的第9字节为编码起始，作为长度位
+                    for (int i = 0; i < Data[9]; i++)
                     {
-                        var fire = Data[i + 9].ToString();
+                        var fire = Data[i + 10].ToString();
                         fire = fire.Length == 1 ? "0" + fire : fire;
                         data += fire;
                     }
@@ -266,7 +275,6 @@ namespace RFIDSQLite.ViewModel
                 MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
                 return;
             }
-
 
             if (!RFIDService.ReadData())
             {

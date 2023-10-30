@@ -32,6 +32,26 @@ namespace RFIDSQLite.ViewModel.PopUp
         }
 
         [RelayCommand]
+        async Task AddAsync(TodoSQLite todo)
+        {
+            if (decimal.TryParse(todo.remark, out decimal number))
+            {
+                number += todo.Num;
+                todo.remark = number.ToString(); // 将更改后的值更新到 remark 属性
+            }
+        }
+
+        [RelayCommand]
+        async Task SubtractAsync(TodoSQLite todo)
+        {
+            if (decimal.TryParse(todo.remark, out decimal number))
+            {
+                number -= todo.Num;
+                todo.remark = number.ToString(); // 将更改后的值更新到 remark 属性
+            }
+        }
+
+        [RelayCommand]
         async Task UpdateAsync()
         {
             await SQLiteService.UpdateData(Serial, Attributes);
