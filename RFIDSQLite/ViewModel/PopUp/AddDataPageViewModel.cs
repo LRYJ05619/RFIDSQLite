@@ -39,7 +39,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             SQLiteService.BufferSerial = Serial;
             SQLiteService.BufferProperty = Attributes;
 
-            if (Serial == "")
+            if (Serial == "" || Serial == null)
             {
                 MessagingCenter.Send(this, "ClosePopupMessage");
                 MessagingCenter.Send(this, "OpenNotifyPage", "请输入编号！");
