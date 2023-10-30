@@ -79,7 +79,7 @@ namespace RFIDSQLite.ViewModel.PopUp
 
             MessagingCenter.Send(this, "ClosePopupMessage");
             MessagingCenter.Send(this, "RefreshPage");
-            MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
+            MessagingCenter.Send(this, "OpenNotifyPage", "保存成功！");
         }
 
         [RelayCommand]

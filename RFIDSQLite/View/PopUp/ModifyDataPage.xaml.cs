@@ -22,8 +22,15 @@ public partial class ModifyDataPage : Popup
     }
 
     //限制只能输入数字
-    private void NumericEntry_TextChanged(object sender, TextChangedEventArgs e)
+    private void DoubleEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
+        TodoSQLite todo = (TodoSQLite)(((Entry)sender).Parent).BindingContext;
+        if (todo.IsNum == false)
+            return;
+
+        if (e.NewTextValue == null)
+            return;
+
         string numberPattern = "^[0-9]*(\\.[0-9]*)?$";
 
         string text = e.NewTextValue;

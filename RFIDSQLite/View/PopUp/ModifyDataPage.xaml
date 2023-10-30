@@ -36,21 +36,17 @@
                             <HorizontalStackLayout>
                                 <Label Text="{Binding serial}" WidthRequest="100" FontSize="18" Padding="0,10,20,10"/>
 
-                                <Entry Text="{Binding remark}" WidthRequest="210" FontSize="18" HorizontalOptions="Start">
+                                <Entry Text="{Binding remark}" TextChanged="DoubleEntry_TextChanged" WidthRequest="210" FontSize="18" HorizontalOptions="Start">
                                     <Entry.Triggers>
                                         <DataTrigger TargetType="Entry" Binding="{Binding IsNum}" Value="true">
-                                            <Setter Property="IsVisible" Value="false"/>
+                                            <Setter Property="WidthRequest" Value="120"/>
                                         </DataTrigger>
 
                                         <DataTrigger TargetType="Entry" Binding="{Binding IsNum}" Value="false">
-                                            <Setter Property="IsVisible" Value="true"/>
+                                            <Setter Property="WidthRequest" Value="210"/>
                                         </DataTrigger>
                                     </Entry.Triggers>
                                 </Entry>
-
-                                <Entry Text="{Binding remark}" IsVisible="{Binding IsNum}" 
-                                       TextChanged="NumericEntry_TextChanged" WidthRequest="120" FontSize="18" HorizontalOptions="Start"/>
-
 
                                 <Button Text="+" FontSize="28" IsVisible="{Binding IsNum}" HorizontalOptions="Center" 
                                         BackgroundColor="{StaticResource ButtonColor}" CornerRadius="5" WidthRequest="20" HeightRequest="20"

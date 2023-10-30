@@ -20,9 +20,12 @@ public partial class PropertyPage : Popup
     }
 
     //限制只能输入数字和一个小数点
-    private void NumericEntry_TextChanged(object sender, TextChangedEventArgs e)
+    private void DoubleEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         string numberPattern = "^[0-9]*(\\.[0-9]*)?$";
+
+        if (e.NewTextValue == null)
+            return;
 
         string text = e.NewTextValue;
         if (!Regex.IsMatch(text, numberPattern))
@@ -32,7 +35,7 @@ public partial class PropertyPage : Popup
         }
     }
 
-    private void InputView_OnTextChanged(object sender, TextChangedEventArgs e)
+    private void NumericEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         var entry = (Entry)sender;
 

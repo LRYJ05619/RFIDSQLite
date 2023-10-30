@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Storage;
 using System;
 using System.Numerics;
+using WinRT;
 
 namespace RFIDSQLite.ViewModel
 {
@@ -290,6 +291,11 @@ namespace RFIDSQLite.ViewModel
             {
                 MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
                 return;
+            }
+
+            if (SelectedList.Count != 0)
+            {
+                SQLiteService.WriteSerial = SelectedList.FirstOrDefault().As<TodoSQLite>().serial;
             }
 
             MessagingCenter.Send(this, "OpenWriteChipPage");

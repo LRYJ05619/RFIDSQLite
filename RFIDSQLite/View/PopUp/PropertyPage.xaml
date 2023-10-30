@@ -13,7 +13,7 @@
 
                 <HorizontalStackLayout Grid.Row="1">
                     <Label Text="编码长度" WidthRequest="110" FontSize="18" Padding="10,10,20,10"/>
-                    <Entry TextChanged="InputView_OnTextChanged"  Text="{Binding SerialLength}" WidthRequest="120" FontSize="18" HorizontalTextAlignment="Center"/>
+                    <Entry TextChanged="NumericEntry_TextChanged"  Text="{Binding SerialLength}" WidthRequest="120" FontSize="18" HorizontalTextAlignment="Center"/>
                     <Label Text="(范围6~30,须为偶数)" FontSize="18" Padding="20,10,0,10"/>
                 </HorizontalStackLayout>
 
@@ -39,7 +39,7 @@
                                 <Label Text="数字属性" FontSize="18" Padding="0,7,20,0"/>
 
                                 <Label Text="步进量" FontSize="18" Padding="0,7,20,0"/>
-                                <Entry TextChanged="NumericEntry_TextChanged"  Text="{Binding Num}" Placeholder="步进量" 
+                                <Entry TextChanged="DoubleEntry_TextChanged"  Text="{Binding Num}" Placeholder="步进量" 
                                            WidthRequest="90" FontSize="15" HorizontalOptions="Center" IsEnabled="{Binding IsNum}"/>
 
                             </HorizontalStackLayout>
