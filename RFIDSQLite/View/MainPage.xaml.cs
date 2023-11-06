@@ -8,10 +8,10 @@ namespace RFIDSQLite.View
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage(MainPageViewModel viewModel)
+        public MainPage()
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            NavigationPage.SetHasNavigationBar(this, false);
 
             //添加按钮
             MessagingCenter.Subscribe<MainPageViewModel>(this, "OpenAddDataPage", (sender) =>
@@ -187,6 +187,12 @@ namespace RFIDSQLite.View
                     CanBeDismissedByTappingOutsideOfPopup = false
                 };
                 this.ShowPopup(popup);
+            });
+
+            //前往项目页
+            MessagingCenter.Subscribe<MainPageViewModel>(this, "GoToProjectPage", (sender) =>
+            {
+                Navigation.PushModalAsync(new ProjectPage());
             });
         }
     }

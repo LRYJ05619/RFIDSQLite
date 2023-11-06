@@ -26,5 +26,7 @@ namespace RFIDSQLite.Model
         }
 
         public decimal Num { get; set; }
+
+        public int PrjNum { get; set; }
     }
 }

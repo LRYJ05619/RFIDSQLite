@@ -79,8 +79,6 @@ namespace RFIDSQLite.ViewModel
             }
         }
 
-        readonly IFileSaver fileSaver;
-
         //当前页码
         private int currentPageCount;
         public int CurrentPageCount
@@ -111,12 +109,12 @@ namespace RFIDSQLite.ViewModel
         }
 
 
-        public MainPageViewModel(IFileSaver fileSaver)
+        public MainPageViewModel()
         {
-            //获取标签
+            //Todo 获取标签
             Title = TitleGetService.get();
 
-            //获取SerialLength
+            //Todo 获取SerialLength
             SQLiteService.SerialLength = Preferences.Get("SerialLength", defaultValue: 6);
 
             //初始化属性列表
@@ -128,8 +126,6 @@ namespace RFIDSQLite.ViewModel
             var RfidService = new RFIDService();
             //订阅接收事件
             RFIDService.ReceivedDataEvent += ReceivedData;
-
-            this.fileSaver = fileSaver;
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshPage", async (sender) =>
             {
@@ -180,7 +176,7 @@ namespace RFIDSQLite.ViewModel
                 {
                     if (Data.Length == 6)
                     {
-                        MessagingCenter.Send(this, "OpenNotifyPage", "写入失败，请检查芯片位置！");
+                        MessagingCenter.Send(this, "OpenNotifyPage", "绑定失败，请检查芯片位置！");
                         return;
                     }
                     var length = Data.Length - 4;
@@ -199,7 +195,7 @@ namespace RFIDSQLite.ViewModel
                             SQLiteService.WriteSerial = "0" + SQLiteService.WriteSerial;
                         } ;
 
-                        MessagingCenter.Send(this, "OpenNotifyPage", "写入成功！");
+                        MessagingCenter.Send(this, "OpenNotifyPage", "绑定成功！");
 
                         await SQLiteService.SignData();
 
@@ -246,6 +242,13 @@ namespace RFIDSQLite.ViewModel
                     return;
                 }
             }
+        }
+
+        //项目列表
+        [RelayCommand]
+        void GoToPrj()
+        {
+            MessagingCenter.Send(this, "GoToProjectPage");
         }
 
         //新增
@@ -400,6 +403,7 @@ namespace RFIDSQLite.ViewModel
             MessagingCenter.Send(this, "OpenModifyDataPage", todo);
         }
 
+        //更新页码
         private void UpdateItems()
         {
             if (TodoList == null)

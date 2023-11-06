@@ -24,7 +24,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                     MessagingCenter.Send(this, "OpenPortDataPage");
                     break;
 
-                case "写入失败，请检查编号！":
+                case "绑定失败，请检查编号！":
                     if (RFIDService.IsRFID)
                     {
                         RFIDService.IsRFID = false;
@@ -52,7 +52,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                     MessagingCenter.Send(this, "OpenAddDataPage");
                     break;
 
-                case "写入失败，请检查芯片位置！":
+                case "绑定失败，请检查芯片位置！":
                     MessagingCenter.Send(this, "OpenAddDataPage");
                     break;
 
@@ -64,7 +64,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                     MessagingCenter.Send(this, "RefreshPage");
                     break;
 
-                case "写入失败，请检查设备连接！":
+                case "绑定失败，请检查设备连接！":
                     MessagingCenter.Send(this, "OpenWriteChipPage");
                     break;
 

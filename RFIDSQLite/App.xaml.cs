@@ -1,4 +1,8 @@
-﻿namespace RFIDSQLite
+﻿using CommunityToolkit.Maui.Storage;
+using RFIDSQLite.View;
+using RFIDSQLite.ViewModel;
+
+namespace RFIDSQLite
 {
     public partial class App : Application
     {
@@ -6,7 +10,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new MainPage());
         }
     }
 }

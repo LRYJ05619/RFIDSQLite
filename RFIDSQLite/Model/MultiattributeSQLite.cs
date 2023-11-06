@@ -28,5 +28,6 @@ namespace RFIDSQLite.Model
         public string property18 { get; set; }
         public string property19 { get; set; }
         public string property20 { get; set; }
+        public int PrjNum { get; set; }
     }
 }
