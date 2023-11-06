@@ -91,7 +91,7 @@ namespace RFIDSQLite.Service
 
             var data = new MultiattributeSQLite
             {
-                serial = Serial,
+                serial = TranSerial(Serial),
                 iswrite = 0,
             };
 
@@ -130,9 +130,11 @@ namespace RFIDSQLite.Service
             await Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
+            var target = TranSerial(serial);
+
             var todo = await Database
                 .Table<MultiattributeSQLite>()
-                .Where(t => t.serial == serial)
+                .Where(t => t.serial == target)
                 .FirstOrDefaultAsync();
 
             for (int i = 0; i < 20; i++)
@@ -214,15 +216,36 @@ namespace RFIDSQLite.Service
             return TodoList;
         }
 
+        //判断编码是否存在
+        public static async Task<bool> CheckSerial(string keyword)
+        {
+            await Init();
+            await Database.CreateTableAsync<MultiattributeSQLite>();
+
+            var str = TranSerial(keyword);
+
+            var MultiList = await Database
+                .Table<MultiattributeSQLite>()
+                .Where(t => t.serial == str)
+                .ToListAsync();
+
+            var TodoList = Translate(MultiList);
+            await Database.CloseAsync();
+
+            return TodoList.Count != 0;
+        }
+
         //标记条目已写入芯片
         public static async Task SignData()
         {
             await Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
+            var str = TranSerial(Serial);
+
             var todo = await Database
                 .Table<MultiattributeSQLite>()
-                .Where(t => t.serial == Serial).FirstOrDefaultAsync();
+                .Where(t => t.serial == str).FirstOrDefaultAsync();
 
             todo.iswrite = 1;
 
@@ -253,7 +276,7 @@ namespace RFIDSQLite.Service
             return TodoList;
         }
 
-        //将属性列表转换为条目
+        //将属性列表转换为条目,同时处理编码
         private static List<TodoSQLite> Translate(List<MultiattributeSQLite> Multi)
         {
             List<TodoSQLite> todo = new();
@@ -261,6 +284,11 @@ namespace RFIDSQLite.Service
             foreach (var data in Multi)
             {
                 string value = "";
+
+                int length = Convert.ToInt32(data.serial.Substring(0, 2));
+                length = length * 2;
+
+                var serial = data.serial.Substring(2, length);
 
                 for (int i = 0; i < Property.Count; i++)
                 {
@@ -279,12 +307,30 @@ namespace RFIDSQLite.Service
                 todo.Add(new TodoSQLite()
                 {
                     Id = data.Id,
-                    serial = data.serial,
+                    serial = serial,
                     remark = value,
                 });
             }
 
             return todo;
+        }
+
+        private static string TranSerial(string str)
+        {
+            var serial = string.Empty;
+
+            if ((SerialLength / 2) < 10)
+            {
+                serial = "0" + (SerialLength / 2) + str;
+            }
+            else
+            {
+                serial = (SerialLength / 2) + str;
+            }
+
+            serial = serial.PadRight(32, '0');
+
+            return serial;
         }
     }
 }

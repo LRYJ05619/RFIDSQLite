@@ -193,7 +193,7 @@ namespace RFIDSQLite.ViewModel
 
                         number++;
 
-                        SQLiteService.WriteSerial = number.ToString("D12");
+                        SQLiteService.WriteSerial = number.ToString();
                         if (SQLiteService.WriteSerial.Length != SQLiteService.SerialLength)
                         {
                             SQLiteService.WriteSerial = "0" + SQLiteService.WriteSerial;
@@ -292,6 +292,8 @@ namespace RFIDSQLite.ViewModel
                 MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
                 return;
             }
+
+            RFIDService.IsRFID = true;
 
             if (SelectedList.Count != 0)
             {

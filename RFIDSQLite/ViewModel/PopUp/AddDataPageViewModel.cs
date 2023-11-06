@@ -54,15 +54,15 @@ namespace RFIDSQLite.ViewModel.PopUp
                 return;
             }
 
-            var searchsSerial = await SQLiteService.SearchData(Serial);
-
-            if (searchsSerial.Count != 0)
+            if (await SQLiteService.CheckSerial(Serial))
             {
                 MessagingCenter.Send(this, "ClosePopupMessage");
                 MessagingCenter.Send(this, "OpenNotifyPage", "编号重复，请重新输入！");
                 return;
             }
 
+
+            //剩下部分补0
             SQLiteService.Serial = Serial;
             SQLiteService.Property = Attributes;
 
@@ -71,7 +71,8 @@ namespace RFIDSQLite.ViewModel.PopUp
             //序号自增
             BigInteger number = BigInteger.Parse(SQLiteService.Serial);
             number++;
-            SQLiteService.BufferSerial = number.ToString("D12");
+            SQLiteService.BufferSerial = number.ToString();
+
             if (SQLiteService.BufferSerial.Length != SQLiteService.SerialLength)
             {
                 SQLiteService.BufferSerial = "0" + SQLiteService.BufferSerial;
