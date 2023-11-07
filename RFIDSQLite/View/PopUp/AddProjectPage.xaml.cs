@@ -1,29 +1,27 @@
-using CommunityToolkit.Maui.Views;
-using RFIDSQLite.ViewModel;
-using RFIDSQLite.ViewModel.PopUp;
-using System.Text.RegularExpressions;
 using RFIDSQLite.Model;
+using System.Text.RegularExpressions;
+using CommunityToolkit.Maui.Views;
+using RFIDSQLite.ViewModel.PopUp;
+using RFIDSQLite.ViewModel;
 
 namespace RFIDSQLite.View.PopUp;
 
-public partial class AddDataPage : Popup
+public partial class AddProjectPage : Popup
 {
-    public AddDataPage(AddDataPageViewModel viewModel)
-    {
-        InitializeComponent();
-        BindingContext = viewModel;
+	public AddProjectPage()
+	{
+		InitializeComponent();
 
-        MessagingCenter.Subscribe<MainPageViewModel>(this, "ClosePopupMessage", (sender) =>
+        MessagingCenter.Subscribe<ProjectPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();
         });
 
-        MessagingCenter.Subscribe<AddDataPageViewModel>(this, "ClosePopupMessage", (sender) =>
+        MessagingCenter.Subscribe<AddProjectPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();
         });
     }
-
 
     //限制只能输入数字
     private void NumericEntry_TextChanged(object sender, TextChangedEventArgs e)
@@ -43,10 +41,10 @@ public partial class AddDataPage : Popup
     private void DoubleEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         TodoSQLite todo = (TodoSQLite)(((Entry)sender).Parent).BindingContext;
-        if(todo.IsNum == false)
+        if (todo.IsNum == false)
             return;
 
-        if(e.NewTextValue == null)
+        if (e.NewTextValue == null)
             return;
 
         string text = e.NewTextValue;

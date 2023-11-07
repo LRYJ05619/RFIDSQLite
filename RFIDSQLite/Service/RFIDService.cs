@@ -5,6 +5,7 @@ namespace RFIDSQLite.Service
     public class RFIDService
     {
         public static bool IsRFID = false;
+        public static bool IsPrj = false;
 
         public static SerialPort serialPort = new();
 

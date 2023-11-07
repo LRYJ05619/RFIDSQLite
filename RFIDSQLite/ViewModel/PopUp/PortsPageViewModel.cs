@@ -38,16 +38,44 @@ namespace RFIDSQLite.ViewModel.PopUp
             switch (RFIDService.OpenPortCheck(Port))
             {
                 case 0:
-                    MessagingCenter.Send(this, "OpenNotifyPage", "串口已关闭！");
+                    if (RFIDService.IsPrj)
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPageIsPrj", "串口已关闭！");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "串口已关闭！");
+                    }
                     break;
                 case 1:
-                    MessagingCenter.Send(this, "OpenNotifyPage", "串口已打开！");
+                    if (RFIDService.IsPrj)
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPageIsPrj", "串口已打开！");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "串口已打开！");
+                    }
                     break;
                 case 2:
-                    MessagingCenter.Send(this, "OpenNotifyPage", "串口异常！");
+                    if (RFIDService.IsPrj)
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPageIsPrj", "串口异常！");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "串口异常！");
+                    }
                     break;
                 case 3:
-                    MessagingCenter.Send(this, "OpenNotifyPage", "请选择串口！");
+                    if (RFIDService.IsPrj)
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPageIsPrj", "请选择串口！");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send(this, "OpenNotifyPage", "请选择串口！");
+                    }
                     break;
             }
         }

@@ -73,9 +73,9 @@
             </Label>
         </Grid>
 
-        <Grid Grid.Row="3" ColumnDefinitions="140,220,20,*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
-            <Label Grid.Column="1" Margin="0,5,20,0" Text="编号" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
-            <Label Grid.Column="3" Margin="0,0,20,0" Text="属性" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"/>
+        <Grid Grid.Row="3" ColumnDefinitions="230,280,20,*" BackgroundColor="{StaticResource ListLineColor}" Margin="0,8,0,0">
+            <Label Grid.Column="1" Margin="0,5,20,0" Text="编号" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalTextAlignment="Center"/>
+            <Label Grid.Column="3" Margin="0,0,20,0" Text="属性" TextColor="{StaticResource HeaderColor}" Style="{StaticResource LabelStyle}" HorizontalTextAlignment="Center"/>
         </Grid>
 
         <BoxView Grid.Row="4" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" Margin="0,5,30,0" Color="{StaticResource ListLineColor}"/>

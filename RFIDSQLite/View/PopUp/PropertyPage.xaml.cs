@@ -8,10 +8,9 @@ namespace RFIDSQLite.View.PopUp;
 
 public partial class PropertyPage : Popup
 {
-	public PropertyPage(PropertyPageViewModel viewModel)
+	public PropertyPage()
 	{
 		InitializeComponent();
-		BindingContext = viewModel;
 
         MessagingCenter.Subscribe<PropertyPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {

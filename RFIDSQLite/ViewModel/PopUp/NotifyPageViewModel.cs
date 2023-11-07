@@ -21,7 +21,14 @@ namespace RFIDSQLite.ViewModel.PopUp
             switch (Message)
             {
                 case "请选择串口！":
-                    MessagingCenter.Send(this, "OpenPortDataPage");
+                    if (RFIDService.IsPrj)
+                    {
+                        MessagingCenter.Send(this, "OpenPortDataPageIsPrj");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send(this, "OpenPortDataPage");
+                    }
                     break;
 
                 case "绑定失败，请检查编号！":
@@ -74,6 +81,15 @@ namespace RFIDSQLite.ViewModel.PopUp
 
                 case "保存失败，请重新设置编码长度！":
                     MessagingCenter.Send(this, "OpenPropertyPage");
+                    break;
+                case "创建失败，请重新设置编码长度！":
+                    MessagingCenter.Send(this, "OpenAddProjectPage");
+                    break;
+                case "创建失败，请设置项目名称！":
+                    MessagingCenter.Send(this, "OpenAddProjectPage");
+                    break;
+                case "项目创建成功！":
+                    MessagingCenter.Send(this, "RefreshProjectPage");
                     break;
             }
             MessagingCenter.Send(this, "ClosePopupMessage");

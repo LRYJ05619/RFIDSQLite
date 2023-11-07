@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<views:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                xmlns:model="using:RFIDSQLite.Model"
                xmlns:popUp="using:RFIDSQLite.ViewModel.PopUp"
-               x:Class="RFIDSQLite.View.PopUp.PropertyPage">
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="RFIDSQLite.View.PopUp.AddProjectPage">
 
-    <views:Popup.BindingContext>
-        <popUp:PropertyPageViewModel/>
-    </views:Popup.BindingContext>
+    <toolkit:Popup.BindingContext>
+        <popUp:AddProjectPageViewModel/>
+    </toolkit:Popup.BindingContext>
 
     <Grid BackgroundColor="Transparent" WidthRequest="1200" HeightRequest="650">
         <Frame BorderColor="Black" BackgroundColor="{StaticResource BackGroundColor}">
             <Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
 
-                <Label Text="属性管理" FontSize="22" HorizontalOptions="Center" Padding="0,5,0,10"/>
+                <Label Text="新增项目" FontSize="22" HorizontalOptions="Center" Padding="0,5,0,10"/>
 
                 <HorizontalStackLayout Grid.Row="1">
                     <Label Text="项目名称" WidthRequest="110" FontSize="18" Margin="10,10,5,10"/>
-                    <Entry Text="{Binding Project.Name}" IsReadOnly="True" Margin="0,0,10,10" WidthRequest="240" FontSize="18" HorizontalTextAlignment="Center"/>
-
-                    <Label Text="编码长度" WidthRequest="110" FontSize="18" Padding="10,10,20,10"/>
-                    <Entry Text="{Binding Project.SerialLength}" IsReadOnly="True" WidthRequest="120" FontSize="18" HorizontalTextAlignment="Center"/>
-                    <Label Text="(范围6~30,须为偶数)" FontSize="18" Padding="20,10,0,10"/>
+                    <Entry Text="{Binding ProjectName}" Margin="0,0,10,10" WidthRequest="240" FontSize="18" HorizontalTextAlignment="Center"/>
+                    
+                    <Label Text="编码长度" WidthRequest="110" FontSize="18" Margin="20,10,5,10"/>
+                    <Entry TextChanged="NumericEntry_TextChanged"  Margin="0,0,0,10"  Text="{Binding SerialLength}" WidthRequest="120" FontSize="18" HorizontalTextAlignment="Center"/>
+                    <Label Text="(范围6~30,须为偶数)" FontSize="18" Margin="20,10,0,10"/>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Grid.Row="2">
                     <Label Text="项目描述" WidthRequest="110" FontSize="18" Margin="10,15,5,10"/>
-                    <Entry Text="{Binding Project.Description}" Margin="0,10,0,10" WidthRequest="480" FontSize="18" HorizontalTextAlignment="Center"/>
+                    <Entry Text="{Binding ProjectDescribe}" Margin="0,10,0,10" WidthRequest="480" FontSize="18" HorizontalTextAlignment="Center"/>
                 </HorizontalStackLayout>
 
                 <CollectionView Grid.Row="3" 
@@ -45,9 +45,10 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:TodoSQLite">
                             <HorizontalStackLayout>
-                                <Label Text="{Binding serial}" Padding="0,7,20,0" WidthRequest="180" FontSize="18" HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding Id}" WidthRequest="60" FontSize="18" Padding="10,10,20,10"/>
+                                <Entry Text="{Binding serial}" WidthRequest="180" FontSize="18" HorizontalOptions="Start" CursorPosition="{Binding serial.Length}"/>
 
-                                <CheckBox Color="{StaticResource ButtonColor}" IsEnabled="False" IsChecked="{Binding IsNum}" IsPlatformEnabled="True"/>
+                                <CheckBox Color="{StaticResource ButtonColor}" IsChecked="{Binding IsNum}"/>
                                 <Label Text="数字属性" FontSize="18" Padding="0,7,20,0"/>
 
                                 <Label Text="步进量" FontSize="18" Padding="0,7,20,0"/>
@@ -60,6 +61,8 @@
                 </CollectionView>
 
                 <Grid Grid.Row="4" ColumnDefinitions="*,*,*,*">
+                    <Button Command="{Binding AddPropertyCommand}" Text="添加" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
+                    <Button Grid.Column="1" Command="{Binding DeletePropertyCommand}" Text="删除" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
                     <Button Grid.Column="2" Command="{Binding SavePropertyCommand}" Text="保存" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
                     <Button Grid.Column="3" Command="{Binding CancelCommand}" Text="取消" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
                 </Grid>
@@ -68,4 +71,4 @@
         </Frame>
     </Grid>
 
-</views:Popup>
+</toolkit:Popup>

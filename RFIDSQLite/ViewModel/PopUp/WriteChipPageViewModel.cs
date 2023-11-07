@@ -50,7 +50,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                 return;
             }
 
-            var searchsSerial = await SQLiteService.SearchData(Serial);
+            var searchsSerial = await SQLiteService.SearchDataInPrj(Serial);
 
             if (searchsSerial.Count == 0)
             {
@@ -59,11 +59,13 @@ namespace RFIDSQLite.ViewModel.PopUp
                 return;
             }
 
+            //Todo 不确定是否完成
             //创建待写数组
             byte[] SerialData = new byte[16];
-            int byteIndex = 1;
+            int byteIndex = 2;
 
             SerialData[0] = Convert.ToByte(SerialLength / 2);
+            SerialData[1] = Convert.ToByte(SQLiteService.PrjNum);
 
             for (int i = 0; i < Serial.Length; i += 2)
             {

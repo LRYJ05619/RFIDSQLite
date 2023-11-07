@@ -12,51 +12,31 @@ namespace RFIDSQLite.ViewModel.PopUp
         [ObservableProperty]
         private ObservableCollection<TodoSQLite> propertyList;
 
-        [ObservableProperty] 
-        private int serialLength;
+        [ObservableProperty]
+        private ProjectSQList project;
 
         public PropertyPageViewModel()
         {
             PropertyList = new ObservableCollection<TodoSQLite>(SQLiteService.Property);
 
-            if (SQLiteService.SerialLength == 0)
-                SerialLength = 6;
-            else
+            Project = new ProjectSQList()
             {
-                SerialLength = SQLiteService.SerialLength;
-            }
-        }
-
-        [RelayCommand]
-        void AddProperty()
-        {
-            if (PropertyList.Count >= 20) { return;}
-            PropertyList.Add(new TodoSQLite() { Id = PropertyList.Count + 1 });
-        }
-
-        [RelayCommand]
-        void DeleteProperty()
-        {
-            if(PropertyList.Count > 0)
-              PropertyList.RemoveAt(PropertyList.Count - 1);
+                Description = SQLiteService.Project.Description,
+                Name = SQLiteService.Project.Name,
+                SerialLength = SQLiteService.Project.SerialLength,
+                Id = SQLiteService.Project.Id,
+                Time = SQLiteService.Project.Time
+            };
         }
 
         [RelayCommand]
         async Task SavePropertyAsync()
         {
-            if (SerialLength > 30 || SerialLength < 6 || SerialLength % 2 != 0)
-            {
-                MessagingCenter.Send(this, "ClosePopupMessage");
-                MessagingCenter.Send(this, "OpenNotifyPage", "保存失败，请重新设置编码长度！");
-                return;
-            }
+            //Todo 描述和步进量可更改，注意添加(已完成)
+            await SQLiteService.UpdateProject(Project);
+            await SQLiteService.UpdateProperty(PropertyList);
 
-            //保存属性列表
-            await SQLiteService.ChangeProperty(PropertyList);
             await SQLiteService.InitProperty();
-
-            SQLiteService.SerialLength = SerialLength;
-            Preferences.Set("SerialLength", SerialLength);
 
             MessagingCenter.Send(this, "ClosePopupMessage");
             MessagingCenter.Send(this, "OpenNotifyPage", "保存成功！");

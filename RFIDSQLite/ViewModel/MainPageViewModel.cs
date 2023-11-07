@@ -111,17 +111,22 @@ namespace RFIDSQLite.ViewModel
 
         public MainPageViewModel()
         {
-            //Todo 获取标签
-            Title = TitleGetService.get();
-
-            //Todo 获取SerialLength
-            SQLiteService.SerialLength = Preferences.Get("SerialLength", defaultValue: 6);
+            //Todo 获取标签(已完成)
+            Title = SQLiteService.Project.Name;
+            SQLiteService.SerialLength = SQLiteService.Project.SerialLength;
+            SQLiteService.PrjNum = SQLiteService.Project.Id;
 
             //初始化属性列表
             _ = SQLiteService.InitProperty();
 
             TotalPages = 1;
             CurrentPageCount = 1;
+
+            if (SQLiteService.SearchResult != null)
+            {
+                TodoList = await SQLiteService.SearchDataInPrj(SQLiteService.SearchResult);
+                SQLiteService.SearchResult = null;
+            } ;
 
             var RfidService = new RFIDService();
             //订阅接收事件
@@ -141,14 +146,14 @@ namespace RFIDSQLite.ViewModel
             {
                 if(SelectedList.Count == 0)
                 {
-                    MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
+                    return;
                 }
 
                 else
                 {
                     foreach (TodoSQLite selected in SelectedList)
                     {
-                        var result = await SQLiteService.SearchData(selected.serial);
+                        var result = await SQLiteService.SearchDataInPrj(selected.serial);
                         foreach (TodoSQLite delete in result)
                         {
                             await SQLiteService.RemoveData(delete.Id);
@@ -199,7 +204,7 @@ namespace RFIDSQLite.ViewModel
 
                         await SQLiteService.SignData();
 
-                        TodoList = await SQLiteService.SearchData(SQLiteService.Serial);
+                        TodoList = await SQLiteService.SearchDataInPrj(SQLiteService.Serial);
                         return;
                     }
 
@@ -214,19 +219,17 @@ namespace RFIDSQLite.ViewModel
                         return;
                     }
 
-                    var length = Data[6] - 4 > 6 ? 6 : Data[6] - 4;
-
                     string data = "";
 
                     //回复的第9字节为编码起始，作为长度位
-                    for (int i = 0; i < Data[9]; i++)
+                    for (int i = 0; i < (Data[9] + 2); i++)
                     {
-                        var fire = Data[i + 10].ToString();
+                        var fire = Data[i + 9].ToString();
                         fire = fire.Length == 1 ? "0" + fire : fire;
                         data += fire;
                     }
 
-                    var search = await SQLiteService.SearchData(data);
+                    var search = await SQLiteService.SearchDataInPrj(data);
 
                     if (search.Count != 0)
                     {
@@ -238,7 +241,7 @@ namespace RFIDSQLite.ViewModel
                         MessagingCenter.Send(this, "OpenNotifyPage", "未找到相应数据！");
                     }
 
-                    SearchQuery = data;
+                    SearchQuery = data.Substring(4);
                     return;
                 }
             }
@@ -248,6 +251,7 @@ namespace RFIDSQLite.ViewModel
         [RelayCommand]
         void GoToPrj()
         {
+            RFIDService.ReceivedDataEvent -= ReceivedData;
             MessagingCenter.Send(this, "GoToProjectPage");
         }
 
@@ -355,6 +359,7 @@ namespace RFIDSQLite.ViewModel
         [RelayCommand]
         void PortManage()
         {
+            RFIDService.IsPrj = false;
             MessagingCenter.Send(this, "OpenPortDataPage");
         }
 
@@ -376,7 +381,7 @@ namespace RFIDSQLite.ViewModel
         [RelayCommand]
         async Task SearchAsync()
         {
-            var todo = await SQLiteService.SearchData(SearchQuery);
+            var todo = await SQLiteService.SearchDataInPrj(SearchQuery);
             todo.Reverse();
             for (int i = 0; i < todo.Count; i++)
             {
