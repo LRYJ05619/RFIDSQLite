@@ -293,8 +293,6 @@ namespace RFIDSQLite.ViewModel
                 return;
             }
 
-            RFIDService.IsRFID = true;
-
             if (SelectedList.Count != 0)
             {
                 SQLiteService.WriteSerial = SelectedList.FirstOrDefault().As<TodoSQLite>().serial;
