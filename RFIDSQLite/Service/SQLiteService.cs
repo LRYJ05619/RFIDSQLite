@@ -10,12 +10,12 @@ namespace RFIDSQLite.Service
 {
     public class SQLiteService
     {
-        public static ProjectSQList BufferProject;
+        public static ProjectSQLite BufferProject;
 
         public static MultiattributeSQLite SearchResult;
 
         //Todo 注意填充 (已完成)
-        public static ProjectSQList Project;
+        public static ProjectSQLite Project;
         public static int PrjNum;
         public static int SerialLength;
 
@@ -38,7 +38,7 @@ namespace RFIDSQLite.Service
             SQLite.SQLiteOpenFlags.SharedCache;
 
         //数据库初始化
-        static async Task Init()
+        static void Init()
         {
             if (Database != null)
                 return;
@@ -57,21 +57,23 @@ namespace RFIDSQLite.Service
         }
 
         //初始化项目列表
-        public static async Task<List<ProjectSQList>> InitProject()
+        public static async Task<List<ProjectSQLite>> InitProject()
         {
-            await Init();
-            await Database.CreateTableAsync<ProjectSQList>();
+            Init();
+            await Database.CreateTableAsync<ProjectSQLite>();
 
-            var prjList = await Database.Table<ProjectSQList>().ToListAsync();
+            var prjList = await Database.Table<ProjectSQLite>().ToListAsync();
+
+            await Database.CloseAsync();
 
             return prjList;
         }
 
         //新增项目
-        public static async Task AddProject(ProjectSQList prj)
+        public static async Task AddProject(ProjectSQLite prj)
         {
-            await Init();
-            await Database.CreateTableAsync<ProjectSQList>();
+            Init();
+            await Database.CreateTableAsync<ProjectSQLite>();
 
             await Database.InsertAsync(prj);
             PrjNum = prj.Id;
@@ -81,31 +83,31 @@ namespace RFIDSQLite.Service
         //删除项目
         public static async Task RemoveProject(int id)
         {
-            await Init();
-            await Database.CreateTableAsync<ProjectSQList>();
+            Init();
+            await Database.CreateTableAsync<ProjectSQLite>();
 
-            await Database.DeleteAsync<ProjectSQList>(id);
+            await Database.DeleteAsync<ProjectSQLite>(id);
             await Database.CloseAsync();
         }
 
         //修改项目
-        public static async Task UpdateProject(ProjectSQList prj)
+        public static async Task UpdateProject(ProjectSQLite prj)
         {
-            await Init();
-            await Database.CreateTableAsync<ProjectSQList>();
+            Init();
+            await Database.CreateTableAsync<ProjectSQLite>();
 
             await Database.UpdateAsync(prj);
             await Database.CloseAsync();
         }
 
         //通过Id获取项目
-        public static async Task<ProjectSQList> GetProject(int id)
+        public static async Task<ProjectSQLite> GetProject(int id)
         {
-            await Init();
-            await Database.CreateTableAsync<ProjectSQList>();
+            Init();
+            await Database.CreateTableAsync<ProjectSQLite>();
 
             var prj = await Database
-                .Table<ProjectSQList>()
+                .Table<ProjectSQLite>()
                 .Where(t => t.Id.Equals(id))
                 .FirstOrDefaultAsync();
 
@@ -115,13 +117,13 @@ namespace RFIDSQLite.Service
         }
 
         //搜索项目
-        public static async Task<List<ProjectSQList>> SearchProject(string keyword)
+        public static async Task<List<ProjectSQLite>> SearchProject(string keyword)
         {
-            await Init();
-            await Database.CreateTableAsync<ProjectSQList>();
+            Init();
+            await Database.CreateTableAsync<ProjectSQLite>();
 
             var prj = await Database
-                .Table<ProjectSQList>()
+                .Table<ProjectSQLite>()
                 .Where(t => t.Description.Contains(keyword)
                             || t.Name.Contains(keyword)
                             || t.Time.Contains(keyword))
@@ -136,7 +138,7 @@ namespace RFIDSQLite.Service
         //初始化属性列表
         public static async Task InitProperty()
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<TodoSQLite>();
 
             var todoList = await Database
@@ -155,7 +157,7 @@ namespace RFIDSQLite.Service
         {
             if (Attributes != null && Attributes.Count > 0)
             {
-                await Init();
+                Init();
 
                 await Database.CreateTableAsync<TodoSQLite>();
 
@@ -174,7 +176,7 @@ namespace RFIDSQLite.Service
         {
             if (Attributes != null && Attributes.Count > 0)
             {
-                await Init();
+                Init();
                 await Database.CreateTableAsync<TodoSQLite>();
 
                 foreach (var attribute in Attributes)
@@ -190,7 +192,7 @@ namespace RFIDSQLite.Service
         //新增条目
         public static async Task AddData()
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var data = new MultiattributeSQLite
@@ -222,7 +224,7 @@ namespace RFIDSQLite.Service
         //删除条目
         public static async Task RemoveData(int id)
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             await Database.DeleteAsync<MultiattributeSQLite>(id);
@@ -232,7 +234,7 @@ namespace RFIDSQLite.Service
         //更改条目
         public static async Task UpdateData(string serial, ObservableCollection<TodoSQLite> attributes)
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var target = TranSerial(serial);
@@ -271,7 +273,7 @@ namespace RFIDSQLite.Service
         //获取项目的所有条目
         public static async Task<List<TodoSQLite>> GetData()
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var MultiList = await Database
@@ -294,7 +296,7 @@ namespace RFIDSQLite.Service
         //搜索条目，所有项目
         public static async Task<MultiattributeSQLite> SearchData(string keyword)
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var MultiList = await Database
@@ -316,7 +318,7 @@ namespace RFIDSQLite.Service
         //搜索条目单一项目
         public static async Task<List<TodoSQLite>> SearchDataInPrj(string keyword)
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var MultiList = await Database
@@ -352,7 +354,7 @@ namespace RFIDSQLite.Service
         //判断编码是否存在
         public static async Task<bool> CheckSerial(string keyword)
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var str = TranSerial(keyword);
@@ -371,7 +373,7 @@ namespace RFIDSQLite.Service
         //标记条目已写入芯片
         public static async Task SignData()
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var str = TranSerial(Serial);
@@ -391,7 +393,7 @@ namespace RFIDSQLite.Service
         //获取所有未被标记的条目
         public static async Task<List<TodoSQLite>> GetUnsignData()
         {
-            await Init();
+            Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
             var MultiList = await Database

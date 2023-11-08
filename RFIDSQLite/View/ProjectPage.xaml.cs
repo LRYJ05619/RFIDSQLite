@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Views;
+using RFIDSQLite.Service;
 using RFIDSQLite.View;
 using RFIDSQLite.View.PopUp;
 using RFIDSQLite.ViewModel.PopUp;
@@ -14,10 +15,12 @@ public partial class ProjectPage : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
 
         //前往主页
-        MessagingCenter.Subscribe<ProjectPageViewModel>(this, "GoToMainPage", (sender) =>
+        MessagingCenter.Subscribe<ProjectPageViewModel>(this, "GoToMainPage", async (sender) =>
         {
-            Navigation.PushModalAsync(new MainPage());
-            
+            SQLiteService.SerialLength = SQLiteService.Project.SerialLength;
+            SQLiteService.PrjNum = SQLiteService.Project.Id;
+            await SQLiteService.InitProperty();
+            await Navigation.PushModalAsync(new MainPage());
         });
 
         //新增项目
@@ -107,5 +110,26 @@ public partial class ProjectPage : ContentPage
             };
             this.ShowPopup(popup);
         });
+
+        vm = new ProjectPageViewModel(); // 初始化 ViewModel
+    }
+
+    private ProjectPageViewModel vm;
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // 重新绑定事件
+        RFIDService.ReceivedDataEvent += vm.ReceivedData;
+    }
+
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        // 取消绑定事件，防止重复订阅
+        RFIDService.ReceivedDataEvent -= vm.ReceivedData;
     }
 }

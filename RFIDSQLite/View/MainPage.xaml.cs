@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
 using RFIDSQLite.Model;
+using RFIDSQLite.Service;
 using RFIDSQLite.View.PopUp;
 using RFIDSQLite.ViewModel;
 using RFIDSQLite.ViewModel.PopUp;
@@ -17,7 +18,7 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<MainPageViewModel>(this, "OpenAddDataPage", (sender) =>
             {
                 //打开popup
-                var popup = new AddDataPage(new AddDataPageViewModel())
+                var popup = new AddDataPage()
                 {
                     CanBeDismissedByTappingOutsideOfPopup = false
                 };
@@ -28,7 +29,7 @@ namespace RFIDSQLite.View
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "OpenAddDataPage", (sender) =>
             {
                 //打开popup
-                var popup = new AddDataPage(new AddDataPageViewModel())
+                var popup = new AddDataPage()
                 {
                     CanBeDismissedByTappingOutsideOfPopup = false
                 };
@@ -194,6 +195,27 @@ namespace RFIDSQLite.View
             {
                 Navigation.PopModalAsync();
             });
+
+            vm = new MainPageViewModel(); // 初始化 ViewModel
+        }
+
+        private MainPageViewModel vm;
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // 重新绑定事件
+            RFIDService.ReceivedDataEvent += vm.ReceivedData;
+        }
+
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            // 取消绑定事件，防止重复订阅
+            RFIDService.ReceivedDataEvent -= vm.ReceivedData;
         }
     }
 }

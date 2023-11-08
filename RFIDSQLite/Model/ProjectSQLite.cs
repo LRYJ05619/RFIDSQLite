@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RFIDSQLite.Model
 {
-    public class ProjectSQList
+    public class ProjectSQLite
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

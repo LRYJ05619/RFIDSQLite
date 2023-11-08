@@ -27,7 +27,13 @@ namespace RFIDSQLite.ViewModel.PopUp
 
         public AddProjectPageViewModel()
         {
-            PropertyList = new ObservableCollection<TodoSQLite>();
+            PropertyList = new ObservableCollection<TodoSQLite>()
+            {
+                new TodoSQLite()
+                {
+                    Id = 1
+                },
+            };
 
             if (SQLiteService.BufferProject != null)
             {
@@ -53,7 +59,7 @@ namespace RFIDSQLite.ViewModel.PopUp
         [RelayCommand]
         void DeleteProperty()
         {
-            if (PropertyList.Count > 0)
+            if (PropertyList.Count > 1)
                 PropertyList.RemoveAt(PropertyList.Count - 1);
         }
 
@@ -61,7 +67,7 @@ namespace RFIDSQLite.ViewModel.PopUp
         async Task SavePropertyAsync()
         {
             //Todo 重写页面意外关闭 (已完成)
-            SQLiteService.BufferProject = new ProjectSQList()
+            SQLiteService.BufferProject = new ProjectSQLite()
             {
                 SerialLength = SerialLength,
                 Name = ProjectName,
@@ -84,7 +90,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                 return;
             }
 
-            var prj = new ProjectSQList()
+            var prj = new ProjectSQLite()
             {
                 SerialLength = SerialLength,
                 Name = ProjectName,

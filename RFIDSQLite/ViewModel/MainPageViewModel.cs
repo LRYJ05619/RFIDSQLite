@@ -113,24 +113,32 @@ namespace RFIDSQLite.ViewModel
         {
             //Todo 获取标签(已完成)
             Title = SQLiteService.Project.Name;
-            SQLiteService.SerialLength = SQLiteService.Project.SerialLength;
-            SQLiteService.PrjNum = SQLiteService.Project.Id;
-
-            //初始化属性列表
-            _ = SQLiteService.InitProperty();
 
             TotalPages = 1;
             CurrentPageCount = 1;
 
-            if (SQLiteService.SearchResult != null)
+            //Todo 通过标签获取完整信息
+
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
-                TodoList = await SQLiteService.SearchDataInPrj(SQLiteService.SearchResult);
-                SQLiteService.SearchResult = null;
-            } ;
+                if (SQLiteService.SearchResult != null)
+                {
+                    var todo = await SQLiteService.SearchDataInPrj(SQLiteService.SearchResult.serial);
+
+                    todo.Reverse();
+                    for (int i = 0; i < todo.Count; i++)
+                    {
+                        todo[i].Id = i + 1;
+                    }
+
+                    TodoList = todo;
+
+                    SQLiteService.SearchResult = null;
+                };
+            });
 
             var RfidService = new RFIDService();
-            //订阅接收事件
-            RFIDService.ReceivedDataEvent += ReceivedData;
+
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshPage", async (sender) =>
             {
@@ -169,7 +177,7 @@ namespace RFIDSQLite.ViewModel
         }
 
         //接收数据处理
-        private async void ReceivedData(object sender, byte[] Data)
+        public async void ReceivedData(object sender, byte[] Data)
         {
             if (Data.Length < 4) 
                 return;
@@ -250,8 +258,7 @@ namespace RFIDSQLite.ViewModel
         //项目列表
         [RelayCommand]
         void GoToPrj()
-        {
-            RFIDService.ReceivedDataEvent -= ReceivedData;
+        { 
             MessagingCenter.Send(this, "GoToProjectPage");
         }
 

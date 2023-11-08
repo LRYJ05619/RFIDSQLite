@@ -86,7 +86,7 @@
                     SelectedItems="{Binding SelectedList}">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:ProjectSQList">
+                <DataTemplate x:DataType="model:ProjectSQLite">
                     <StackLayout>
 
                         <StackLayout.GestureRecognizers>

@@ -10,16 +10,30 @@ namespace RFIDSQLite.ViewModel.PopUp
     public partial class PropertyPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<TodoSQLite> propertyList;
+        private ObservableCollection<TodoIsChange> propertyList;
 
         [ObservableProperty]
-        private ProjectSQList project;
+        private ProjectSQLite project;
 
         public PropertyPageViewModel()
         {
-            PropertyList = new ObservableCollection<TodoSQLite>(SQLiteService.Property);
+            PropertyList = new ObservableCollection<TodoIsChange>();
 
-            Project = new ProjectSQList()
+            foreach (var todo in SQLiteService.Property)
+            {
+                PropertyList.Add(new TodoIsChange()
+                {
+                    Id = todo.Id,
+                    IsNum = todo.IsNum,
+                    Num = todo.Num,
+                    PrjNum = todo.PrjNum,
+                    remark = todo.remark,
+                    serial = todo.serial,
+                    Ischange = false
+                });   
+            }
+
+            Project = new ProjectSQLite()
             {
                 Description = SQLiteService.Project.Description,
                 Name = SQLiteService.Project.Name,
@@ -30,11 +44,61 @@ namespace RFIDSQLite.ViewModel.PopUp
         }
 
         [RelayCommand]
+        void AddProperty()
+        {
+            if (PropertyList.Count >= 20) { return; }
+            PropertyList.Add(new TodoIsChange() { Ischange = true});
+        }
+
+        [RelayCommand]
+        void DeleteProperty()
+        {
+            if (PropertyList.Count > SQLiteService.Property.Count)
+                PropertyList.RemoveAt(PropertyList.Count - 1);
+        }
+
+
+
+        [RelayCommand]
         async Task SavePropertyAsync()
         {
             //Todo 描述和步进量可更改，注意添加(已完成)
+            var originList = new ObservableCollection<TodoSQLite>();
+            var addList = new ObservableCollection<TodoSQLite>();
+
+            int i = 0;
+
+            foreach (var todo in PropertyList)
+            {
+                if (i < SQLiteService.Property.Count)
+                {
+                    originList.Add(new TodoSQLite()
+                    {
+                        Id = todo.Id,
+                        IsNum = todo.IsNum,
+                        Num = todo.Num,
+                        PrjNum = todo.PrjNum,
+                        remark = todo.remark,
+                        serial = todo.serial,
+                    });
+                }
+                else
+                {
+                    addList.Add(new TodoSQLite()
+                    {
+                        IsNum = todo.IsNum,
+                        Num = todo.Num,
+                        PrjNum = todo.PrjNum,
+                        remark = todo.remark,
+                        serial = todo.serial,
+                    });
+                }
+                i++;
+            }
+
             await SQLiteService.UpdateProject(Project);
-            await SQLiteService.UpdateProperty(PropertyList);
+            await SQLiteService.UpdateProperty(originList);
+            await SQLiteService.ChangeProperty(addList);
 
             await SQLiteService.InitProperty();
 

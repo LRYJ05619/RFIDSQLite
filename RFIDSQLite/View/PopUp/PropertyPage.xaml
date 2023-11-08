@@ -38,16 +38,16 @@
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout  Orientation="Horizontal"
                                           Span="4"
-                                          HorizontalItemSpacing="10"
+                                          HorizontalItemSpacing="30"
                                           VerticalItemSpacing="10"/>
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:TodoSQLite">
+                        <DataTemplate x:DataType="model:TodoIsChange">
                             <HorizontalStackLayout>
-                                <Label Text="{Binding serial}" Padding="0,7,20,0" WidthRequest="180" FontSize="18" HorizontalTextAlignment="End"/>
+                                <Entry Text="{Binding serial}" IsEnabled="{Binding Ischange}" WidthRequest="110" FontSize="18" HorizontalTextAlignment="Start"/>
 
-                                <CheckBox Color="{StaticResource ButtonColor}" IsEnabled="False" IsChecked="{Binding IsNum}" IsPlatformEnabled="True"/>
+                                <CheckBox Color="{StaticResource ButtonColor}" IsEnabled="{Binding Ischange}" IsChecked="{Binding IsNum}" IsPlatformEnabled="True"/>
                                 <Label Text="数字属性" FontSize="18" Padding="0,7,20,0"/>
 
                                 <Label Text="步进量" FontSize="18" Padding="0,7,20,0"/>
@@ -60,6 +60,8 @@
                 </CollectionView>
 
                 <Grid Grid.Row="4" ColumnDefinitions="*,*,*,*">
+                    <Button Command="{Binding AddPropertyCommand}" Text="添加" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
+                    <Button Grid.Column="1" Command="{Binding DeletePropertyCommand}" Text="删除" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
                     <Button Grid.Column="2" Command="{Binding SavePropertyCommand}" Text="保存" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
                     <Button Grid.Column="3" Command="{Binding CancelCommand}" Text="取消" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
                 </Grid>

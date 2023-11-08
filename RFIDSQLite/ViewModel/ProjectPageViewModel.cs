@@ -26,8 +26,8 @@ namespace RFIDSQLite.ViewModel
         string title;
 
         //原始数据
-        private List<ProjectSQList> projectList;
-        public List<ProjectSQList> ProjectList
+        private List<ProjectSQLite> projectList;
+        public List<ProjectSQLite> ProjectList
         {
             get { return projectList; }
             set
@@ -51,8 +51,8 @@ namespace RFIDSQLite.ViewModel
         }
 
         //绑定数据
-        private List<ProjectSQList> visibleList;
-        public List<ProjectSQList> VisibleList
+        private List<ProjectSQLite> visibleList;
+        public List<ProjectSQLite> VisibleList
         {
             get { return visibleList; }
             set
@@ -126,8 +126,6 @@ namespace RFIDSQLite.ViewModel
             UpdateItems();
 
             var RfidService = new RFIDService();
-            //订阅接收事件
-            RFIDService.ReceivedDataEvent += ReceivedData;
 
             //添加项目成功后刷新页面
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshProjectPage", async (sender) =>
@@ -145,7 +143,7 @@ namespace RFIDSQLite.ViewModel
 
                 else
                 {
-                    foreach (ProjectSQList selected in SelectedList)
+                    foreach (ProjectSQLite selected in SelectedList)
                     {
                         await SQLiteService.RemoveProject(selected.Id);
                     }
@@ -160,7 +158,7 @@ namespace RFIDSQLite.ViewModel
         }
 
         //接收数据处理
-        private async void ReceivedData(object sender, byte[] Data)
+        public async void ReceivedData(object sender, byte[] Data)
         {
             if (Data.Length < 4)
                 return;
@@ -266,7 +264,7 @@ namespace RFIDSQLite.ViewModel
 
         //双击编辑事件
         [RelayCommand]
-        void DoubleClick(ProjectSQList todo)
+        void DoubleClick(ProjectSQLite todo)
         {
             if (todo == null)
                 return;
@@ -286,14 +284,14 @@ namespace RFIDSQLite.ViewModel
             int startIndex = (CurrentPageCount - 1) * ItemsPerPage;
             int endIndex = Math.Min(startIndex + ItemsPerPage, ProjectList.Count);
 
-            var list = new List<ProjectSQList>();
+            var list = new List<ProjectSQLite>();
 
             for (int i = startIndex; i < endIndex; i++)
             {
                 list.Add(ProjectList[i]);
             }
 
-            VisibleList = new List<ProjectSQList>(list);
+            VisibleList = new List<ProjectSQLite>(list);
         }
     }
 }

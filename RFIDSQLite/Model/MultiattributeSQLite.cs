@@ -6,6 +6,7 @@ namespace RFIDSQLite.Model
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public int PrjNum { get; set; }
         public string serial { get; set; }
         public int iswrite { get; set; }
         public string property1 { get; set; }
@@ -28,6 +29,5 @@ namespace RFIDSQLite.Model
         public string property18 { get; set; }
         public string property19 { get; set; }
         public string property20 { get; set; }
-        public int PrjNum { get; set; }
     }
 }
