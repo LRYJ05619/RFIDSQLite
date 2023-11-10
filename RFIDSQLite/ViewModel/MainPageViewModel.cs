@@ -8,6 +8,7 @@ using CommunityToolkit.Maui.Storage;
 using System;
 using System.Numerics;
 using WinRT;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RFIDSQLite.ViewModel
 {
@@ -45,8 +46,8 @@ namespace RFIDSQLite.ViewModel
         }
 
         //绑定数据
-        private List<TodoSQLite> visibleList;
-        public List<TodoSQLite> VisibleList
+        private ObservableCollection<TodoSQLite> visibleList;
+        public ObservableCollection<TodoSQLite> VisibleList
         {
             get { return visibleList; }
             set
@@ -63,7 +64,7 @@ namespace RFIDSQLite.ViewModel
         [ObservableProperty]
         string searchQuery;
 
-        ObservableCollection<object> selectedList = new();
+        private ObservableCollection<object> selectedList = new();
         public ObservableCollection<object> SelectedList
         {
             get
@@ -137,17 +138,16 @@ namespace RFIDSQLite.ViewModel
                 };
             });
 
-            var RfidService = new RFIDService();
-
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshPage", async (sender) =>
             {
                 await HomePageAsync();
             });
 
-            MessagingCenter.Subscribe<AddDataPageViewModel>(this, "RefreshPage", async (sender) =>
+            MessagingCenter.Subscribe<NotifyPageViewModel>(this, "ReadSuccess", (sender) =>
             {
-                await HomePageAsync();
+                TodoList = RFIDService.search;
+                SearchQuery = RFIDService.data;
             });
 
             MessagingCenter.Subscribe<DeletePageViewModel>(this, "DeleteMessage", async (sender) =>
@@ -212,6 +212,8 @@ namespace RFIDSQLite.ViewModel
 
                         await SQLiteService.SignData();
 
+                        Thread.Sleep(100);
+
                         TodoList = await SQLiteService.SearchDataInPrj(SQLiteService.Serial);
                         return;
                     }
@@ -227,7 +229,7 @@ namespace RFIDSQLite.ViewModel
                         return;
                     }
 
-                    string data = "";
+                    string data = string.Empty;
 
                     //回复的第9字节为编码起始，作为长度位
                     for (int i = 0; i < (Data[9] + 2); i++)
@@ -242,14 +244,14 @@ namespace RFIDSQLite.ViewModel
                     if (search.Count != 0)
                     {
                         MessagingCenter.Send(this, "OpenNotifyPage", "读取成功！");
-                        TodoList = search;
+                        RFIDService.search = search;
                     }
                     else
                     {
                         MessagingCenter.Send(this, "OpenNotifyPage", "未找到相应数据！");
                     }
 
-                    SearchQuery = data.Substring(4);
+                    RFIDService.data = data.Substring(4);
                     return;
                 }
             }
@@ -431,7 +433,7 @@ namespace RFIDSQLite.ViewModel
                 list.Add(TodoList[i]);
             }
 
-            VisibleList = new List<TodoSQLite>(list);
+            VisibleList = new ObservableCollection<TodoSQLite>(list);
         }
     }
 }

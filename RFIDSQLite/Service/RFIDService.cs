@@ -1,9 +1,15 @@
 ﻿using System.IO.Ports;
+using RFIDSQLite.Model;
 
 namespace RFIDSQLite.Service
 {
     public class RFIDService
     {
+        public static List<TodoSQLite> search;
+        public static string data;
+
+        public static bool IsMain = false;
+
         public static bool IsRFID = false;
         public static bool IsPrj = false;
 

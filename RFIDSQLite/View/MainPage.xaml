@@ -31,20 +31,19 @@
 
         </Grid>
 
-        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*,*,*">
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*,*">
             <Button Grid.Column="0" Command="{Binding GoToPrjCommand}" Text="项目列表" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="1" Command="{Binding AddDataCommand}" Text="新增物品" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="1" Command="{Binding AddDataCommand}" Text="新增物料" Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="2" Command="{Binding DeleteDataCommand}" Text="删除" Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="3" Command="{Binding ReadDataCommand}" Text="读取芯片" Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="4" Command="{Binding WriteChipCommand}" Text="绑定芯片" Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="5" Command="{Binding OutputCsvCommand}" Text="数据导出" Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="6" Command="{Binding WriteFileCommand}" Text="数据同步" Style="{StaticResource ButtonStyle}"/>
-            <Button Grid.Column="7" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource ButtonStyle}"/>
         </Grid>
 
         <Grid Grid.Row="2" ColumnDefinitions="*,*,2*,*,*,*,*">
 
-            <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="物品列表" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="物料列表" Style="{StaticResource ButtonStyle}"/>
 
             <Button Grid.Column="1" Command="{Binding GetUnsignDataCommand}" Text="待绑定列表" Style="{StaticResource ButtonStyle}"/>
 

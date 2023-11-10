@@ -348,6 +348,13 @@ namespace RFIDSQLite.Service
                 .ToListAsync();
             var TodoList = Translate(MultiList);
             await Database.CloseAsync();
+
+            TodoList.Reverse();
+            for (int i = 0; i < TodoList.Count; i++)
+            {
+                TodoList[i].Id = i + 1;
+            }
+
             return TodoList;
         }
 
@@ -447,6 +454,7 @@ namespace RFIDSQLite.Service
                     Id = data.Id,
                     serial = serial,
                     remark = value,
+                    PrjNum = PrjNum,
                 });
             }
 

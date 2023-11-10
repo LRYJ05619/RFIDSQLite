@@ -61,9 +61,9 @@
                 </CollectionView>
 
                 <Grid Grid.Row="4" ColumnDefinitions="*,*,*,*">
-                    <Button Command="{Binding AddPropertyCommand}" Text="添加" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
+                    <Button Grid.Column="2" Command="{Binding AddPropertyCommand}" Text="添加" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
                     <Button Grid.Column="1" Command="{Binding DeletePropertyCommand}" Text="删除" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
-                    <Button Grid.Column="2" Command="{Binding SavePropertyCommand}" Text="保存" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
+                    <Button Grid.Column="0" Command="{Binding SavePropertyCommand}" Text="保存" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="25,25,0,15"/>
                     <Button Grid.Column="3" Command="{Binding CancelCommand}" Text="取消" FontSize="18" TextColor="Black" BackgroundColor="White" BorderColor="Black" BorderWidth="1" Margin="40,25,0,10"/>
                 </Grid>
 

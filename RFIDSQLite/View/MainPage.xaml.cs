@@ -12,6 +12,7 @@ namespace RFIDSQLite.View
         public MainPage()
         {
             InitializeComponent();
+
             NavigationPage.SetHasNavigationBar(this, false);
 
             //添加按钮
@@ -201,21 +202,26 @@ namespace RFIDSQLite.View
 
         private MainPageViewModel vm;
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            RFIDService.IsMain = false;
+            // 取消绑定事件，防止重复订阅
+            RFIDService.ReceivedDataEvent -= vm.ReceivedData;
+
+            if (BindingContext is IDisposable disposableViewModel)
+            {
+                disposableViewModel.Dispose();
+            }
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             // 重新绑定事件
             RFIDService.ReceivedDataEvent += vm.ReceivedData;
-        }
-
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            // 取消绑定事件，防止重复订阅
-            RFIDService.ReceivedDataEvent -= vm.ReceivedData;
         }
     }
 }

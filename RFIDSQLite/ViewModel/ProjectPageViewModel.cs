@@ -125,8 +125,6 @@ namespace RFIDSQLite.ViewModel
 
             UpdateItems();
 
-            var RfidService = new RFIDService();
-
             //添加项目成功后刷新页面
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshProjectPage", async (sender) =>
             {
@@ -191,7 +189,6 @@ namespace RFIDSQLite.ViewModel
                             SQLiteService.SearchResult = search;
                             SQLiteService.Project = await SQLiteService.GetProject(search.PrjNum);
 
-                            RFIDService.ReceivedDataEvent -= ReceivedData;
                             MessagingCenter.Send(this, "GoToMainPage");
                         }
                         else
@@ -270,8 +267,7 @@ namespace RFIDSQLite.ViewModel
                 return;
 
             SQLiteService.Project = todo;
-
-            RFIDService.ReceivedDataEvent -= ReceivedData;
+            
             MessagingCenter.Send(this, "GoToMainPage");
         }
 

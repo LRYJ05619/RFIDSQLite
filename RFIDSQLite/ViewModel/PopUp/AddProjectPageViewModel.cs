@@ -74,7 +74,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                 Description = ProjectDescribe,
             };
 
-            if (SerialLength == null || SerialLength > 30 || SerialLength < 6 || SerialLength % 2 != 0)
+            if (SerialLength > 30 || SerialLength < 6 || SerialLength % 2 != 0)
             {
                 MessagingCenter.Send(this, "ClosePopupMessage");
                 //Todo 注意编写提示界面反馈 (已完成)

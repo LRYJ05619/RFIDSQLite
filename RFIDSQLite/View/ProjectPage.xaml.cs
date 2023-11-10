@@ -20,6 +20,9 @@ public partial class ProjectPage : ContentPage
             SQLiteService.SerialLength = SQLiteService.Project.SerialLength;
             SQLiteService.PrjNum = SQLiteService.Project.Id;
             await SQLiteService.InitProperty();
+
+            RFIDService.IsMain = true;
+
             await Navigation.PushModalAsync(new MainPage());
         });
 
@@ -116,20 +119,23 @@ public partial class ProjectPage : ContentPage
 
     private ProjectPageViewModel vm;
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-
-        // 重新绑定事件
-        RFIDService.ReceivedDataEvent += vm.ReceivedData;
-    }
-
-
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
 
         // 取消绑定事件，防止重复订阅
         RFIDService.ReceivedDataEvent -= vm.ReceivedData;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if(RFIDService.IsMain)
+            return;
+
+        var RfidService = new RFIDService();
+        // 重新绑定事件
+        RFIDService.ReceivedDataEvent += vm.ReceivedData;
     }
 }
