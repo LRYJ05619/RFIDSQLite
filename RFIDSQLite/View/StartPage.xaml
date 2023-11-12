@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RFIDSQLite.View.StartPage">
+    <Grid>
+        <Grid.Background>
+            <!-- StartPoint defaults to (0,0) -->
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#7FBDEE"
+                              Offset="0.0" />
+                <GradientStop Color="#4C729D"
+                              Offset="0.46" />
+                <GradientStop Color="#1F2E54"
+                              Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Label x:Name="TitleLabel" Margin="59,49,0,0" FontSize="74" TextColor="White"/>
+
+        <Image Source="a1.png" WidthRequest="363" HeightRequest="526" Margin="59,444,0,0" HorizontalOptions="Start" VerticalOptions="Start" />
+        <Image Source="a2.png" WidthRequest="123" HeightRequest="121" Margin="316,444,0,0" HorizontalOptions="Start" VerticalOptions="Start" />
+        <Image Source="a3.png" WidthRequest="50" HeightRequest="97" Margin="36,617,0,0" HorizontalOptions="Start" VerticalOptions="Start" />
+        <Image Source="a4.png" WidthRequest="67" HeightRequest="92" Margin="163,208,0,0" HorizontalOptions="Start" VerticalOptions="Start" />
+        <Image Source="a5.png" WidthRequest="103" HeightRequest="85" Margin="511,853,0,0" HorizontalOptions="Start" VerticalOptions="Start" />
+        <Image Source="a6.png" WidthRequest="471" HeightRequest="539" Margin="1292,495,0,0" HorizontalOptions="Start" VerticalOptions="Start" />
+        <Image Source="a7.png" WidthRequest="551" HeightRequest="499" Margin="1434,-22,0,0" HorizontalOptions="Start" VerticalOptions="Start" />
+        <Image Source="a8.png" WidthRequest="530" HeightRequest="515" Margin="1739,423,0,0" HorizontalOptions="Start" VerticalOptions="Start" />
+
+
+        <Frame HeightRequest="478" WidthRequest="786" BackgroundColor="White" CornerRadius="20">
+            <VerticalStackLayout>
+                <Label Text="欢迎登录" Margin="0, 84,0,0" HorizontalTextAlignment="Center" TextColor="{StaticResource ButtonColor}" FontSize="48"/>
+                <Button Style="{StaticResource ButtonStyle}" HeightRequest="89" WidthRequest="575" HorizontalOptions="Center" 
+                        Text="进入" Margin="0,102,0,0" FontSize="36" Clicked="Button_OnClicked"/>
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

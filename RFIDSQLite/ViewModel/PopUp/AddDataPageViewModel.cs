@@ -21,7 +21,7 @@ namespace RFIDSQLite.ViewModel.PopUp
 
         public AddDataPageViewModel()
         {
-            if (SQLiteService.BufferSerial != null || SQLiteService.BufferProperty != null)
+            if (!string.IsNullOrEmpty(SQLiteService.BufferSerial) && SQLiteService.BufferProperty != null && SQLiteService.BufferProperty.Count != 0)
             {
                 Serial = new string(SQLiteService.BufferSerial);
                 Attributes = new ObservableCollection<TodoSQLite>(SQLiteService.BufferProperty);

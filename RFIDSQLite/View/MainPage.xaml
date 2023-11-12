@@ -41,7 +41,7 @@
             <Button Grid.Column="6" Command="{Binding WriteFileCommand}" Text="数据同步" Style="{StaticResource ButtonStyle}"/>
         </Grid>
 
-        <Grid Grid.Row="2" ColumnDefinitions="*,*,2*,*,*,*,*">
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,1.5*,0.5*,*,*,*">
 
             <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="物料列表" Style="{StaticResource ButtonStyle}"/>
 

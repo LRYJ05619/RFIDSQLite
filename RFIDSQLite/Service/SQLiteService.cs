@@ -158,7 +158,6 @@ namespace RFIDSQLite.Service
             if (Attributes != null && Attributes.Count > 0)
             {
                 Init();
-
                 await Database.CreateTableAsync<TodoSQLite>();
 
                 foreach (var attribute in Attributes)
@@ -275,6 +274,8 @@ namespace RFIDSQLite.Service
         {
             Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
+
+            Thread.Sleep(100);
 
             var MultiList = await Database
                 .Table<MultiattributeSQLite>()

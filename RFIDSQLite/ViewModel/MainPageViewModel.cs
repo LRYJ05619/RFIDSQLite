@@ -115,11 +115,16 @@ namespace RFIDSQLite.ViewModel
             //Todo 获取标签(已完成)
             Title = SQLiteService.Project.Name;
 
+            if (SQLiteService.BufferSerial != null)
+                SQLiteService.BufferSerial = string.Empty;
+
+            if(SQLiteService.BufferProperty != null)
+                SQLiteService.BufferProperty.Clear();   
+
             TotalPages = 1;
             CurrentPageCount = 1;
 
             //Todo 通过标签获取完整信息
-
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 if (SQLiteService.SearchResult != null)
@@ -135,13 +140,24 @@ namespace RFIDSQLite.ViewModel
                     TodoList = todo;
 
                     SQLiteService.SearchResult = null;
-                };
+                }
+                else
+                {
+                    var todo = await SQLiteService.GetData();
+
+                    TodoList = todo;
+                }
             });
 
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshPage", async (sender) =>
             {
-                await HomePageAsync();
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    var todo = await SQLiteService.GetData();
+
+                    TodoList = todo;
+                });
             });
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "ReadSuccess", (sender) =>

@@ -101,6 +101,9 @@
 	  <MauiXaml Update="View\PopUp\WriteChipPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\StartPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(Configuration)' == 'Release'">
@@ -112,6 +115,24 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <PRIResource Remove="Interface\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\Images\a1 - 复制.png" />
+	  <None Remove="Resources\Images\a1.png" />
+	  <None Remove="Resources\Images\a2 - 复制.png" />
+	  <None Remove="Resources\Images\a2.png" />
+	  <None Remove="Resources\Images\a3 - 复制.png" />
+	  <None Remove="Resources\Images\a3.png" />
+	  <None Remove="Resources\Images\a4 - 复制.png" />
+	  <None Remove="Resources\Images\a4.png" />
+	  <None Remove="Resources\Images\a5 - 复制.png" />
+	  <None Remove="Resources\Images\a5.png" />
+	  <None Remove="Resources\Images\a6 - 复制.png" />
+	  <None Remove="Resources\Images\a6.png" />
+	  <None Remove="Resources\Images\a7 - 复制.png" />
+	  <None Remove="Resources\Images\a7.png" />
+	  <None Remove="Resources\Images\a8 - 复制.png" />
+	  <None Remove="Resources\Images\a8.png" />
 	</ItemGroup>
 
 </Project>

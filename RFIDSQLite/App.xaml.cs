@@ -10,7 +10,7 @@ namespace RFIDSQLite
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ProjectPage());
+            MainPage = new NavigationPage(new StartPage());
         }
     }
 }

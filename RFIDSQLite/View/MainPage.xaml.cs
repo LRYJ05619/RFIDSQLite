@@ -222,7 +222,6 @@ namespace RFIDSQLite.View
 
             // 重新绑定事件
             RFIDService.ReceivedDataEvent += vm.ReceivedData;
-            vm.TodoList = await SQLiteService.GetData();
         }
     }
 }

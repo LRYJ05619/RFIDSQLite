@@ -31,6 +31,8 @@
                 </HorizontalStackLayout>
 
                 <CollectionView Grid.Row="3" 
+                                HorizontalScrollBarVisibility="Always"
+                                ItemsUpdatingScrollMode="KeepLastItemInView"
                                 HeightRequest="400"
                                 ItemsSource="{Binding PropertyList}"
                                 SelectionMode="None">
