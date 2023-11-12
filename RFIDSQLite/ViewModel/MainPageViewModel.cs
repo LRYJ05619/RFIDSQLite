@@ -152,27 +152,24 @@ namespace RFIDSQLite.ViewModel
 
             MessagingCenter.Subscribe<DeletePageViewModel>(this, "DeleteMessage", async (sender) =>
             {
-                if(SelectedList.Count == 0)
+                if (SelectedList.Count == 0)
                 {
                     return;
                 }
 
-                else
+                foreach (TodoSQLite selected in SelectedList)
                 {
-                    foreach (TodoSQLite selected in SelectedList)
+                    var result = await SQLiteService.CheckSerial(selected.serial);
+                    foreach (TodoSQLite delete in result)
                     {
-                        var result = await SQLiteService.SearchDataInPrj(selected.serial);
-                        foreach (TodoSQLite delete in result)
-                        {
-                            await SQLiteService.RemoveData(delete.Id);
-                        }
+                        await SQLiteService.RemoveData(delete.Id);
                     }
-
-                    Thread.Sleep(100);
-
-                    TodoList = await SQLiteService.GetData();
-                    MessagingCenter.Send(this, "OpenNotifyPage", "删除成功！");
                 }
+
+                Thread.Sleep(100);
+
+                TodoList = await SQLiteService.GetData();
+                MessagingCenter.Send(this, "OpenNotifyPage", "删除成功！");
             });
         }
 

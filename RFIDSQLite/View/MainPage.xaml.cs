@@ -216,12 +216,13 @@ namespace RFIDSQLite.View
             }
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
             // 重新绑定事件
             RFIDService.ReceivedDataEvent += vm.ReceivedData;
+            vm.TodoList = await SQLiteService.GetData();
         }
     }
 }

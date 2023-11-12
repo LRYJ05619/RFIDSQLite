@@ -55,7 +55,9 @@ namespace RFIDSQLite.ViewModel.PopUp
                 return;
             }
 
-            if (await SQLiteService.CheckSerial(Serial))
+            var list = await SQLiteService.CheckSerial(Serial);
+
+            if (list.Count != 0)
             {
                 MessagingCenter.Send(this, "ClosePopupMessage");
                 MessagingCenter.Send(this, "OpenNotifyPage", "编号重复，请重新输入！");

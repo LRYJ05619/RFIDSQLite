@@ -249,6 +249,7 @@ namespace RFIDSQLite.ViewModel
                 MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
                 return;
             }
+
             MessagingCenter.Send(this, "OpenDeletePage");
         }
 

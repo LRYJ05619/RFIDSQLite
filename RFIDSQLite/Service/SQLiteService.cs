@@ -313,7 +313,6 @@ namespace RFIDSQLite.Service
             return MultiList;
         }
 
-
         //Todo 需要添加项目Id限制 (已完成)
         //搜索条目单一项目
         public static async Task<List<TodoSQLite>> SearchDataInPrj(string keyword)
@@ -358,8 +357,8 @@ namespace RFIDSQLite.Service
             return TodoList;
         }
 
-        //判断编码是否存在
-        public static async Task<bool> CheckSerial(string keyword)
+        //Todo 重写为查找编码
+        public static async Task<List<TodoSQLite>> CheckSerial(string keyword)
         {
             Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
@@ -372,9 +371,10 @@ namespace RFIDSQLite.Service
                 .ToListAsync();
 
             var TodoList = Translate(MultiList);
+
             await Database.CloseAsync();
 
-            return TodoList.Count != 0;
+            return TodoList;
         }
 
         //标记条目已写入芯片
