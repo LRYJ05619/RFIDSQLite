@@ -126,7 +126,6 @@ namespace RFIDSQLite.ViewModel
 
         public MainPageViewModel()
         {
-            instance = null;
             //Todo 获取标签(已完成)
             Title = SQLiteService.Project.Name;
 
@@ -202,6 +201,12 @@ namespace RFIDSQLite.ViewModel
                 TodoList = await SQLiteService.GetData();
                 MessagingCenter.Send(this, "OpenNotifyPage", "删除成功！");
             });
+        }
+
+        //清理缓存
+        public static void ClearInstance()
+        {
+            instance = null;
         }
 
         //接收数据处理

@@ -13,6 +13,7 @@ namespace RFIDSQLite.View
         {
             InitializeComponent();
 
+            MainPageViewModel.ClearInstance();
             BindingContext = MainPageViewModel.Instance;
 
             NavigationPage.SetHasNavigationBar(this, false);

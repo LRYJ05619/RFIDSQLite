@@ -100,6 +100,9 @@ namespace RFIDSQLite.ViewModel.PopUp
             await SQLiteService.UpdateProperty(originList);
             await SQLiteService.ChangeProperty(addList);
 
+            SQLiteService.BufferProperty = new();
+            SQLiteService.BufferSerial = String.Empty;
+
             await SQLiteService.InitProperty();
 
             MessagingCenter.Send(this, "ClosePopupMessage");
