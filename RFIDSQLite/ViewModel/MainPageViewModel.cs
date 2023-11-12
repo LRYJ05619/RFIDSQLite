@@ -14,6 +14,20 @@ namespace RFIDSQLite.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
+        private static MainPageViewModel instance;
+        // Public static property for instance access
+        public static MainPageViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MainPageViewModel();
+                }
+                return instance;
+            }
+        }
+
         //每页数据数量
         private int ItemsPerPage = 12;
 
@@ -112,6 +126,7 @@ namespace RFIDSQLite.ViewModel
 
         public MainPageViewModel()
         {
+            instance = null;
             //Todo 获取标签(已完成)
             Title = SQLiteService.Project.Name;
 

@@ -9,10 +9,6 @@
              Title=""
              x:Name="Page">
 
-    <ContentPage.BindingContext>
-        <viewModel:MainPageViewModel/>
-    </ContentPage.BindingContext>
-
     <Grid RowDefinitions="64,52,52,68,Auto,*,Auto" BackgroundColor="{StaticResource BackGroundColor}">
 
         <Grid Grid.Row="0">

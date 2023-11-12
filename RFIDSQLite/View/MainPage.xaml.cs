@@ -13,6 +13,8 @@ namespace RFIDSQLite.View
         {
             InitializeComponent();
 
+            BindingContext = MainPageViewModel.Instance;
+
             NavigationPage.SetHasNavigationBar(this, false);
 
             //添加按钮
@@ -197,7 +199,7 @@ namespace RFIDSQLite.View
                 Navigation.PopModalAsync();
             });
 
-            vm = new MainPageViewModel(); // 初始化 ViewModel
+            vm = MainPageViewModel.Instance;
         }
 
         private MainPageViewModel vm;
@@ -209,11 +211,6 @@ namespace RFIDSQLite.View
             RFIDService.IsMain = false;
             // 取消绑定事件，防止重复订阅
             RFIDService.ReceivedDataEvent -= vm.ReceivedData;
-
-            if (BindingContext is IDisposable disposableViewModel)
-            {
-                disposableViewModel.Dispose();
-            }
         }
 
         protected override async void OnAppearing()
