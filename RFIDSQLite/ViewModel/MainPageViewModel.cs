@@ -166,12 +166,9 @@ namespace RFIDSQLite.ViewModel
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshPage", async (sender) =>
             {
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    var todo = await SQLiteService.GetData();
+                var todo = await SQLiteService.GetData();
 
-                    TodoList = todo;
-                });
+                TodoList = todo;
             });
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "ReadSuccess", (sender) =>
@@ -195,8 +192,6 @@ namespace RFIDSQLite.ViewModel
                         await SQLiteService.RemoveData(delete.Id);
                     }
                 }
-
-                Thread.Sleep(100);
 
                 TodoList = await SQLiteService.GetData();
                 MessagingCenter.Send(this, "OpenNotifyPage", "删除成功！");
@@ -244,8 +239,6 @@ namespace RFIDSQLite.ViewModel
                         MessagingCenter.Send(this, "OpenNotifyPage", "绑定成功！");
 
                         await SQLiteService.SignData();
-
-                        Thread.Sleep(100);
 
                         TodoList = await SQLiteService.SearchDataInPrj(SQLiteService.Serial);
                         return;

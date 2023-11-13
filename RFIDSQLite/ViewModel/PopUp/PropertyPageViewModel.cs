@@ -104,6 +104,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             SQLiteService.BufferSerial = String.Empty;
 
             await SQLiteService.InitProperty();
+            SQLiteService.Project.Description = Project.Description;
 
             MessagingCenter.Send(this, "ClosePopupMessage");
             MessagingCenter.Send(this, "OpenNotifyPage", "保存成功！");

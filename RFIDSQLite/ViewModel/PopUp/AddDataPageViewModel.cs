@@ -51,7 +51,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             if (Serial.Length != SerialLength)
             {
                 MessagingCenter.Send(this, "ClosePopupMessage");
-                MessagingCenter.Send(this, "OpenNotifyPage", "绑定失败，请检查编号！");
+                MessagingCenter.Send(this, "OpenNotifyPage", "保存失败，请检查编号！");
                 return;
             }
 

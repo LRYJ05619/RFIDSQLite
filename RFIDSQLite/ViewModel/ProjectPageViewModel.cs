@@ -146,8 +146,6 @@ namespace RFIDSQLite.ViewModel
                         await SQLiteService.RemoveProject(selected.Id);
                     }
 
-                    Thread.Sleep(100);
-
                     ProjectList = await SQLiteService.InitProject();
 
                     MessagingCenter.Send(this, "OpenNotifyPage", "删除成功！");

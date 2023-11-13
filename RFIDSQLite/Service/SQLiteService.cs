@@ -275,8 +275,6 @@ namespace RFIDSQLite.Service
             Init();
             await Database.CreateTableAsync<MultiattributeSQLite>();
 
-            Thread.Sleep(100);
-
             var MultiList = await Database
                 .Table<MultiattributeSQLite>()
                 .Where(t => t.PrjNum.Equals(PrjNum))

@@ -32,15 +32,12 @@ namespace RFIDSQLite.ViewModel.PopUp
                     break;
 
                 case "绑定失败，请检查编号！":
-                    if (RFIDService.IsRFID)
-                    {
-                        RFIDService.IsRFID = false;
-                        MessagingCenter.Send(this, "OpenWriteChipPage");
-                    }
-                    else
-                    {
-                        MessagingCenter.Send(this, "OpenAddDataPage");
-                    }
+                    RFIDService.IsRFID = false;
+                    MessagingCenter.Send(this, "OpenWriteChipPage");
+                    break;
+
+                case "保存失败，请检查编号！":
+                    MessagingCenter.Send(this, "OpenAddDataPage");
                     break;
 
                 case "请输入编号！":

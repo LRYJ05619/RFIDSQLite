@@ -46,7 +46,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             {
                 RFIDService.IsRFID = true;
                 MessagingCenter.Send(this, "ClosePopupMessage");
-                MessagingCenter.Send(this, "OpenNotifyPage", "写入失败，请检查编号！");
+                MessagingCenter.Send(this, "OpenNotifyPage", "绑定失败，请检查编号！");
                 return;
             }
 
@@ -86,7 +86,7 @@ namespace RFIDSQLite.ViewModel.PopUp
             if (!RFIDService.WriteData(SerialData))
             {
                 RFIDService.IsRFID = true;
-                MessagingCenter.Send(this, "OpenNotifyPage", "写入失败，请检查设备连接！");
+                MessagingCenter.Send(this, "OpenNotifyPage", "绑定失败，请检查设备连接！");
             }
             else
             {
