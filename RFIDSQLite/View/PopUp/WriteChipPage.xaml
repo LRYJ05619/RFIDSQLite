@@ -7,7 +7,7 @@
     <Grid BackgroundColor="Transparent" WidthRequest="550" HeightRequest="195">
         <Frame BorderColor="Black" BackgroundColor="{StaticResource BackGroundColor}">
             <VerticalStackLayout>
-                <Label Text="写入芯片" HorizontalOptions="Center" FontSize="22" Padding="0,5,0,10"/>
+                <Label Text="绑定芯片" HorizontalOptions="Center" FontSize="22" Padding="0,5,0,10"/>
 
                 <HorizontalStackLayout HeightRequest="55" HorizontalOptions="Start">
                     <Label Text="编号" FontSize="18" Padding="10,15,5,0"/>

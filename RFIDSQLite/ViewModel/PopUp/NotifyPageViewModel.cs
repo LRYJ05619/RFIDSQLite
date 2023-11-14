@@ -57,7 +57,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                     break;
 
                 case "绑定失败，请检查芯片位置！":
-                    MessagingCenter.Send(this, "OpenAddDataPage");
+                    MessagingCenter.Send(this, "OpenWriteChipPage");
                     break;
 
                 case "修改成功！":
