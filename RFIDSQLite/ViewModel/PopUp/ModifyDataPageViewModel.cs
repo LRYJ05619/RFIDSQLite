@@ -32,7 +32,7 @@ namespace RFIDSQLite.ViewModel.PopUp
         }
 
         [RelayCommand]
-        async Task AddAsync(TodoSQLite todo)
+        void Add(TodoSQLite todo)
         {
             if (decimal.TryParse(todo.remark, out decimal number))
             {
@@ -42,7 +42,7 @@ namespace RFIDSQLite.ViewModel.PopUp
         }
 
         [RelayCommand]
-        async Task SubtractAsync(TodoSQLite todo)
+        void Subtract(TodoSQLite todo)
         {
             if (decimal.TryParse(todo.remark, out decimal number))
             {

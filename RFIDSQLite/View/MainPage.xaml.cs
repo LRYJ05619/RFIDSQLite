@@ -214,7 +214,7 @@ namespace RFIDSQLite.View
             RFIDService.ReceivedDataEvent -= vm.ReceivedData;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
