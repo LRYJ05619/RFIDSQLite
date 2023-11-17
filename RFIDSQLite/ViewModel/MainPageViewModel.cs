@@ -169,6 +169,8 @@ namespace RFIDSQLite.ViewModel
                 var todo = await SQLiteService.GetData();
 
                 TodoList = todo;
+
+                LogFileOutput.OutputLog(TodoList);
             });
 
             MessagingCenter.Subscribe<NotifyPageViewModel>(this, "ReadSuccess", (sender) =>

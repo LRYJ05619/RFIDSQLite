@@ -8,7 +8,7 @@ namespace RFIDSQLite.Service
 {
     public class TitleGetService
     {
-        public static string get()
+        public static string Get()
         {
             var parent = Path.GetDirectoryName(AppContext.BaseDirectory);
 

@@ -11,6 +11,11 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		
 		<WindowsPackageType>None</WindowsPackageType>
+
+		<PublishSingleFile>true</PublishSingleFile>
+		<!-- 启用单文件发布 -->
+		<SelfContained>true</SelfContained>
+		<!-- 设置为自包含应用 -->
 		
 		<!-- Display name -->
 		<ApplicationTitle>RFIDSQLite</ApplicationTitle>

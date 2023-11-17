@@ -10,7 +10,7 @@ public partial class StartPage : ContentPage
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
 
-        TitleLabel.Text = TitleGetService.get();
+        TitleLabel.Text = TitleGetService.Get();
     }
 
     private async void Button_OnClicked(object sender, EventArgs e)

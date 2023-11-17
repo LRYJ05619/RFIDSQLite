@@ -116,7 +116,7 @@ namespace RFIDSQLite.ViewModel
         public ProjectPageViewModel()
         {
             //获取标题
-            Title = TitleGetService.get();
+            Title = TitleGetService.Get();
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
