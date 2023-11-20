@@ -31,6 +31,7 @@
                 </HorizontalStackLayout>
 
                 <CollectionView Grid.Row="3" 
+                                Margin="0,20,0,0"
                                 HorizontalScrollBarVisibility="Always"
                                 ItemsUpdatingScrollMode="KeepLastItemInView"
                                 HeightRequest="400"
@@ -38,8 +39,8 @@
                                 SelectionMode="None">
 
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout  Orientation="Horizontal"
-                                          Span="4"
+                        <GridItemsLayout  Orientation="Vertical"
+                                          Span="2"
                                           HorizontalItemSpacing="10"
                                           VerticalItemSpacing="10"/>
                     </CollectionView.ItemsLayout>

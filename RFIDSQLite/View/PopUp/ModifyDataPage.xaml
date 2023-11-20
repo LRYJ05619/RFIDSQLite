@@ -25,25 +25,25 @@
                             SelectionMode="None">
 
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout  Orientation="Horizontal"
-                                      Span="5"
-                                      HorizontalItemSpacing="10"
-                                      VerticalItemSpacing="10"/>
+                        <GridItemsLayout  Orientation="Vertical"
+                                          Span="3"
+                                          HorizontalItemSpacing="10"
+                                          VerticalItemSpacing="10"/>
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:TodoSQLite">
                             <HorizontalStackLayout>
-                                <Label Text="{Binding serial}" WidthRequest="100" FontSize="18" Padding="0,10,20,10"/>
+                                <Label Text="{Binding serial}" WidthRequest="160" FontSize="18" Padding="0,10,20,10"/>
 
                                 <Entry Text="{Binding remark}" TextChanged="DoubleEntry_TextChanged" WidthRequest="210" FontSize="18" HorizontalOptions="Start">
                                     <Entry.Triggers>
                                         <DataTrigger TargetType="Entry" Binding="{Binding IsNum}" Value="true">
-                                            <Setter Property="WidthRequest" Value="120"/>
+                                            <Setter Property="WidthRequest" Value="100"/>
                                         </DataTrigger>
 
                                         <DataTrigger TargetType="Entry" Binding="{Binding IsNum}" Value="false">
-                                            <Setter Property="WidthRequest" Value="210"/>
+                                            <Setter Property="WidthRequest" Value="190"/>
                                         </DataTrigger>
                                     </Entry.Triggers>
                                 </Entry>
