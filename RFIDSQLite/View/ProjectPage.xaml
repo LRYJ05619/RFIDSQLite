@@ -37,7 +37,7 @@
             <Entry Grid.Column="3" BackgroundColor="White" Text="{Binding SearchQuery}" Placeholder="搜索" FontSize="22"  Margin="0,8,20,0"
                    ReturnCommand="{Binding SearchCommand}"/>
 
-            <Button Grid.Column="4" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="4" Command="{Binding SearchCommand}" Text="查找项目" Style="{StaticResource ButtonStyle}"/>
 
             <Button Grid.Column="5" Command="{Binding ReadDataCommand}" Text="读取芯片" Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="6" Command="{Binding PortManageCommand}" Text="设备管理" Style="{StaticResource ButtonStyle}"/>

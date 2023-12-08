@@ -37,7 +37,7 @@
             <Button Grid.Column="6" Command="{Binding WriteFileCommand}" Text="数据同步" Style="{StaticResource ButtonStyle}"/>
         </Grid>
 
-        <Grid Grid.Row="2" ColumnDefinitions="*,*,1.5*,0.5*,*,*,*">
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,1.4*,0.6*,*,*,*">
 
             <Button Grid.Column="0" Command="{Binding HomePageCommand}" Text="物料列表" Style="{StaticResource ButtonStyle}"/>
 
@@ -46,7 +46,7 @@
             <Entry Grid.Column="2" BackgroundColor="White" Text="{Binding SearchQuery}" Placeholder="搜索" FontSize="22"  Margin="0,8,20,0"
                    ReturnCommand="{Binding SearchCommand}"/>
 
-            <Button Grid.Column="3" Command="{Binding SearchCommand}" Text="查找" Style="{StaticResource ButtonStyle}"/>
+            <Button Grid.Column="3" Command="{Binding SearchCommand}" Text="查找物料" Style="{StaticResource ButtonStyle}"/>
             <Button Grid.Column="4" Command="{Binding PropertyCommand}" Text="属性管理" Style="{StaticResource ButtonStyle}"/>
 
             <Label Grid.Column="5" FontSize="20" TextColor="{StaticResource HeaderColor}" Margin="0,8,20,0" Padding="5,5,5,5">
