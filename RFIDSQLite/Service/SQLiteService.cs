@@ -36,9 +36,7 @@ namespace RFIDSQLite.Service
             SQLite.SQLiteOpenFlags.Create |
             //全双工
             SQLite.SQLiteOpenFlags.FullMutex |
-            //共享缓存
-            SQLite.SQLiteOpenFlags.SharedCache |
-            // enable multi-threaded database access
+            //共享缓存enable multi-threaded database access
             SQLite.SQLiteOpenFlags.SharedCache;
 
         //数据库初始化
