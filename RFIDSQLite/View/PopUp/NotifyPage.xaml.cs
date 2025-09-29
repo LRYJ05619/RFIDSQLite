@@ -10,6 +10,8 @@ public partial class NotifyPage : Popup
         InitializeComponent();
         BindingContext = viewModel;
 
+        Color = Colors.Transparent;
+
         MessagingCenter.Subscribe<NotifyPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

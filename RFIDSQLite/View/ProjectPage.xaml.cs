@@ -26,6 +26,17 @@ public partial class ProjectPage : ContentPage
             await Navigation.PushModalAsync(new MainPage());
         });
 
+        //修改标题
+        MessagingCenter.Subscribe<ProjectPageViewModel>(this, "OpenAddProjectPage", (sender) =>
+        {
+            //打开popup
+            var popup = new AddProjectPage()
+            {
+                CanBeDismissedByTappingOutsideOfPopup = false
+            };
+            this.ShowPopup(popup);
+        });
+
         //新增项目
         MessagingCenter.Subscribe<ProjectPageViewModel>(this, "OpenAddProjectPage", (sender) =>
         {

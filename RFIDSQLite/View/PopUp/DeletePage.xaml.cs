@@ -9,7 +9,7 @@ public partial class DeletePage : Popup
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
-
+        Color = Colors.Transparent;
         MessagingCenter.Subscribe<DeletePageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

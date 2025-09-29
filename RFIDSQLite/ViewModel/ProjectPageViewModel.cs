@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
@@ -21,9 +22,6 @@ namespace RFIDSQLite.ViewModel
     {
         //每页数据数量
         private int ItemsPerPage = 12;
-
-        [ObservableProperty]
-        string title;
 
         //原始数据
         private List<ProjectSQLite> projectList;
@@ -196,6 +194,38 @@ namespace RFIDSQLite.ViewModel
 
                         return;
                     }
+            }
+        }
+
+        [ObservableProperty]
+        private string title;
+
+        [ObservableProperty]
+        private int tapCount;
+
+        private DateTime lastTapTime = DateTime.MinValue;
+        private const int RequiredTaps = 5;
+
+        [RelayCommand]
+        private async Task TitleTapped()
+        {
+            var currentTime = DateTime.Now;
+
+            if ((currentTime - lastTapTime).TotalSeconds < 2)
+            {
+                TapCount++;
+            }
+            else
+            {
+                TapCount = 1;
+            }
+
+            lastTapTime = currentTime;
+
+            if (TapCount >= RequiredTaps)
+            {
+                TapCount = 0;
+                MessagingCenter.Send(this, "OpenTitlePage");
             }
         }
 

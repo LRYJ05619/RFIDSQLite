@@ -11,7 +11,7 @@ public partial class PropertyPage : Popup
 	public PropertyPage()
 	{
 		InitializeComponent();
-
+        Color = Colors.Transparent;
         MessagingCenter.Subscribe<PropertyPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

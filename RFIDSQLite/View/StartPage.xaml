@@ -30,8 +30,10 @@
         <Frame HeightRequest="408" WidthRequest="786" BackgroundColor="#F8F8FF" CornerRadius="20">
             <VerticalStackLayout>
                 <Label Text="欢迎登录" Margin="0, 64,0,0" HorizontalTextAlignment="Center" TextColor="{StaticResource ButtonColor}" FontSize="48"/>
+                <Entry x:Name="password" TextChanged="Password_OnTextChanged" Completed="Button_OnClicked"  BackgroundColor="White" IsPassword="True" MaxLength="6" Placeholder="请输入密码" FontSize="22" HeightRequest="89" WidthRequest="575"  
+                       Margin="0,20,20,0" HorizontalTextAlignment="Center"/>
                 <Button Style="{StaticResource ButtonStyle}" HeightRequest="89" WidthRequest="575" HorizontalOptions="Center" 
-                        Text="进入" Margin="0,102,0,0" FontSize="36" Clicked="Button_OnClicked"/>
+                        Text="进入" Margin="0,20,0,0" FontSize="36" Clicked="Button_OnClicked"/>
             </VerticalStackLayout>
         </Frame>
 

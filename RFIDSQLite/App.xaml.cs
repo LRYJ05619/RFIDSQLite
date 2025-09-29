@@ -12,5 +12,20 @@ namespace RFIDSQLite
 
             MainPage = new NavigationPage(new StartPage());
         }
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+            var window = base.CreateWindow(activationState);
+
+            // 监听窗口真正关闭的事件
+            window.Destroying += (s, e) =>
+            {
+#if WINDOWS
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+#endif
+            };
+
+            return window;
+        }
     }
+
 }

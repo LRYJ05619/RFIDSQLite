@@ -91,6 +91,9 @@
 	  <MauiXaml Update="View\PopUp\DeleteProjectPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\PopUp\TitlePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\ProjectPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -120,6 +123,12 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <PRIResource Remove="Interface\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="Resources\Styles\Dictionary1.xaml.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Remove="Resources\Styles\Dictionary1.xaml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Resources\Images\a1 - 复制.png" />

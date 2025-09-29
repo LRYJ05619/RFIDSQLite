@@ -11,7 +11,7 @@ public partial class AddDataPage : Popup
     public AddDataPage()
     {
         InitializeComponent();
-
+        Color = Colors.Transparent;
         MessagingCenter.Subscribe<MainPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

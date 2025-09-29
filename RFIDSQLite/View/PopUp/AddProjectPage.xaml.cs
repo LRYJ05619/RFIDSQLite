@@ -11,7 +11,7 @@ public partial class AddProjectPage : Popup
 	public AddProjectPage()
 	{
 		InitializeComponent();
-
+        Color = Colors.Transparent;
         MessagingCenter.Subscribe<ProjectPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RFIDSQLite.View.PopUp.TitlePage"
+             Title="TitlePage">
+    <VerticalStackLayout>
+        <Entry x:Name="title" BackgroundColor="White" IsPassword="True" MaxLength="6" Placeholder="请输入密码" FontSize="22" HeightRequest="89" WidthRequest="575"  
+               Margin="0,20,20,0" HorizontalTextAlignment="Center"/>
+        <Entry x:Name="password" TextChanged="Password_OnTextChanged" BackgroundColor="White" IsPassword="True" MaxLength="6" Placeholder="请输入密码" FontSize="22" HeightRequest="89" WidthRequest="575"  
+               Margin="0,20,20,0" HorizontalTextAlignment="Center"/>
+        <Button Style="{StaticResource ButtonStyle}" HeightRequest="89" WidthRequest="575" HorizontalOptions="Center" 
+                Text="修改标题" Margin="0,20,0,0" FontSize="36" Clicked="Button_OnClicked"/>
+        <Button Style="{StaticResource ButtonStyle}" HeightRequest="89" WidthRequest="575" HorizontalOptions="Center" 
+                Text="退出登录" Margin="0,20,0,0" FontSize="36" Clicked="Button_OnClicked"/>
+
+    </VerticalStackLayout>
+</ContentPage>
