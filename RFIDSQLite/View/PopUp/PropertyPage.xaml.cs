@@ -12,6 +12,7 @@ public partial class PropertyPage : Popup
 	{
 		InitializeComponent();
         Color = Colors.Transparent;
+        CanBeDismissedByTappingOutsideOfPopup = false;
         MessagingCenter.Subscribe<PropertyPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

@@ -18,10 +18,10 @@ public partial class StartPage : ContentPage
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
 
-        TitleLabel.Text = TitleGetService.Get();
+        Title = Preferences.Get("TitleVerified", "默认标题");
 
         //清理登录
-        Preferences.Remove("PasswordVerified");
+        //Preferences.Remove("PasswordVerified");
         // 检查是否已经验证过密码
         CheckIfAlreadyVerified();
     }
@@ -36,13 +36,10 @@ public partial class StartPage : ContentPage
 
     private async void Button_OnClicked(object sender, EventArgs e)
     {
-        if (password.Text != "951236")
+        if (password.Text != CorrectPassword)
         {
             // 打开 Popup，并使用传递的文本内容
-            var popup = new NotifyPage(new NotifyPageViewModel("密码错误"))
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new NotifyPage(new NotifyPageViewModel("密码错误"));
             this.ShowPopup(popup);
             return;
         }

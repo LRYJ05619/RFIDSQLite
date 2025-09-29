@@ -4,16 +4,14 @@
                x:Class="RFIDSQLite.View.PopUp.NotifyPage"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
-    <Grid BackgroundColor="Transparent"   Padding="0">
-        <BoxView Color="Transparent" 
-                 CornerRadius="10" 
-                 Margin="10"/>
+    <Grid BackgroundColor="Transparent"   
+          Padding="0" 
+          WidthRequest="325" 
+          HeightRequest="155">
 
         <Frame BorderColor="Black" 
                BackgroundColor="{StaticResource BackGroundColor}"
-               HasShadow="False"
-               WidthRequest="325" 
-               HeightRequest="155">
+               HasShadow="False">
             <VerticalStackLayout>
                 <Label Text="{Binding Message }" 
                        TextColor="{StaticResource HeaderColor}"

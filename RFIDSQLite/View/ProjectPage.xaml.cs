@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Views;
+using RFIDSQLite.Model;
 using RFIDSQLite.Service;
 using RFIDSQLite.View;
 using RFIDSQLite.View.PopUp;
@@ -8,12 +9,16 @@ namespace RFIDSQLite.ViewModel;
 
 public partial class ProjectPage : ContentPage
 {
-	public ProjectPage()
+    public ProjectPage()
 	{
 		InitializeComponent();
-
         NavigationPage.SetHasNavigationBar(this, false);
 
+        vm = new ProjectPageViewModel(); // 初始化 ViewModel
+    }
+
+    protected void SubscribeMessages()
+    {
         //前往主页
         MessagingCenter.Subscribe<ProjectPageViewModel>(this, "GoToMainPage", async (sender) =>
         {
@@ -26,14 +31,17 @@ public partial class ProjectPage : ContentPage
             await Navigation.PushModalAsync(new MainPage());
         });
 
+        //返回开始页
+        MessagingCenter.Subscribe<TitlePageViewModel>(this, "GoToStartPage", async (sender) =>
+        {
+            await Navigation.PushModalAsync(new StartPage());
+        });
+
         //修改标题
-        MessagingCenter.Subscribe<ProjectPageViewModel>(this, "OpenAddProjectPage", (sender) =>
+        MessagingCenter.Subscribe<ProjectPageViewModel>(this, "OpenTitlePage", (sender) =>
         {
             //打开popup
-            var popup = new AddProjectPage()
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new TitlePage();
             this.ShowPopup(popup);
         });
 
@@ -41,10 +49,7 @@ public partial class ProjectPage : ContentPage
         MessagingCenter.Subscribe<ProjectPageViewModel>(this, "OpenAddProjectPage", (sender) =>
         {
             //打开popup
-            var popup = new AddProjectPage()
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new AddProjectPage();
             this.ShowPopup(popup);
         });
 
@@ -52,10 +57,7 @@ public partial class ProjectPage : ContentPage
         MessagingCenter.Subscribe<AddProjectPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
         {
             // 打开 Popup，并使用传递的文本内容
-            var popup = new NotifyPage(new NotifyPageViewModel(message))
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new NotifyPage(new NotifyPageViewModel(message));
             this.ShowPopup(popup);
         });
 
@@ -63,21 +65,15 @@ public partial class ProjectPage : ContentPage
         MessagingCenter.Subscribe<NotifyPageViewModel>(this, "OpenAddProjectPage", (sender) =>
         {
             // 打开 Popup，并使用传递的文本内容
-            var popup = new AddProjectPage()
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new AddProjectPage();
             this.ShowPopup(popup);
         });
 
-        //重新打开添加项目界面
+        //打开删除项目界面
         MessagingCenter.Subscribe<ProjectPageViewModel>(this, "OpenDeletePage", (sender) =>
         {
             // 打开 Popup，并使用传递的文本内容
-            var popup = new DeleteProjectPage()
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new DeleteProjectPage();
             this.ShowPopup(popup);
         });
 
@@ -85,10 +81,7 @@ public partial class ProjectPage : ContentPage
         MessagingCenter.Subscribe<NotifyPageViewModel>(this, "OpenPortDataPageIsPrj", (sender) =>
         {
             // 打开 Popup，并使用传递的文本内容
-            var popup = new PortsPage(new PortsPageViewModel())
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new PortsPage(new PortsPageViewModel());
             this.ShowPopup(popup);
         });
 
@@ -96,10 +89,7 @@ public partial class ProjectPage : ContentPage
         MessagingCenter.Subscribe<ProjectPageViewModel>(this, "OpenPortDataPage", (sender) =>
         {
             //打开popup
-            var popup = new PortsPage(new PortsPageViewModel())
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new PortsPage(new PortsPageViewModel());
             this.ShowPopup(popup);
         });
 
@@ -107,10 +97,7 @@ public partial class ProjectPage : ContentPage
         MessagingCenter.Subscribe<PortsPageViewModel, string>(this, "OpenNotifyPageIsPrj", (sender, message) =>
         {
             // 打开 Popup，并使用传递的文本内容
-            var popup = new NotifyPage(new NotifyPageViewModel(message))
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new NotifyPage(new NotifyPageViewModel(message));
             this.ShowPopup(popup);
         });
 
@@ -118,14 +105,41 @@ public partial class ProjectPage : ContentPage
         MessagingCenter.Subscribe<ProjectPageViewModel, string>(this, "OpenNotifyPage", (sender, message) =>
         {
             //打开popup
-            var popup = new NotifyPage(new NotifyPageViewModel(message))
-            {
-                CanBeDismissedByTappingOutsideOfPopup = false
-            };
+            var popup = new NotifyPage(new NotifyPageViewModel(message));
             this.ShowPopup(popup);
         });
+    }
 
-        vm = new ProjectPageViewModel(); // 初始化 ViewModel
+    private void UnsubscribeMessages()
+    {
+        // 添加数据相关
+        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenAddDataPage");
+        MessagingCenter.Unsubscribe<NotifyPageViewModel>(this, "OpenAddDataPage");
+        MessagingCenter.Unsubscribe<AddDataPageViewModel, string>(this, "OpenNotifyPage");
+
+        // 设备管理相关
+        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenPortDataPage");
+        MessagingCenter.Unsubscribe<NotifyPageViewModel>(this, "OpenPortDataPage");
+        MessagingCenter.Unsubscribe<PortsPageViewModel, string>(this, "OpenNotifyPage");
+
+        // 主页通知
+        MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, "OpenNotifyPage");
+
+        // 删除相关
+        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenDeletePage");
+
+        // 属性管理相关
+        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenManagerPage");
+        MessagingCenter.Unsubscribe<PropertyPageViewModel, string>(this, "OpenNotifyPage");
+
+        // 修改数据相关
+        MessagingCenter.Unsubscribe<MainPageViewModel, TodoSQLite>(this, "OpenModifyDataPage");
+        MessagingCenter.Unsubscribe<ModifyDataPageViewModel, string>(this, "OpenNotifyPage");
+
+        // 写入芯片相关
+        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenWriteChipPage");
+        MessagingCenter.Unsubscribe<NotifyPageViewModel>(this, "OpenWriteChipPage");
+        MessagingCenter.Unsubscribe<WriteChipPageViewModel, string>(this, "OpenNotifyPage");
     }
 
     private ProjectPageViewModel vm;
@@ -134,8 +148,9 @@ public partial class ProjectPage : ContentPage
     {
         base.OnDisappearing();
 
-        // 取消绑定事件，防止重复订阅
+        // 取消绑定串口接受事件，防止重复订阅
         RFIDService.ReceivedDataEvent -= vm.ReceivedData;
+        UnsubscribeMessages();
     }
 
     protected override void OnAppearing()
@@ -146,7 +161,8 @@ public partial class ProjectPage : ContentPage
             return;
 
         var RfidService = new RFIDService();
-        // 重新绑定事件
+        // 重新绑定串口接受事件
         RFIDService.ReceivedDataEvent += vm.ReceivedData;
+        SubscribeMessages();
     }
 }

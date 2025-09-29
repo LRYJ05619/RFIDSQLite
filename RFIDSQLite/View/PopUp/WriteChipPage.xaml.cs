@@ -11,6 +11,8 @@ public partial class WriteChipPage : Popup
 
         BindingContext = viewModel;
         Color = Colors.Transparent;
+        CanBeDismissedByTappingOutsideOfPopup = false;
+
         Entry.TextChanged += NumericEntry_TextChanged;
 
         // 订阅消息，当接收到 "ClosePopupMessage" 消息时，执行关闭 Popup 的操作

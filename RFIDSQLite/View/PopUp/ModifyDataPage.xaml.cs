@@ -15,6 +15,7 @@ public partial class ModifyDataPage : Popup
 
         BindingContext = viewModel;
         Color = Colors.Transparent;
+        CanBeDismissedByTappingOutsideOfPopup = false;
         MessagingCenter.Subscribe<ModifyDataPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

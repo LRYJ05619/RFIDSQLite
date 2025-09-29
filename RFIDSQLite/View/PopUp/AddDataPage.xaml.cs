@@ -12,6 +12,7 @@ public partial class AddDataPage : Popup
     {
         InitializeComponent();
         Color = Colors.Transparent;
+        CanBeDismissedByTappingOutsideOfPopup = false;
         MessagingCenter.Subscribe<MainPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

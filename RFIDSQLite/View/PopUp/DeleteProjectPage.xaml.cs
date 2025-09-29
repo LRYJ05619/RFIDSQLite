@@ -9,6 +9,7 @@ public partial class DeleteProjectPage : Popup
 	{
 		InitializeComponent();
         Color = Colors.Transparent;
+        CanBeDismissedByTappingOutsideOfPopup = false;
         MessagingCenter.Subscribe<DeleteProjectPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

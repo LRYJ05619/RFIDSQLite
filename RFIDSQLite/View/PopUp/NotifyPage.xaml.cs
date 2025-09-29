@@ -11,7 +11,7 @@ public partial class NotifyPage : Popup
         BindingContext = viewModel;
 
         Color = Colors.Transparent;
-
+        CanBeDismissedByTappingOutsideOfPopup = false;
         MessagingCenter.Subscribe<NotifyPageViewModel>(this, "ClosePopupMessage", (sender) =>
         {
             CloseAsync();

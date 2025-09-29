@@ -33,6 +33,7 @@ namespace RFIDSQLite
             builder.Services.AddSingleton<DeletePage>();
             builder.Services.AddSingleton<PropertyPage>();
             builder.Services.AddSingleton<ModifyDataPage>();
+            builder.Services.AddSingleton<TitlePage>();
 
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddSingleton<AddDataPageViewModel>();
@@ -41,6 +42,7 @@ namespace RFIDSQLite
             builder.Services.AddSingleton<DeletePageViewModel>();
             builder.Services.AddSingleton<PropertyPageViewModel>();
             builder.Services.AddSingleton<ModifyDataPageViewModel>();
+            builder.Services.AddSingleton<TitlePageViewModel>();
 
             builder.Services.AddTransient<DeviceService>();
             builder.Services.AddTransient<OutputService>();

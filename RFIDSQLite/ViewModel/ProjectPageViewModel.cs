@@ -114,20 +114,22 @@ namespace RFIDSQLite.ViewModel
         public ProjectPageViewModel()
         {
             //获取标题
-            Title = TitleGetService.Get();
+            Title = Preferences.Get("TitleVerified", "默认标题");
 
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                ProjectList = await SQLiteService.InitProject();
-            });
+            MainThread.BeginInvokeOnMainThread(async () => { ProjectList = await SQLiteService.InitProject(); });
 
             UpdateItems();
 
-            //添加项目成功后刷新页面
-            MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshProjectPage", async (sender) =>
+            // 标题变更通知
+            MessagingCenter.Subscribe<TitlePageViewModel, string>(this, "ChangeTitleMessage", (sender, newTitle) =>
             {
-                ProjectList = await SQLiteService.InitProject();
+                Title = newTitle;
+                MessagingCenter.Send(this, "OpenNotifyPage", "修改成功！");
             });
+
+            //添加项目成功后刷新页面
+            MessagingCenter.Subscribe<NotifyPageViewModel>(this, "RefreshProjectPage",
+                async (sender) => { ProjectList = await SQLiteService.InitProject(); });
 
             //确认删除
             MessagingCenter.Subscribe<DeleteProjectPageViewModel>(this, "DeleteMessage", async (sender) =>
@@ -198,7 +200,7 @@ namespace RFIDSQLite.ViewModel
         }
 
         [ObservableProperty]
-        private string title;
+        private string title = "默认标题";
 
         [ObservableProperty]
         private int tapCount;
@@ -206,6 +208,7 @@ namespace RFIDSQLite.ViewModel
         private DateTime lastTapTime = DateTime.MinValue;
         private const int RequiredTaps = 5;
 
+        //五次点击标题
         [RelayCommand]
         private async Task TitleTapped()
         {
@@ -267,7 +270,6 @@ namespace RFIDSQLite.ViewModel
             MessagingCenter.Send(this, "OpenAddProjectPage");
         }
 
-        //Todo 缺少删除和搜索 (已完成)
         //删除
         [RelayCommand]
         void DeleteData()
