@@ -18,7 +18,7 @@ public partial class StartPage : ContentPage
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
 
-        Title = Preferences.Get("TitleVerified", "默认标题");
+        TitleLabel.Text = Preferences.Get("TitleVerified", "默认标题");
 
         //清理登录
         //Preferences.Remove("PasswordVerified");

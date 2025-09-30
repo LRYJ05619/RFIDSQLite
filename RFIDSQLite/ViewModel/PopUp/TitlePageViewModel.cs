@@ -14,9 +14,15 @@ namespace RFIDSQLite.ViewModel.PopUp
         [ObservableProperty] 
         private string titleText;
 
+        [ObservableProperty]
+        private string password;
+
         public TitlePageViewModel()
         {
-
+            if (App.NewTitle != null)
+            {
+                TitleText = App.NewTitle;
+            }
         }
 
         [RelayCommand]
@@ -28,6 +34,17 @@ namespace RFIDSQLite.ViewModel.PopUp
         [RelayCommand]
         void Change()
         {
+            int day = DateTime.Now.Day;
+            int hour = DateTime.Now.Hour;
+            int dynamicPart = day + hour;
+
+            App.NewTitle = TitleText;
+            if (Password != $"9512{dynamicPart:D2}")
+            {
+                MessagingCenter.Send(this, "ClosePopupMessage");
+                MessagingCenter.Send(this, "WrongPassword", "密码错误！");
+                return;
+            }
             Preferences.Set("TitleVerified", TitleText);
             MessagingCenter.Send(this, "ChangeTitleMessage", TitleText);
             MessagingCenter.Send(this, "ClosePopupMessage");

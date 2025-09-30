@@ -6,6 +6,7 @@ namespace RFIDSQLite
 {
     public partial class App : Application
     {
+        public static string NewTitle { get; set; }
         public App()
         {
             InitializeComponent();

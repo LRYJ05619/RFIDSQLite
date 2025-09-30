@@ -88,9 +88,11 @@ namespace RFIDSQLite.ViewModel.PopUp
                 case "项目创建成功！":
                     MessagingCenter.Send(this, "RefreshProjectPage");
                     break;
-
                 case "读取成功！":
                     MessagingCenter.Send(this, "ReadSuccess");
+                    break;
+                case "密码错误！":
+                    MessagingCenter.Send(this, "OpenTitlePage");
                     break;
             }
             MessagingCenter.Send(this, "ClosePopupMessage");

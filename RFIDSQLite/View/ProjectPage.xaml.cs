@@ -108,6 +108,22 @@ public partial class ProjectPage : ContentPage
             var popup = new NotifyPage(new NotifyPageViewModel(message));
             this.ShowPopup(popup);
         });
+
+        //修改标题密码错误
+        MessagingCenter.Subscribe<TitlePageViewModel, string>(this, "WrongPassword", (sender, message) =>
+        {
+            //打开popup
+            var popup = new NotifyPage(new NotifyPageViewModel(message));
+            this.ShowPopup(popup);
+        });
+
+        //修改标题密码错误,重新打开标题修改页
+        MessagingCenter.Subscribe<NotifyPageViewModel>(this, "OpenTitlePage", (sender) =>
+        {
+            //打开popup
+            var popup = new TitlePage();
+            this.ShowPopup(popup);
+        });
     }
 
     private void UnsubscribeMessages()

@@ -37,6 +37,6 @@
             </VerticalStackLayout>
         </Frame>
 
-        <Label Text="版本 V3.21" WidthRequest="111" HeightRequest="21" Margin="0,0,27,24" FontSize="15" TextColor="White" HorizontalOptions="End" VerticalOptions="End"/>
+        <Label Text="版本 V3.30" WidthRequest="111" HeightRequest="21" Margin="0,0,27,24" FontSize="15" TextColor="White" HorizontalOptions="End" VerticalOptions="End"/>
     </Grid>
 </ContentPage>

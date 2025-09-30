@@ -19,7 +19,8 @@
                        Text="{Binding TitleText}"/>
 
                 <Entry x:Name="password" TextChanged="Password_OnTextChanged"  MaxLength="6"  BackgroundColor="White" IsPassword="True" Placeholder="请输入密码" HorizontalTextAlignment="Center"
-                           FontSize="18" HeightRequest="40" WidthRequest="372"  Margin="0,20,0,0" />
+                       FontSize="18" HeightRequest="40" WidthRequest="372"  Margin="0,20,0,0" 
+                       Text="{Binding Password}"/>
 
                 <HorizontalStackLayout>
                     <Button Style="{StaticResource ButtonStyle}" HeightRequest="40" WidthRequest="180" HorizontalOptions="Center" 

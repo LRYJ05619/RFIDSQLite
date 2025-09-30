@@ -14,7 +14,7 @@
 
 		<PublishSingleFile>true</PublishSingleFile>
 		<!-- 启用单文件发布 -->
-		<SelfContained>true</SelfContained>
+		<SelfContained>false</SelfContained>
 		<!-- 设置为自包含应用 -->
 		
 		<!-- Display name -->
