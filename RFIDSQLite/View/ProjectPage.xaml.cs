@@ -13,6 +13,7 @@ public partial class ProjectPage : ContentPage
 	{
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
+        SubscribeMessages();
 
         vm = new ProjectPageViewModel(); // 初始化 ViewModel
     }
@@ -126,38 +127,6 @@ public partial class ProjectPage : ContentPage
         });
     }
 
-    private void UnsubscribeMessages()
-    {
-        // 添加数据相关
-        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenAddDataPage");
-        MessagingCenter.Unsubscribe<NotifyPageViewModel>(this, "OpenAddDataPage");
-        MessagingCenter.Unsubscribe<AddDataPageViewModel, string>(this, "OpenNotifyPage");
-
-        // 设备管理相关
-        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenPortDataPage");
-        MessagingCenter.Unsubscribe<NotifyPageViewModel>(this, "OpenPortDataPage");
-        MessagingCenter.Unsubscribe<PortsPageViewModel, string>(this, "OpenNotifyPage");
-
-        // 主页通知
-        MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, "OpenNotifyPage");
-
-        // 删除相关
-        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenDeletePage");
-
-        // 属性管理相关
-        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenManagerPage");
-        MessagingCenter.Unsubscribe<PropertyPageViewModel, string>(this, "OpenNotifyPage");
-
-        // 修改数据相关
-        MessagingCenter.Unsubscribe<MainPageViewModel, TodoSQLite>(this, "OpenModifyDataPage");
-        MessagingCenter.Unsubscribe<ModifyDataPageViewModel, string>(this, "OpenNotifyPage");
-
-        // 写入芯片相关
-        MessagingCenter.Unsubscribe<MainPageViewModel>(this, "OpenWriteChipPage");
-        MessagingCenter.Unsubscribe<NotifyPageViewModel>(this, "OpenWriteChipPage");
-        MessagingCenter.Unsubscribe<WriteChipPageViewModel, string>(this, "OpenNotifyPage");
-    }
-
     private ProjectPageViewModel vm;
 
     protected override void OnDisappearing()
@@ -166,7 +135,6 @@ public partial class ProjectPage : ContentPage
 
         // 取消绑定串口接受事件，防止重复订阅
         RFIDService.ReceivedDataEvent -= vm.ReceivedData;
-        UnsubscribeMessages();
     }
 
     protected override void OnAppearing()
@@ -179,6 +147,5 @@ public partial class ProjectPage : ContentPage
         var RfidService = new RFIDService();
         // 重新绑定串口接受事件
         RFIDService.ReceivedDataEvent += vm.ReceivedData;
-        SubscribeMessages();
     }
 }

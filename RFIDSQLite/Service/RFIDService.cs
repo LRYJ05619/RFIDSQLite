@@ -1,5 +1,6 @@
 ﻿using System.IO.Ports;
 using RFIDSQLite.Model;
+using System.Management;
 
 namespace RFIDSQLite.Service
 {
@@ -18,8 +19,20 @@ namespace RFIDSQLite.Service
         // 自定义事件，用于封装串口数据接收事件
         public static event EventHandler<byte[]> ReceivedDataEvent;
 
+        // 设备连接状态变化事件
+        public static event EventHandler<bool> DeviceConnectionChanged;
+
+
+        // 目标设备的VID和PID
+        private const string TARGET_VID = "10C4";
+        private const string TARGET_PID = "EA60";
+
         //存放串口列表
         public static string[] ports;
+
+        // 设备监控对象
+        private static ManagementEventWatcher insertWatcher;
+        private static ManagementEventWatcher removeWatcher;
 
         public RFIDService()
         {
@@ -52,6 +65,169 @@ namespace RFIDSQLite.Service
         public static void GetPorts()
         {
             ports = System.IO.Ports.SerialPort.GetPortNames();
+        }
+
+        // 查找目标设备的COM口
+        public static string FindTargetDevice()
+        {
+            try
+            {
+                using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Caption LIKE '%(COM%'"))
+                {
+                    foreach (ManagementObject obj in searcher.Get())
+                    {
+                        string deviceId = obj["DeviceID"]?.ToString();
+                        string caption = obj["Caption"]?.ToString();
+
+                        if (deviceId != null && deviceId.Contains($"VID_{TARGET_VID}") && deviceId.Contains($"PID_{TARGET_PID}"))
+                        {
+                            // 从Caption中提取COM口号
+                            var match = System.Text.RegularExpressions.Regex.Match(caption, @"COM(\d+)");
+                            if (match.Success)
+                            {
+                                string comPort = match.Value;
+                                Console.WriteLine($"找到目标设备: {comPort}");
+                                return comPort;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"查找设备时出现异常: {ex.Message}");
+            }
+
+            return null;
+        }
+
+        // 自动连接目标设备
+        public static bool AutoConnectTargetDevice()
+        {
+            string targetPort = FindTargetDevice();
+
+            if (targetPort != null)
+            {
+                int result = OpenPortCheck(targetPort);
+                if (result == 1)
+                {
+                    Console.WriteLine($"成功自动连接到设备: {targetPort}");
+                    DeviceConnectionChanged?.Invoke(null, true);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // 启动设备监控
+        public static void StartDeviceMonitoring()
+        {
+            try
+            {
+                // 监控USB设备插入
+                WqlEventQuery insertQuery = new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity'");
+                insertWatcher = new ManagementEventWatcher(insertQuery);
+                insertWatcher.EventArrived += DeviceInsertedEvent;
+                insertWatcher.Start();
+
+                // 监控USB设备移除
+                WqlEventQuery removeQuery = new WqlEventQuery("SELECT * FROM __InstanceDeletionEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity'");
+                removeWatcher = new ManagementEventWatcher(removeQuery);
+                removeWatcher.EventArrived += DeviceRemovedEvent;
+                removeWatcher.Start();
+
+                Console.WriteLine("设备监控已启动");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"启动设备监控时出现异常: {ex.Message}");
+            }
+        }
+
+        // 停止设备监控
+        public static void StopDeviceMonitoring()
+        {
+            try
+            {
+                if (insertWatcher != null)
+                {
+                    insertWatcher.Stop();
+                    insertWatcher.Dispose();
+                }
+
+                if (removeWatcher != null)
+                {
+                    removeWatcher.Stop();
+                    removeWatcher.Dispose();
+                }
+
+                Console.WriteLine("设备监控已停止");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"停止设备监控时出现异常: {ex.Message}");
+            }
+        }
+
+        // 设备插入事件处理
+        private static void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
+        {
+            try
+            {
+                ManagementBaseObject instance = (ManagementBaseObject)e.NewEvent["TargetInstance"];
+                string deviceId = instance["DeviceID"]?.ToString();
+
+                if (deviceId != null && deviceId.Contains($"VID_{TARGET_VID}") && deviceId.Contains($"PID_{TARGET_PID}"))
+                {
+                    Console.WriteLine("检测到目标设备插入");
+
+                    // 延迟一小段时间，确保设备完全初始化
+                    Task.Delay(1000).ContinueWith(_ =>
+                    {
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            AutoConnectTargetDevice();
+                        });
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"处理设备插入事件时出现异常: {ex.Message}");
+            }
+        }
+
+        // 设备移除事件处理
+        private static void DeviceRemovedEvent(object sender, EventArrivedEventArgs e)
+        {
+            try
+            {
+                ManagementBaseObject instance = (ManagementBaseObject)e.NewEvent["TargetInstance"];
+                string deviceId = instance["DeviceID"]?.ToString();
+
+                if (deviceId != null && deviceId.Contains($"VID_{TARGET_VID}") && deviceId.Contains($"PID_{TARGET_PID}"))
+                {
+                    Console.WriteLine("检测到目标设备移除");
+
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        if (serialPort.IsOpen)
+                        {
+                            try
+                            {
+                                serialPort.Close();
+                            }
+                            catch { }
+                        }
+                        DeviceConnectionChanged?.Invoke(null, false);
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"处理设备移除事件时出现异常: {ex.Message}");
+            }
         }
 
         /*状态判断  返回值0 串口已打开

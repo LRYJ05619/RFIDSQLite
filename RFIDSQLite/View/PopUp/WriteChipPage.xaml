@@ -4,7 +4,7 @@
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                x:Class="RFIDSQLite.View.PopUp.WriteChipPage">
 
-    <Grid BackgroundColor="Transparent" WidthRequest="550" HeightRequest="195">
+    <Grid BackgroundColor="Transparent" WidthRequest="565" HeightRequest="195">
         <Frame BorderColor="Black" BackgroundColor="{StaticResource BackGroundColor}">
             <VerticalStackLayout>
                 <Label Text="绑定芯片" HorizontalOptions="Center" FontSize="22" Padding="0,5,0,10"/>
@@ -16,7 +16,7 @@
 
                 <Grid ColumnDefinitions="*,*">
                     <Button HeightRequest="44" Text="确定" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="0,10,10,20" Command="{Binding WriteSerialCommand}"/>
-                    <Button Grid.Column="1" HeightRequest="44" Text="取消" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="10,10,10,20" Command="{Binding CancelCommand}"/>
+                    <Button Grid.Column="1" HeightRequest="44" Text="取消" FontSize="18" BackgroundColor="{StaticResource ButtonColor}" Margin="10,10,0,20" Command="{Binding CancelCommand}"/>
                 </Grid>
             </VerticalStackLayout>
         </Frame>

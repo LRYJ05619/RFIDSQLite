@@ -88,7 +88,7 @@
         <BoxView Grid.Row="3" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="End" Margin="0,5,30,0" Color="{StaticResource ListLineColor}"/>
 
         <CollectionView Grid.Row="4"
-                    BackgroundColor="{StaticResource ListLineColor}"
+                    BackgroundColor="Transparent"
                     ItemsSource="{Binding VisibleList}"
                     SelectionMode="Multiple"
                     SelectedItems="{Binding SelectedList}">
