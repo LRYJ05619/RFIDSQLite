@@ -126,7 +126,6 @@ namespace RFIDSQLite.ViewModel
 
         public MainPageViewModel()
         {
-            //Todo 获取标签(已完成)
             Title = SQLiteService.Project.Name;
 
             if (SQLiteService.BufferSerial != null)
@@ -138,7 +137,6 @@ namespace RFIDSQLite.ViewModel
             TotalPages = 1;
             CurrentPageCount = 1;
 
-            //Todo 通过标签获取完整信息
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 if (SQLiteService.SearchResult != null)

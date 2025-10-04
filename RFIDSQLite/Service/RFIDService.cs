@@ -22,12 +22,14 @@ namespace RFIDSQLite.Service
         // 设备连接状态变化事件
         public static event EventHandler<bool> DeviceConnectionChanged;
 
-
         // 目标设备的VID和PID
         private const string TARGET_VID = "10C4";
         private const string TARGET_PID = "EA60";
 
-        //存放串口列表
+        // 目标设备的完整DeviceID（可选，用于更精确的匹配）
+        private const string TARGET_DEVICE_ID = "62779D67B1B7E8119C04712BCB5E5982";
+
+        // 存放串口列表
         public static string[] ports;
 
         // 设备监控对象
@@ -61,13 +63,13 @@ namespace RFIDSQLite.Service
             }
         }
 
-        //获取串口列表
+        // 获取串口列表
         public static void GetPorts()
         {
             ports = System.IO.Ports.SerialPort.GetPortNames();
         }
 
-        // 查找目标设备的COM口
+        // 查找目标设备的COM口（支持完整DeviceID匹配）
         public static string FindTargetDevice()
         {
             try
@@ -79,14 +81,25 @@ namespace RFIDSQLite.Service
                         string deviceId = obj["DeviceID"]?.ToString();
                         string caption = obj["Caption"]?.ToString();
 
-                        if (deviceId != null && deviceId.Contains($"VID_{TARGET_VID}") && deviceId.Contains($"PID_{TARGET_PID}"))
+                        if (deviceId != null &&
+                            deviceId.Contains($"VID_{TARGET_VID}") &&
+                            deviceId.Contains($"PID_{TARGET_PID}"))
                         {
+                            // 如果指定了完整的DeviceID，则进行更精确的匹配
+                            if (!string.IsNullOrEmpty(TARGET_DEVICE_ID))
+                            {
+                                if (!deviceId.Contains(TARGET_DEVICE_ID))
+                                {
+                                    continue; // 跳过不匹配的设备
+                                }
+                            }
+
                             // 从Caption中提取COM口号
                             var match = System.Text.RegularExpressions.Regex.Match(caption, @"COM(\d+)");
                             if (match.Success)
                             {
                                 string comPort = match.Value;
-                                Console.WriteLine($"找到目标设备: {comPort}");
+                                Console.WriteLine($"找到目标设备: {comPort}，DeviceID: {deviceId}");
                                 return comPort;
                             }
                         }
@@ -115,6 +128,14 @@ namespace RFIDSQLite.Service
                     DeviceConnectionChanged?.Invoke(null, true);
                     return true;
                 }
+                else
+                {
+                    Console.WriteLine($"尝试连接设备失败，返回码: {result}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("未找到目标设备");
             }
 
             return false;
@@ -178,8 +199,19 @@ namespace RFIDSQLite.Service
                 ManagementBaseObject instance = (ManagementBaseObject)e.NewEvent["TargetInstance"];
                 string deviceId = instance["DeviceID"]?.ToString();
 
-                if (deviceId != null && deviceId.Contains($"VID_{TARGET_VID}") && deviceId.Contains($"PID_{TARGET_PID}"))
+                if (deviceId != null &&
+                    deviceId.Contains($"VID_{TARGET_VID}") &&
+                    deviceId.Contains($"PID_{TARGET_PID}"))
                 {
+                    // 如果指定了完整的DeviceID，则进行更精确的匹配
+                    if (!string.IsNullOrEmpty(TARGET_DEVICE_ID))
+                    {
+                        if (!deviceId.Contains(TARGET_DEVICE_ID))
+                        {
+                            return; // 不是目标设备，忽略
+                        }
+                    }
+
                     Console.WriteLine("检测到目标设备插入");
 
                     // 延迟一小段时间，确保设备完全初始化
@@ -206,8 +238,19 @@ namespace RFIDSQLite.Service
                 ManagementBaseObject instance = (ManagementBaseObject)e.NewEvent["TargetInstance"];
                 string deviceId = instance["DeviceID"]?.ToString();
 
-                if (deviceId != null && deviceId.Contains($"VID_{TARGET_VID}") && deviceId.Contains($"PID_{TARGET_PID}"))
+                if (deviceId != null &&
+                    deviceId.Contains($"VID_{TARGET_VID}") &&
+                    deviceId.Contains($"PID_{TARGET_PID}"))
                 {
+                    // 如果指定了完整的DeviceID，则进行更精确的匹配
+                    if (!string.IsNullOrEmpty(TARGET_DEVICE_ID))
+                    {
+                        if (!deviceId.Contains(TARGET_DEVICE_ID))
+                        {
+                            return; // 不是目标设备，忽略
+                        }
+                    }
+
                     Console.WriteLine("检测到目标设备移除");
 
                     MainThread.BeginInvokeOnMainThread(() =>
@@ -240,7 +283,7 @@ namespace RFIDSQLite.Service
             {
                 try
                 {
-                    serialPort.Close();//串口关闭
+                    serialPort.Close();
                 }
                 catch { }
                 return 0;
@@ -252,18 +295,15 @@ namespace RFIDSQLite.Service
                     try
                     {
                         serialPort.PortName = portName;
-
-                        serialPort.BaudRate = 115200; // 设置波特率
-                        serialPort.DataBits = 8; // 设置数据位
-                        serialPort.Parity = Parity.None; // 设置校验位
-                        serialPort.StopBits = StopBits.One; // 设置停止位
-
+                        serialPort.BaudRate = 115200;
+                        serialPort.DataBits = 8;
+                        serialPort.Parity = Parity.None;
+                        serialPort.StopBits = StopBits.One;
                         serialPort.RtsEnable = false;
                         serialPort.DtrEnable = false;
-
                         serialPort.ReceivedBytesThreshold = 1;
 
-                        serialPort.Open(); // 打开串口
+                        serialPort.Open();
                         return 1;
                     }
                     catch (Exception ex)
@@ -280,7 +320,7 @@ namespace RFIDSQLite.Service
             }
         }
 
-        //串口发送
+        // 串口发送
         private static bool DataSent(byte[] buffer)
         {
             try
@@ -295,7 +335,7 @@ namespace RFIDSQLite.Service
             }
         }
 
-        //读取
+        // 读取
         public static bool ReadData()
         {
             byte[] Data = new byte[8];
@@ -317,30 +357,21 @@ namespace RFIDSQLite.Service
             }
         }
 
-        //写入标签
+        // 写入标签
         public static bool WriteData(byte[] buf)
         {
             byte[] DATABuffer = new byte[30];
-            //Head(头字符）
             DATABuffer[0] = 0xA0;
-            //Len
             DATABuffer[1] = 0x1C;
-            //address
             DATABuffer[2] = 0x01;
-            //cmd
             DATABuffer[3] = 0x82;
-            //密码
             DATABuffer[4] = 0x00;
             DATABuffer[5] = 0x00;
             DATABuffer[6] = 0x00;
             DATABuffer[7] = 0x00;
-            //MemBank(储存区域默认EPC）
             DATABuffer[8] = 0x01;
-            //WordAdd(数据首地址)
             DATABuffer[9] = 0x01;
-            //WordCnt(写入长度)
             DATABuffer[10] = 0x09;
-            //更改PC值
             DATABuffer[11] = 0x40;
             DATABuffer[12] = 0x00;
 
@@ -349,7 +380,6 @@ namespace RFIDSQLite.Service
                 DATABuffer[i + 13] = buf[i];
             }
 
-            //校验
             DATABuffer[29] = CheckSum(DATABuffer, 29);
 
             if (DataSent(DATABuffer))
@@ -362,7 +392,7 @@ namespace RFIDSQLite.Service
             }
         }
 
-        //校验码
+        // 校验码
         public static byte CheckSum(byte[] uBuff, byte uBuffLen)
         {
             byte i = 0;
@@ -374,6 +404,5 @@ namespace RFIDSQLite.Service
             uSum = (byte)((~uSum) + 1);
             return uSum;
         }
-
     }
 }

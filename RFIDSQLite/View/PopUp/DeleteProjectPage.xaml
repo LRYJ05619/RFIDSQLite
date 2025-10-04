@@ -9,20 +9,31 @@
         <popUp:DeleteProjectPageViewModel/>
     </toolkit:Popup.BindingContext>
 
-    <Grid BackgroundColor="Transparent" WidthRequest="325" HeightRequest="155">
+    <Grid BackgroundColor="Transparent" WidthRequest="380" HeightRequest="200">
         <Frame BorderColor="Black" BackgroundColor="{StaticResource BackGroundColor}">
             <VerticalStackLayout>
                 <Label Text="确定删除所选项？" 
                        TextColor="{StaticResource HeaderColor}"
                        HorizontalOptions="Center"
-                       FontSize="18" 
-                       Padding="0,10,0,10"/>
+                       FontSize="22"
+                       Padding="0,10,0,5"/>
+
+                <!-- 添加二次确认复选框 -->
+                <HorizontalStackLayout HorizontalOptions="Center" Margin="0,5,0,5">
+                    <CheckBox Color="Red"
+                              IsChecked="{Binding IsChecked}"/>
+                    <Label Text="我确认要删除" 
+                           FontSize="18" 
+                           TextColor="{StaticResource HeaderColor}"
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
                 <Grid ColumnDefinitions="*,*">
                     <Button Text="确定"
                             TextColor="{StaticResource White}"
                             WidthRequest="120"
                             HeightRequest="44" FontSize="18" 
-                            BackgroundColor="{StaticResource ButtonColor}" 
+                            BackgroundColor="Red" 
                             Margin="0,15,0,20" 
                             Command="{Binding ConfirmCommand}"/>
 

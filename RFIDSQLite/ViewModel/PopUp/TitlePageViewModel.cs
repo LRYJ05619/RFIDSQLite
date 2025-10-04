@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
+using RFIDSQLite.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace RFIDSQLite.ViewModel.PopUp
                 MessagingCenter.Send(this, "WrongPassword", "密码错误！");
                 return;
             }
-            Preferences.Set("TitleVerified", TitleText);
+            SimpleConfigService.SetTitle(TitleText);
             MessagingCenter.Send(this, "ChangeTitleMessage", TitleText);
             MessagingCenter.Send(this, "ClosePopupMessage");
         }
@@ -55,7 +56,7 @@ namespace RFIDSQLite.ViewModel.PopUp
         {
             try
             {
-                Preferences.Remove("PasswordVerified");
+                SimpleConfigService.ClearPasswordVerified();
                 // 先关闭当前的 Popup
                 MessagingCenter.Send(this, "ClosePopup");
 

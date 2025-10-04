@@ -35,6 +35,12 @@
                         NumberOfTapsRequired="1"/>
                 </Label.GestureRecognizers>
             </Label>
+
+            <Label Text="V3.32"
+                   FontSize="30" 
+                   TextColor="White" 
+                   Margin="0,11,11,0"
+                   HorizontalOptions="End"/>
         </Grid>
 
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*,1.5*,*,*,*,*,*">

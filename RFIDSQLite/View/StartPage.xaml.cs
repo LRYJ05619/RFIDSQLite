@@ -18,7 +18,7 @@ public partial class StartPage : ContentPage
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
 
-        TitleLabel.Text = Preferences.Get("TitleVerified", "默认标题");
+        TitleLabel.Text = SimpleConfigService.GetTitle();
 
         //清理登录
         //Preferences.Remove("PasswordVerified");
@@ -27,7 +27,7 @@ public partial class StartPage : ContentPage
     }
     private async void CheckIfAlreadyVerified()
     {
-        if (Preferences.Get(PasswordVerifiedKey, false))
+        if (SimpleConfigService.GetPasswordVerified())
         {
             // 已经验证过，直接跳转
             await NavigateToProjectPage();
@@ -44,7 +44,7 @@ public partial class StartPage : ContentPage
             return;
         }
         // 保存验证状态
-        Preferences.Set(PasswordVerifiedKey, true);
+        SimpleConfigService.SetPasswordVerified(true);
         await Navigation.PushModalAsync(new ProjectPage());
     }
     private async Task NavigateToProjectPage()

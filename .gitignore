@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Prerequisites
+/储存库程序-SetupFiles
+/储存库程序-cache

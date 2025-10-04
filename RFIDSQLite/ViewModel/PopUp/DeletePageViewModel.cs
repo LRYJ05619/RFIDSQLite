@@ -5,11 +5,15 @@ namespace RFIDSQLite.ViewModel.PopUp
 {
     public partial class DeletePageViewModel : ObservableValidator
     {
+        [ObservableProperty] private bool isChecked;
         [RelayCommand]
         void Confirm()
         {
-            MessagingCenter.Send(this, "ClosePopupMessage");
-            MessagingCenter.Send(this, "DeleteMessage");
+            if (IsChecked)
+            {
+                MessagingCenter.Send(this, "ClosePopupMessage");
+                MessagingCenter.Send(this, "DeleteMessage");
+            }
         }
 
         [RelayCommand]

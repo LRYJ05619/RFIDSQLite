@@ -17,7 +17,31 @@ namespace RFIDSQLite.View
             BindingContext = MainPageViewModel.Instance;
 
             NavigationPage.SetHasNavigationBar(this, false);
+            SubscribeMessages();
 
+            vm = MainPageViewModel.Instance;
+        }
+        private void OnDeviceConnectionChanged(object sender, bool isConnected)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                if (isConnected)
+                {
+                    // 设备已连接
+                    var popup = new NotifyPage(new NotifyPageViewModel("RFID设备已自动连接！"));
+                    this.ShowPopup(popup);
+                }
+                else
+                {
+                    // 设备已断开
+                    var popup = new NotifyPage(new NotifyPageViewModel("RFID设备已断开连接！"));
+                    this.ShowPopup(popup);
+                }
+            });
+        }
+
+        protected void SubscribeMessages()
+        {
             //添加按钮
             MessagingCenter.Subscribe<MainPageViewModel>(this, "OpenAddDataPage", (sender) =>
             {
@@ -99,7 +123,7 @@ namespace RFIDSQLite.View
             });
 
             //双击修改
-            MessagingCenter.Subscribe<MainPageViewModel,TodoSQLite>(this, "OpenModifyDataPage", (sender,message) =>
+            MessagingCenter.Subscribe<MainPageViewModel, TodoSQLite>(this, "OpenModifyDataPage", (sender, message) =>
             {
                 //打开popup
                 var popup = new ModifyDataPage(new ModifyDataPageViewModel(message));
@@ -151,8 +175,6 @@ namespace RFIDSQLite.View
             {
                 Navigation.PopModalAsync();
             });
-
-            vm = MainPageViewModel.Instance;
         }
 
         private MainPageViewModel vm;
@@ -164,6 +186,7 @@ namespace RFIDSQLite.View
             RFIDService.IsMain = false;
             // 取消绑定事件，防止重复订阅
             RFIDService.ReceivedDataEvent -= vm.ReceivedData;
+            RFIDService.DeviceConnectionChanged -= OnDeviceConnectionChanged;
         }
 
         protected override void OnAppearing()
@@ -172,6 +195,7 @@ namespace RFIDSQLite.View
 
             // 重新绑定事件
             RFIDService.ReceivedDataEvent += vm.ReceivedData;
+            RFIDService.DeviceConnectionChanged += OnDeviceConnectionChanged;
         }
     }
 }

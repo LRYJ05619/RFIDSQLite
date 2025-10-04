@@ -114,7 +114,7 @@ namespace RFIDSQLite.ViewModel
         public ProjectPageViewModel()
         {
             //获取标题
-            Title = Preferences.Get("TitleVerified", "默认标题");
+            Title = SimpleConfigService.GetTitle();
 
             MainThread.BeginInvokeOnMainThread(async () => { ProjectList = await SQLiteService.InitProject(); });
 
@@ -256,7 +256,7 @@ namespace RFIDSQLite.ViewModel
             MessagingCenter.Send(this, "OpenPortDataPage");
         }
 
-        //搜索
+        //主页
         [RelayCommand]
         async Task HomeAsync()
         {
