@@ -36,7 +36,7 @@
                 </Label.GestureRecognizers>
             </Label>
 
-            <Label Text="V3.32"
+            <Label Text="V3.33"
                    FontSize="30" 
                    TextColor="White" 
                    Margin="0,11,11,0"

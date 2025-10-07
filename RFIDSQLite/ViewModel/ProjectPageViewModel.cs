@@ -186,7 +186,11 @@ namespace RFIDSQLite.ViewModel
                         {
                             SQLiteService.SearchResult = search;
                             SQLiteService.Project = await SQLiteService.GetProject(search.PrjNum);
-
+                            if (SQLiteService.Project == null)
+                            {
+                                MessagingCenter.Send(this, "OpenNotifyPage", "芯片对应项目已删除！");
+                                return;
+                            }
                             MessagingCenter.Send(this, "GoToMainPage");
                         }
                         else
