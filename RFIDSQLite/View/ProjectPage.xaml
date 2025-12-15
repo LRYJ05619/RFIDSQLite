@@ -157,7 +157,6 @@
                                  CurrentPage="{Binding CurrentPageCount, Mode=TwoWay}"/>
         </Grid>
 
-
     </Grid>
 
 </ContentPage>

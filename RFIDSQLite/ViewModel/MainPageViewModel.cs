@@ -347,6 +347,38 @@ namespace RFIDSQLite.ViewModel
             MessagingCenter.Send(this, "OpenWriteChipPage");
         }
 
+        //点亮
+        [RelayCommand]
+        void Light()
+        {
+            if (!RFIDService.serialPort.IsOpen)
+            {
+                MessagingCenter.Send(this, "OpenNotifyPage", "请先打开串口！");
+                return;
+            }
+
+            if (SelectedList.Count == 0)
+            {
+                MessagingCenter.Send(this, "OpenNotifyPage", "所选项为空！");
+                return;
+            }
+
+            foreach (TodoSQLite todo in SelectedList)
+            {
+                RFIDService.Lock(todo);
+                Thread.Sleep(10);
+
+                for (int i = 0; i < 5; i++)
+                {
+                    RFIDService.Light();
+                    Thread.Sleep(10);
+                }
+
+                RFIDService.UnLock();
+                Thread.Sleep(150);
+            }
+        }
+
         //数据导出
         [RelayCommand]
         async Task OutputCsvAsync()

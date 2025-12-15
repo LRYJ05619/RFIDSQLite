@@ -60,10 +60,15 @@
 
 	<ItemGroup>
 	  <Compile Remove="Interface\**" />
+	  <Compile Remove="Resources\Splash\**" />
 	  <EmbeddedResource Remove="Interface\**" />
+	  <EmbeddedResource Remove="Resources\Splash\**" />
 	  <MauiCss Remove="Interface\**" />
+	  <MauiCss Remove="Resources\Splash\**" />
 	  <MauiXaml Remove="Interface\**" />
+	  <MauiXaml Remove="Resources\Splash\**" />
 	  <None Remove="Interface\**" />
+	  <None Remove="Resources\Splash\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -160,7 +165,7 @@
 	  </None>
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Resources\Splash\" />
+	  <PRIResource Remove="Resources\Splash\**" />
 	</ItemGroup>
 
 </Project>

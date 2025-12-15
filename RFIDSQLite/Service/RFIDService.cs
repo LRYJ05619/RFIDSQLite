@@ -375,5 +375,80 @@ namespace RFIDSQLite.Service
             return uSum;
         }
 
+        //锁定
+        public static bool Lock(TodoSQLite todo)
+        {
+            if (Buffer == null || Buffer.Count == 0)
+                return false;
+
+            var buf = Buffer[todo.Id - 1];
+
+            byte[] DATABuffer = new byte[buf.Length + 7];
+            DATABuffer[0] = 0xA0;
+            DATABuffer[1] = (byte)(buf.Length + 5);
+            DATABuffer[2] = 0x01;
+            DATABuffer[3] = 0x85;
+            DATABuffer[4] = 0x00;
+            DATABuffer[5] = (byte)buf.Length;
+
+            for (int i = 0; i < buf.Length; i++)
+            {
+                DATABuffer[i + 6] = buf[i];
+            }
+
+            //校验
+            DATABuffer[buf.Length + 6] = CheckSum(DATABuffer, (byte)(buf.Length + 6));
+
+            if (DataSent(DATABuffer))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //解锁
+        public static bool UnLock()
+        {
+            byte[] Data = new byte[6];
+            Data[0] = 0xA0;
+            Data[1] = 0x04;
+            Data[2] = 0x01;
+            Data[3] = 0x85;
+            Data[4] = 0x01;
+            Data[5] = 0xD5;
+            if (DataSent(Data))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //点亮
+        public static bool Light()
+        {
+            byte[] Data = new byte[8];
+            Data[0] = 0xA0;
+            Data[1] = 0x06;
+            Data[2] = 0x01;
+            Data[3] = 0x81;
+            Data[4] = 0x00;
+            Data[5] = 0x04;
+            Data[6] = 0x01;
+            Data[7] = 0xD3;
+            if (DataSent(Data))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

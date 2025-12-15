@@ -92,6 +92,59 @@ namespace RFIDSQLite.Service
             await Database.CloseAsync();
         }
 
+        /// <summary>
+        /// 级联删除项目及其关联的所有数据
+        /// </summary>
+        /// <param name="id">项目ID</param>
+        /// <returns>删除的总记录数</returns>
+        public static async Task<int> RemoveProjectCascade(int id)
+        {
+            Init();
+            await Database.CreateTableAsync<ProjectSQLite>();
+            await Database.CreateTableAsync<TodoSQLite>();
+            await Database.CreateTableAsync<MultiattributeSQLite>();
+
+            int deletedCount = 0;
+
+            try
+            {
+                // 1. 删除该项目下的所有 TodoSQLite 记录
+                var todoList = await Database.Table<TodoSQLite>()
+                    .Where(t => t.PrjNum == id)
+                    .ToListAsync();
+
+                foreach (var todo in todoList)
+                {
+                    await Database.DeleteAsync(todo);
+                    deletedCount++;
+                }
+
+                // 2. 删除该项目下的所有 MultiattributeSQLite 记录
+                var multiList = await Database.Table<MultiattributeSQLite>()
+                    .Where(m => m.PrjNum == id)
+                    .ToListAsync();
+
+                foreach (var multi in multiList)
+                {
+                    await Database.DeleteAsync(multi);
+                    deletedCount++;
+                }
+
+                // 3. 删除项目本身
+                await Database.DeleteAsync<ProjectSQLite>(id);
+                deletedCount++;
+
+                await Database.CloseAsync();
+
+                return deletedCount;
+            }
+            catch (Exception ex)
+            {
+                await Database.CloseAsync();
+                throw new Exception($"级联删除项目失败: {ex.Message}", ex);
+            }
+        }
+
         //修改项目
         public static async Task UpdateProject(ProjectSQLite prj)
         {

@@ -1,19 +1,20 @@
-﻿using System;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
+using Microsoft.UI.Xaml.Media;
+using RFIDSQLite.Model;
+using RFIDSQLite.Service;
+using RFIDSQLite.View;
+using RFIDSQLite.View.PopUp;
+using RFIDSQLite.ViewModel.PopUp;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
-using RFIDSQLite.Model;
-using RFIDSQLite.Service;
-using RFIDSQLite.View;
-using RFIDSQLite.View.PopUp;
-using RFIDSQLite.ViewModel.PopUp;
 using Windows.Storage.Streams;
 
 namespace RFIDSQLite.ViewModel
@@ -143,7 +144,9 @@ namespace RFIDSQLite.ViewModel
                 {
                     foreach (ProjectSQLite selected in SelectedList)
                     {
-                        await SQLiteService.RemoveProject(selected.Id);
+                        //await SQLiteService.RemoveProject(selected.Id);
+                        // 删除项目及所有关联数据
+                        int deletedCount = await SQLiteService.RemoveProjectCascade(selected.Id);
                     }
 
                     ProjectList = await SQLiteService.InitProject();
