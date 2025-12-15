@@ -140,7 +140,7 @@
                                      CurrentPage="{Binding CurrentPageCount, Mode=TwoWay}"/>
         </Grid>
 
-        <Button Grid.Row="5" 
+        <Button Grid.Row="6" 
                 Text = "点亮"
                 HorizontalOptions="Start"
                 BackgroundColor = "#00A2FF"
@@ -148,7 +148,8 @@
                 CornerRadius = "5"
                 WidthRequest = "80"
                 HeightRequest = "40"
-                Margin = "40, 0, 0, 0"/>
+                Margin = "40, 0, 0, 0"
+                Command="{Binding LightCommand}"/>
 
 
     </Grid>

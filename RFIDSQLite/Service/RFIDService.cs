@@ -378,10 +378,21 @@ namespace RFIDSQLite.Service
         //锁定
         public static bool Lock(TodoSQLite todo)
         {
-            if (Buffer == null || Buffer.Count == 0)
-                return false;
+            int byteIndex = 0;
+            var buf = new byte[16];
 
-            var buf = Buffer[todo.Id - 1];
+            for (int i = 0; i < todo.serial.Length; i += 2)
+            {
+                // 从输入字符串中获取两个数字字符
+                string digitPair = todo.serial.Substring(i, 2);
+
+                // 将数字字符解析为字节并存储在字节数组中
+                if (byteIndex < buf.Length)
+                {
+                    buf[byteIndex] = byte.Parse(digitPair);
+                    byteIndex++;
+                }
+            }
 
             byte[] DATABuffer = new byte[buf.Length + 7];
             DATABuffer[0] = 0xA0;
