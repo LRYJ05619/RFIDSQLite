@@ -61,10 +61,15 @@
 
 	<ItemGroup>
 	  <Compile Remove="Interface\**" />
+	  <Compile Remove="Resources\Splash\**" />
 	  <EmbeddedResource Remove="Interface\**" />
+	  <EmbeddedResource Remove="Resources\Splash\**" />
 	  <MauiCss Remove="Interface\**" />
+	  <MauiCss Remove="Resources\Splash\**" />
 	  <MauiXaml Remove="Interface\**" />
+	  <MauiXaml Remove="Resources\Splash\**" />
 	  <None Remove="Interface\**" />
+	  <None Remove="Resources\Splash\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -172,13 +177,13 @@
 	  </None>
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Resources\Splash\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <EmbeddedResource Update="Properties\Resources.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <PRIResource Remove="Resources\Splash\**" />
 	</ItemGroup>
 
 </Project>

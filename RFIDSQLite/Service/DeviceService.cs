@@ -40,6 +40,12 @@ namespace RFIDSQLite.Service
                         device.CreateDirectory(remotePath);
                     }
 
+                    //// **关键修改：如果文件已存在，先删除它**
+                    //if (device.FileExists(remoteFilePath))
+                    //{
+                    //    device.DeleteFile(remoteFilePath);
+                    //}
+
                     //被复制文件路径
                     var dbPath = Path.Combine(AppContext.BaseDirectory, "RFID_SQLite.db");
 

@@ -143,7 +143,9 @@ namespace RFIDSQLite.ViewModel
                 {
                     foreach (ProjectSQLite selected in SelectedList)
                     {
-                        await SQLiteService.RemoveProject(selected.Id);
+                        //await SQLiteService.RemoveProject(selected.Id);
+                        // 删除项目及所有关联数据
+                        int deletedCount = await SQLiteService.RemoveProjectCascade(selected.Id);
                     }
 
                     ProjectList = await SQLiteService.InitProject();
