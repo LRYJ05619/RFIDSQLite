@@ -20,8 +20,8 @@ public partial class StartPage : ContentPage
 
         TitleLabel.Text = SimpleConfigService.GetTitle();
 
-        //清理登录
-        //Preferences.Remove("PasswordVerified");
+        // 清理登录状态
+        //SimpleConfigService.SetPasswordVerified(false);
         // 检查是否已经验证过密码
         CheckIfAlreadyVerified();
     }

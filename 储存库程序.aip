@@ -98,10 +98,10 @@
     <ROW Property="AppLogoIconDark" Value="applogodark.png" MultiBuildValue="DefaultBuild:a2icon.ico" Type="1" MsiKey="AppLogoIconDark"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="XX"/>
-    <ROW Property="ProductCode" Value="2052:{6945ABAF-4412-4CA0-9BE6-6D5B8E4521BA} " Type="16"/>
+    <ROW Property="ProductCode" Value="2052:{319AFC88-CF02-4FDF-9F52-DBB68AC63C53} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="RFIDSQLite"/>
-    <ROW Property="ProductVersion" Value="1.0.5" Options="32"/>
+    <ROW Property="ProductVersion" Value="1.0.6" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{DFCF7D46-72CE-418A-842E-71E648EE86A6}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -255,221 +255,221 @@
     <ROW Component="ProductInformation" Value="{B98352EE-D6A2-48C7-8693-EB46026112B2}"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="A0BFC224E0E9125ADE0B2DBF343" ComponentId="{A5078236-3FF3-44AB-BE52-EB35B962F0E8}" Directory_="APPDIR" Attributes="260" KeyPath="A0BFC224E0E9125ADE0B2DBF343" Options="2"/>
-    <ROW Component="AI_CustomARPName" ComponentId="{E4C7FF01-2B5A-4814-BEB0-8914266BFE15}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="A0BFC224E0E9125ADE0B2DBF343" ComponentId="{3236CCF8-A416-4310-8B70-EAEB5BE4C7ED}" Directory_="APPDIR" Attributes="260" KeyPath="A0BFC224E0E9125ADE0B2DBF343" Options="2"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{8644852A-16EC-448F-9E6C-93548806C5AB}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{51636878-8D79-4175-B1CB-117EC1A2BA78}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="AI_SHORTCUTSREG" ComponentId="{4942C94A-5773-4139-8676-65D6A0BD82D5}" Directory_="APPDIR" Attributes="260" KeyPath="AI_SHORTCUTSREG" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{C4334930-898E-4064-AD1D-2E55A980E055}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="App.xbf" ComponentId="{9813F48F-BA25-4F6F-8BC2-B9EA0F909C46}" Directory_="Windows_Dir" Attributes="0" KeyPath="App.xbf" Type="0"/>
-    <ROW Component="CommunityToolkit.Maui.Core.dll" ComponentId="{73E48C64-73C9-416B-A329-8B90B240BEEA}" Directory_="win10x64_Dir" Attributes="0" KeyPath="CommunityToolkit.Maui.Core.dll"/>
-    <ROW Component="CommunityToolkit.Maui.dll" ComponentId="{B26146B3-B113-416D-BFD2-E4B0A95EEF9E}" Directory_="win10x64_Dir" Attributes="0" KeyPath="CommunityToolkit.Maui.dll"/>
-    <ROW Component="CommunityToolkit.Mvvm.dll" ComponentId="{14ACB53C-E041-473D-ADDD-D547C836F6A0}" Directory_="win10x64_Dir" Attributes="0" KeyPath="CommunityToolkit.Mvvm.dll"/>
-    <ROW Component="CoreMessagingXP.dll" ComponentId="{1200A036-6914-49A1-81B7-3B2AEA010DD6}" Directory_="win10x64_Dir" Attributes="256" KeyPath="CoreMessagingXP.dll"/>
-    <ROW Component="DWriteCore.dll" ComponentId="{E50E5A2D-5349-4199-B30B-4F8162003C98}" Directory_="win10x64_Dir" Attributes="256" KeyPath="DWriteCore.dll"/>
-    <ROW Component="DwmSceneI.dll" ComponentId="{F49D98AF-828D-469E-BCC8-62EE948A4B6B}" Directory_="win10x64_Dir" Attributes="256" KeyPath="DwmSceneI.dll"/>
-    <ROW Component="MRM.dll" ComponentId="{8EAC2AEB-DE0A-4DF9-86D7-0DB99081A619}" Directory_="win10x64_Dir" Attributes="256" KeyPath="MRM.dll"/>
-    <ROW Component="MediaDevices.dll" ComponentId="{9FBC8E89-CBC5-4C94-997A-C4A797C8A03D}" Directory_="win10x64_Dir" Attributes="0" KeyPath="MediaDevices.dll"/>
-    <ROW Component="Microsoft.DirectManipulation.dll" ComponentId="{29F72794-68DD-483D-B3A9-E8E25EAF280E}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.DirectManipulation.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.Abstractions.dll" ComponentId="{17FE2CFA-A084-4992-9C00-9D18E801878D}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.dll" ComponentId="{67ACF065-E24A-4391-9760-61184394DB31}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.dll"/>
-    <ROW Component="Microsoft.Extensions.DependencyInj_1_ection.dll" ComponentId="{FCFD4BCB-DDE6-4D4B-9519-2D3BBC67BC36}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.dll"/>
-    <ROW Component="Microsoft.Extensions.DependencyInjection.Abstractions.dll" ComponentId="{192E3CDB-BCB9-451C-9323-66657E8F4B6B}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.Abstractions.dll" ComponentId="{F30D2B92-EFD6-4BCA-A768-54962D002E96}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.Debug.dll" ComponentId="{EA516E33-2574-436A-A669-97C2C2BC1944}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Debug.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.dll" ComponentId="{FA484015-0C65-4D03-BA28-B75B3F54CFB8}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.dll"/>
-    <ROW Component="Microsoft.Extensions.Options.dll" ComponentId="{3BD51E0D-532D-40B4-B2FE-AC1972845A84}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Options.dll"/>
-    <ROW Component="Microsoft.Extensions.Primitives.dll" ComponentId="{CE468D92-91E9-44BC-BBA6-87FFB092190B}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Primitives.dll"/>
-    <ROW Component="Microsoft.Graphics.Canvas.Interop.dll" ComponentId="{C0542AF3-D180-409E-AF20-931127EBB852}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Graphics.Canvas.Interop.dll"/>
-    <ROW Component="Microsoft.Graphics.Canvas.dll" ComponentId="{BDB13E73-E3FE-4C20-B6A1-F981CF564046}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Graphics.Canvas.dll"/>
-    <ROW Component="Microsoft.Graphics.Display.dll" ComponentId="{8016929F-A66B-4123-93B5-D82EF386A3C5}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Graphics.Display.dll"/>
-    <ROW Component="Microsoft.IO.RecyclableMemoryStream.dll" ComponentId="{63E7F1C7-CDA5-4CAF-8602-AA3574C66001}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.IO.RecyclableMemoryStream.dll"/>
-    <ROW Component="Microsoft.InputStateManager.dll" ComponentId="{A2619966-CA03-463E-AF7F-3C34A2A55B4F}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.InputStateManager.dll"/>
-    <ROW Component="Microsoft.InteractiveExperiences.Projection.dll" ComponentId="{6AC15EC1-8A6E-46A2-B063-2A16F71994E4}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.InteractiveExperiences.Projection.dll"/>
-    <ROW Component="Microsoft.Internal.FrameworkUdk.dll" ComponentId="{5FD606FC-D3FC-4170-9B1D-95365A3DC195}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Internal.FrameworkUdk.dll"/>
-    <ROW Component="Microsoft.Maui.Controls.Compatibility.dll" ComponentId="{DFF0031B-B50B-46D1-B799-B0E00B46D252}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.Compatibility.dll"/>
-    <ROW Component="Microsoft.Maui.Controls.Xaml.dll" ComponentId="{91C8CFA7-F182-458A-8440-D603F3769F72}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.Xaml.dll"/>
-    <ROW Component="Microsoft.Maui.Controls.dll" ComponentId="{395ABB85-34B4-48E8-B949-29D670BCDE08}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.dll"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._100_dll" ComponentId="{D08D6AE0-1979-4FD0-93FD-5FE410710D7B}" Directory_="hi_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_10"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._101_dll" ComponentId="{1B08F02F-DEC1-478D-970E-287419EF3363}" Directory_="hr_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_11"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._102_dll" ComponentId="{4FDEFAC1-DE17-4488-A168-1B226B0FDB56}" Directory_="hu_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_12"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._103_dll" ComponentId="{14B4833E-234F-4C1F-B73A-20E8F9056B27}" Directory_="id_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_13"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._104_dll" ComponentId="{EC30D7E2-6E91-49D4-87F5-198B793087F8}" Directory_="it_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_14"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._105_dll" ComponentId="{21679EAA-D8EB-40A4-8FC3-C77724F1017E}" Directory_="ja_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_15"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._106_dll" ComponentId="{64089A80-E9F5-4126-BB9B-A4815EB66FB7}" Directory_="ko_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_16"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._107_dll" ComponentId="{64032BC5-1317-42A1-8DF8-305A5B4AAAD1}" Directory_="ms_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_17"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._108_dll" ComponentId="{E5B9542B-152E-40F3-B5DA-B6B906A884DF}" Directory_="nb_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_18"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._109_dll" ComponentId="{7CB19A6A-AAE8-4C3D-99C6-9ACC48E67F53}" Directory_="nl_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_19"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._110_dll" ComponentId="{0DBC82DA-EA67-4FD6-A987-9625D8A4969B}" Directory_="pl_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_20"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._111_dll" ComponentId="{69DC5169-3DD8-43D3-814B-CF19EDD53E1D}" Directory_="pt_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_21"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._112_dll" ComponentId="{C847BB6D-C1A8-4B48-ABE9-0F8BC7177EC6}" Directory_="ptBR_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_22"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._113_dll" ComponentId="{F2B7739E-05DD-4922-B6F6-287C8BADB7D5}" Directory_="ro_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_23"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._114_dll" ComponentId="{70E796EA-0DEA-4A3F-BAED-D99ACBE843FA}" Directory_="ru_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_24"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._115_dll" ComponentId="{12E1B930-8B33-4BEC-92CB-73CDCCFDB5B3}" Directory_="sk_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_25"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._116_dll" ComponentId="{F5B6205C-9021-4137-9914-CCC76C29DBFD}" Directory_="sv_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_26"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._117_dll" ComponentId="{13BFE4F9-BEFE-4C5D-AD5B-F897ED0D7639}" Directory_="th_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_27"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._118_dll" ComponentId="{2CCCCA4A-FFAE-44C2-BEED-D7491BDF302B}" Directory_="tr_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_28"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._119_dll" ComponentId="{D8F20B5B-CF55-4C57-B615-EFA780CF802D}" Directory_="uk_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_29"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._120_dll" ComponentId="{409B3CB2-9484-4DA4-8777-AA125016AF40}" Directory_="vi_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_30"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._121_dll" ComponentId="{191DD5F7-81EE-4AED-9512-E578E9526E79}" Directory_="zhHans_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_31"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._122_dll" ComponentId="{359E2DE1-C96A-4F11-B39E-357FB258F21F}" Directory_="zhHant_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_32"/>
-    <ROW Component="Microsoft.Maui.Controls.resources._123_dll" ComponentId="{1172A484-65A2-4EA7-8A52-22B02AFD1A71}" Directory_="zhHK_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_33"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll" ComponentId="{BBFE6D0D-552B-42A2-811F-F18308BB856B}" Directory_="ar_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_1" ComponentId="{F2C9399B-B3BC-4AD5-BD31-686EDAD6EBD1}" Directory_="ca_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_1"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_2" ComponentId="{AC2C2D3E-AB73-4A74-AB37-79ADC0854BCE}" Directory_="cs_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_2"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_3" ComponentId="{7F6FB2E9-90A0-4FED-BE4B-62687054898C}" Directory_="da_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_3"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_4" ComponentId="{EA75D07B-31F0-4223-9D4B-63907126A02E}" Directory_="de_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_4"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_5" ComponentId="{3935D298-250C-4046-A724-0E95F4CE310D}" Directory_="el_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_5"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_6" ComponentId="{EF6E2B90-0EF7-4576-8ECD-34E4B4F2AB4F}" Directory_="es_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_6"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_7" ComponentId="{9ADC0D00-19D8-4B16-9256-52C0F2AEF633}" Directory_="fi_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_7"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_8" ComponentId="{33F3FA44-17F3-452D-9A59-5003ECD4B4A7}" Directory_="fr_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_8"/>
-    <ROW Component="Microsoft.Maui.Controls.resources.dll_9" ComponentId="{D87802C7-FA11-4F80-A87A-10DB9C817A78}" Directory_="he_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_9"/>
-    <ROW Component="Microsoft.Maui.Essentials.dll" ComponentId="{1B684274-198D-4E80-9339-ABEAFEF36E63}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Essentials.dll"/>
-    <ROW Component="Microsoft.Maui.Graphics.Win2D.WinUI.Desktop.dll" ComponentId="{C7BAD098-736F-4EE6-B95E-DB7D65AE0A24}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Graphics.Win2D.WinUI.Desktop.dll"/>
-    <ROW Component="Microsoft.Maui.Graphics.dll" ComponentId="{FA866391-A193-429A-A9DD-F328F0D8EBA0}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Graphics.dll"/>
-    <ROW Component="Microsoft.Maui.dll" ComponentId="{8D925396-D498-41EB-A693-7725CD9F43AA}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.dll"/>
-    <ROW Component="Microsoft.UI.Composition.OSSupport.dll" ComponentId="{A9911FC1-B319-47A0-B3C5-27FB940D5021}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Composition.OSSupport.dll"/>
-    <ROW Component="Microsoft.UI.Input.dll" ComponentId="{4659BFEE-C977-4BE7-8BD9-513804103670}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Input.dll"/>
-    <ROW Component="Microsoft.UI.Windowing.Core.dll" ComponentId="{C5C33C9A-1E3D-4FFC-BFE4-7BAEDAE7C845}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Windowing.Core.dll"/>
-    <ROW Component="Microsoft.UI.Windowing.dll" ComponentId="{0B9A1AC9-ED31-44C6-BE83-18140F94FDE1}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Windowing.dll"/>
-    <ROW Component="Microsoft.UI.Xaml.Controls.dll" ComponentId="{BE564146-9B72-4EDA-B39A-3D90762E1F1C}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Xaml.Controls.dll"/>
-    <ROW Component="Microsoft.UI.Xaml.Internal.dll" ComponentId="{317D1058-FAFC-4D5E-ADB8-119B6BCB3416}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Xaml.Internal.dll"/>
-    <ROW Component="Microsoft.UI.Xaml.Phone.dll" ComponentId="{0908942B-9F6A-40CA-A288-7A83D85AC8A6}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Xaml.Phone.dll"/>
-    <ROW Component="Microsoft.UI.dll" ComponentId="{237B7ED6-9BC4-4382-9C8E-107909B605AD}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.dll"/>
-    <ROW Component="Microsoft.Web.WebView2.Core.dll" ComponentId="{53D6D133-B462-463A-BB0B-A66F81DE9B1E}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Web.WebView2.Core.dll"/>
-    <ROW Component="Microsoft.WinUI.dll" ComponentId="{15BF7CFD-F950-44A1-BFAF-2B9E02F24B88}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.WinUI.dll"/>
-    <ROW Component="Microsoft.Windows.AppLifecycle.Projection.dll" ComponentId="{06EBE4EF-2B63-4CBF-9DCD-2A35DCBC9E34}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.AppLifecycle.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.AppNotifications.Builder.Projection.dll" ComponentId="{57735CDB-11B7-4131-8E9C-F029953FA9D7}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.AppNotifications.Builder.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.AppNotifications.Projection.dll" ComponentId="{831BE698-E211-468B-BD78-288BB249193B}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.AppNotifications.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" ComponentId="{E3B8619F-C3E2-40DF-B046-49239430A54C}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.ApplicationModel.Resources.dll" ComponentId="{6E8876E0-7366-44FF-A23B-D46C4800255C}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Windows.ApplicationModel.Resources.dll"/>
-    <ROW Component="Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" ComponentId="{B2032CF2-97EE-4BDE-9D4C-7DAC56996B53}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.ApplicationModel_1_.Resources.Projection.dll" ComponentId="{E6D225DC-EF88-4F29-9F61-AF07A3EE929D}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.ApplicationModel.Resources.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.Management.Deployment.Projection.dll" ComponentId="{1A9E541A-CCFE-44F0-B3CD-4DEC8A5AAF19}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.Management.Deployment.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.PushNotifications.Projection.dll" ComponentId="{CB91EC33-755D-4787-8135-D12A7C96C5C6}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.PushNotifications.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.SDK.NET.dll" ComponentId="{027273D0-08BD-4E02-A2F8-D03809BA68E9}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.SDK.NET.dll"/>
-    <ROW Component="Microsoft.Windows.Security.AccessControl.Projection.dll" ComponentId="{16F174C6-E9EC-47E6-9230-992DC0B31C2B}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.Security.AccessControl.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.System.Power.Projection.dll" ComponentId="{9B39D8D0-7B17-468E-81E8-6EDFEAC954CA}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.System.Power.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.System.Projection.dll" ComponentId="{44AA701C-B51E-4690-BC28-548AD31DEDB8}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.System.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.Widgets.Projection.dll" ComponentId="{CCCA0A1A-848E-427F-9D2E-22C3786D78EC}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.Widgets.Projection.dll"/>
-    <ROW Component="Microsoft.Windows.Widgets.dll" ComponentId="{17D4CAB3-EA63-472D-A00A-3AECB79ACFEC}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Windows.Widgets.dll"/>
-    <ROW Component="Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" ComponentId="{1D7D12A5-FC88-4B00-9042-7CC4D89A88AC}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.WindowsAppRuntime.Bootstrap.Net.dll"/>
-    <ROW Component="Microsoft.WindowsAppRuntime.Bootstrap.dll" ComponentId="{1D5C868F-0782-4CA6-8D64-CB108DDA2EF7}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.WindowsAppRuntime.Bootstrap.dll"/>
-    <ROW Component="Microsoft.WindowsAppRuntime.Insights.Resource.dll" ComponentId="{D143C0FB-5530-4C3B-8126-5B9BA206CBC4}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.WindowsAppRuntime.Insights.Resource.dll"/>
-    <ROW Component="Microsoft.WindowsAppRuntime.dll" ComponentId="{09AAE90D-3422-4132-BF31-F756E18FD170}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.WindowsAppRuntime.dll"/>
-    <ROW Component="Microsoft.ui.xaml.dll" ComponentId="{0F95A8AF-FDAE-4A4F-9EC1-EFE4E6E17890}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.ui.xaml.dll"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui" ComponentId="{4354486E-1F57-42C3-8ABA-21C0213433D7}" Directory_="afZA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_1" ComponentId="{6B283F9B-6EE1-41AC-88C3-8E57A8C37641}" Directory_="amET_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_1" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_10" ComponentId="{F91D19FD-C9C0-4FC5-9A01-A52E477C6C92}" Directory_="csCZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_10" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_11" ComponentId="{584BE02F-C785-44E6-94F4-FA0AEB9DAA6E}" Directory_="cyGB_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_11" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_12" ComponentId="{9D428BD8-371E-4447-8DBD-52157F79C09C}" Directory_="daDK_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_12" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_13" ComponentId="{0EBBC3EF-F043-4F3D-BCD0-FDEED20F5E93}" Directory_="deDE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_13" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_14" ComponentId="{E1432588-58C4-4F09-BE9E-C16A28B89FA4}" Directory_="elGR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_14" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_15" ComponentId="{24DC869D-AD4E-44CD-B2AE-00938BACDBB4}" Directory_="enGB_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_15" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_16" ComponentId="{340426FA-405C-4481-8314-DD6979F0FF8B}" Directory_="enus_Dir" Attributes="256" KeyPath="Microsoft.ui.xaml.dll.mui_16" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_17" ComponentId="{3653B68B-37BE-4195-A035-C8193D2EA511}" Directory_="esES_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_17" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_18" ComponentId="{050E81FF-B0A2-4442-86CC-1F798AFAC780}" Directory_="esMX_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_18" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_19" ComponentId="{6DA2CAC4-2D9F-43B1-B17B-18B07A643E11}" Directory_="etEE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_19" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_2" ComponentId="{565804D0-ADBB-41A1-B6BD-F9C9D173B34F}" Directory_="arSA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_2" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_20" ComponentId="{C3959F3C-2600-4121-8C35-8757AA1313C6}" Directory_="euES_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_20" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_21" ComponentId="{89D2C214-A65C-4831-981D-311405FBFAEA}" Directory_="faIR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_21" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_22" ComponentId="{4500F66E-61E3-4F38-A8B3-6C00EC23BE10}" Directory_="fiFI_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_22" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_23" ComponentId="{7A0B5242-4D12-4C09-9E52-9CA0AAE77AF7}" Directory_="filPH_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_23" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_24" ComponentId="{5ED3E5EE-A49D-4B1A-89C8-69111676D067}" Directory_="frCA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_24" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_25" ComponentId="{F5C5F26B-839D-415A-9073-645BCC5386A9}" Directory_="frFR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_25" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_26" ComponentId="{D1975205-ACD6-46B2-AA25-4EA0F618C3E8}" Directory_="gaIE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_26" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_27" ComponentId="{CE18A1FF-A557-4EC7-8A78-BFA11D9E1A0C}" Directory_="gdgb_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_27" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_28" ComponentId="{EBBFA0A0-3CC7-4FAC-AF8D-1744DB1AFC11}" Directory_="glES_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_28" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_29" ComponentId="{EDDD81F0-A55A-41B1-A7E0-18596D8E5668}" Directory_="guIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_29" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_3" ComponentId="{6BCB24BC-BA49-4F76-BE5C-E19E8F980181}" Directory_="asIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_3" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_30" ComponentId="{95E8A7E3-1C04-4286-B246-0A0436DB65FB}" Directory_="heIL_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_30" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_31" ComponentId="{F1496E16-E56E-433D-BA46-E22134401FF3}" Directory_="hiIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_31" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_32" ComponentId="{878D32FE-C738-414A-BB46-23A933234FFA}" Directory_="hrHR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_32" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_33" ComponentId="{3955B2CD-F156-482D-A619-9F78AB66EBAA}" Directory_="huHU_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_33" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_34" ComponentId="{80A0CF7F-ADEB-4C54-9BCB-846FD62302B7}" Directory_="hyAM_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_34" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_35" ComponentId="{DD4ED8EA-6809-458E-89F4-994B79C0D27D}" Directory_="idID_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_35" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_36" ComponentId="{627FFCCC-9C39-4F25-9995-A1F4215748DE}" Directory_="isIS_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_36" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_37" ComponentId="{D8A79BDE-A322-4ACF-B045-D3330956E793}" Directory_="itIT_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_37" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_38" ComponentId="{182A1B63-C9E7-4688-A6DD-048B9A2A29B5}" Directory_="jaJP_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_38" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_39" ComponentId="{4C8A126C-A5C6-4CBB-9C20-69B31DECAE59}" Directory_="kaGE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_39" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_4" ComponentId="{41DD6106-50AA-4904-93DD-6E18BDA78800}" Directory_="azLatnAZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_4" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_40" ComponentId="{ACF60650-AB48-427F-B989-A3956CFF138C}" Directory_="kkKZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_40" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_41" ComponentId="{C3C2D4A3-49EA-472C-A60E-AECD5086905C}" Directory_="kmKH_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_41" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_42" ComponentId="{2D07BB98-4BC3-47AC-B7D8-697196E0B778}" Directory_="knIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_42" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_43" ComponentId="{810F5907-82C9-4F17-990A-64BC0E81CEFC}" Directory_="koKR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_43" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_44" ComponentId="{4D7C24D5-42B8-421C-9974-DA47855D254E}" Directory_="kokIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_44" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_45" ComponentId="{8C8C90DE-46F7-48CD-BE55-FCF17D88A521}" Directory_="lbLU_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_45" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_46" ComponentId="{01522C8A-B03E-4310-A877-81D4F2C778E3}" Directory_="loLA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_46" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_47" ComponentId="{28524D9A-623B-4EBB-B969-F394F92B81D1}" Directory_="ltLT_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_47" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_48" ComponentId="{C72E43DE-74F0-4BAE-9270-DF66A7C5ADEE}" Directory_="lvLV_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_48" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_49" ComponentId="{8BC47EED-048D-4FEC-A6C4-48D2401CFE48}" Directory_="miNZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_49" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_5" ComponentId="{066981ED-3645-44AF-AB79-BECC2894083F}" Directory_="bgBG_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_5" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_50" ComponentId="{EF518D13-78F8-4BFC-904B-6C380872C5E0}" Directory_="mkMK_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_50" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_51" ComponentId="{A94B6632-D010-43AF-883A-6432CCFE33CC}" Directory_="mlIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_51" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_52" ComponentId="{329E4D96-8495-49B8-A3EC-614CACE64C60}" Directory_="mrIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_52" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_53" ComponentId="{BC0B84D3-2F3F-4A28-A986-DFE133323EC4}" Directory_="msMY_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_53" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_54" ComponentId="{71683939-0DA5-4573-B9EC-0165C9326E97}" Directory_="mtMT_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_54" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_55" ComponentId="{47BAD484-8321-4F41-A8A4-6D255DF49437}" Directory_="nbNO_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_55" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_56" ComponentId="{51D7F739-2E9D-4F96-AABD-22E1D7E51159}" Directory_="neNP_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_56" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_57" ComponentId="{C3F44365-74C8-4DE8-AD0C-9FA7825FDD94}" Directory_="nlNL_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_57" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_58" ComponentId="{E316DEA4-483F-4967-873C-5B9A0AD83365}" Directory_="nnNO_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_58" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_59" ComponentId="{80A186C3-5438-4730-BF78-A49235236384}" Directory_="orIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_59" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_6" ComponentId="{F6729493-72D3-4EE0-95C5-D92DAAC03D6D}" Directory_="bnIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_6" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_60" ComponentId="{B1489E2A-73A9-4051-A7B3-D30C0B01F490}" Directory_="paIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_60" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_61" ComponentId="{23B739C7-F8D7-4DB2-B3F1-E929FB679FEC}" Directory_="plPL_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_61" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_62" ComponentId="{7FCFCBFE-0879-4DC0-80D8-77EBD2D17515}" Directory_="ptBR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_62" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_63" ComponentId="{BA9A3214-BC17-4C83-958B-1B28DFB963AD}" Directory_="ptPT_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_63" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_64" ComponentId="{A83361D0-06FF-43C4-AD55-06637F8F281B}" Directory_="quzPE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_64" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_65" ComponentId="{2B4E800B-918C-4A41-917F-E47DC635200B}" Directory_="roRO_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_65" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_66" ComponentId="{35A41713-1203-40F0-8E37-F00226D8CDCE}" Directory_="ruRU_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_66" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_67" ComponentId="{CAD89243-5D97-47AD-A8DC-F6FFE8DEB98D}" Directory_="skSK_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_67" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_68" ComponentId="{32D2BF4F-DF70-4082-9F15-92C0B9B9FEA9}" Directory_="slSI_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_68" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_69" ComponentId="{440BB112-2CB4-423A-B32A-2FC91A56A985}" Directory_="sqAL_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_69" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_7" ComponentId="{D9C1F760-88D7-4A49-9942-8FD15091A9E8}" Directory_="bsLatnBA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_7" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_70" ComponentId="{17AA9059-3088-4ADE-8B70-B82761D4E031}" Directory_="srCyrlBA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_70" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_71" ComponentId="{EE906FBA-06E3-4384-B403-7294A772BD4C}" Directory_="srCyrlRS_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_71" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_72" ComponentId="{19B488E2-77E5-45FC-A1DB-C5E936E73196}" Directory_="srLatnRS_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_72" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_73" ComponentId="{0916D9AE-08A6-4B2B-AE49-5C6144F0B022}" Directory_="svSE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_73" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_74" ComponentId="{20177B05-7199-4174-98E4-F95FA1F8765C}" Directory_="taIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_74" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_75" ComponentId="{029E1ACC-3088-4FDA-BDEE-954A1A6F497D}" Directory_="teIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_75" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_76" ComponentId="{F5544AB1-A07E-45C4-80EC-1F3C5DA26921}" Directory_="thTH_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_76" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_77" ComponentId="{53B89E8E-9D06-4897-8BB6-6751F88A9875}" Directory_="trTR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_77" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_78" ComponentId="{3DAC6CE0-341D-4E9D-AF33-D3A48B60266C}" Directory_="ttRU_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_78" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_79" ComponentId="{CE8F69C7-2CD8-45AA-8084-1876DA286B75}" Directory_="ugCN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_79" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_8" ComponentId="{837C7745-BFB4-4B3B-8F37-BB464A9607FC}" Directory_="caES_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_8" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_80" ComponentId="{2BD74CCC-0762-4EA6-B5AD-7065E1C27CF5}" Directory_="ukUA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_80" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_81" ComponentId="{B1CEA0A3-7277-4CB0-8339-D6F8BA3E814C}" Directory_="urPK_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_81" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_82" ComponentId="{116DEC29-2062-44D8-84E1-2D1C31C30EB6}" Directory_="uzLatnUZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_82" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_83" ComponentId="{B01B913C-6CBB-40E3-A57F-B50644E50AEB}" Directory_="viVN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_83" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_84" ComponentId="{B377710D-CBFA-45A5-A6DC-C7BB512D1DB0}" Directory_="zhCN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_84" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_85" ComponentId="{D8D296DF-6E47-492D-93DE-E08CD83EAE8F}" Directory_="zhTW_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_85" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.dll.mui_9" ComponentId="{C1A6A23C-2872-4A76-BF89-030FF38F3920}" Directory_="caEsVALENCIA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_9" Type="0"/>
-    <ROW Component="Microsoft.ui.xaml.resources.19h1.dll" ComponentId="{185C3BE6-931B-447B-BBD7-6A0907B8771D}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.ui.xaml.resources.19h1.dll"/>
-    <ROW Component="Microsoft.ui.xaml.resources.common.dll" ComponentId="{ED401A3A-C9AA-47ED-A410-5CF697E45825}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.ui.xaml.resources.common.dll"/>
+    <ROW Component="App.xbf" ComponentId="{C28091DC-B909-4913-83BC-8560F80BAECD}" Directory_="Windows_Dir" Attributes="0" KeyPath="App.xbf" Type="0"/>
+    <ROW Component="CommunityToolkit.Maui.Core.dll" ComponentId="{349D4F4C-0452-4EFC-BFAD-A29B4C69A643}" Directory_="win10x64_Dir" Attributes="0" KeyPath="CommunityToolkit.Maui.Core.dll"/>
+    <ROW Component="CommunityToolkit.Maui.dll" ComponentId="{6F54906E-B36C-47BD-B5C9-70E845011934}" Directory_="win10x64_Dir" Attributes="0" KeyPath="CommunityToolkit.Maui.dll"/>
+    <ROW Component="CommunityToolkit.Mvvm.dll" ComponentId="{5F369861-B667-42AD-B705-AB986272ED20}" Directory_="win10x64_Dir" Attributes="0" KeyPath="CommunityToolkit.Mvvm.dll"/>
+    <ROW Component="CoreMessagingXP.dll" ComponentId="{4950601F-1BBA-4C0E-AA41-931F53C3F4C3}" Directory_="win10x64_Dir" Attributes="256" KeyPath="CoreMessagingXP.dll"/>
+    <ROW Component="DWriteCore.dll" ComponentId="{C65C8199-E1C7-4E66-85D2-CD6D74EBD31E}" Directory_="win10x64_Dir" Attributes="256" KeyPath="DWriteCore.dll"/>
+    <ROW Component="DwmSceneI.dll" ComponentId="{A56B5593-D0C0-40E9-9397-D82DAC9031FC}" Directory_="win10x64_Dir" Attributes="256" KeyPath="DwmSceneI.dll"/>
+    <ROW Component="MRM.dll" ComponentId="{45D1F153-A54B-4C68-9794-68F1CC44F4B7}" Directory_="win10x64_Dir" Attributes="256" KeyPath="MRM.dll"/>
+    <ROW Component="MediaDevices.dll" ComponentId="{0F1D23BD-102D-46A1-B097-1C79E18D32E6}" Directory_="win10x64_Dir" Attributes="0" KeyPath="MediaDevices.dll"/>
+    <ROW Component="Microsoft.DirectManipulation.dll" ComponentId="{29ECC206-2909-47F5-A939-CD8FEA3F544A}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.DirectManipulation.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.Abstractions.dll" ComponentId="{ED297E42-21B6-4D3B-85A8-0AC5DECC2F09}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.dll" ComponentId="{66C91A64-54DB-416B-8C47-5E5B934CD135}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyInj_1_ection.dll" ComponentId="{AF00E429-C583-4D00-B0E9-34A5E86E94F5}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyInjection.Abstractions.dll" ComponentId="{2A5C0FF6-8AFE-466F-B627-BB1A0692B2E4}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Abstractions.dll" ComponentId="{FB7872C1-D0CC-43EB-9EEC-8E0D93460EB3}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Debug.dll" ComponentId="{749D65AE-ACE5-4094-B64E-AE12CA9563D1}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Debug.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.dll" ComponentId="{F8F6B698-54A0-4C3A-9EB3-32422D60058D}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.dll"/>
+    <ROW Component="Microsoft.Extensions.Options.dll" ComponentId="{D103C032-CF56-4012-B745-1EC3B4E34578}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Options.dll"/>
+    <ROW Component="Microsoft.Extensions.Primitives.dll" ComponentId="{66CAAF15-F1D6-41FD-A597-91F82A1C9D9E}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Primitives.dll"/>
+    <ROW Component="Microsoft.Graphics.Canvas.Interop.dll" ComponentId="{6EF0748C-F852-4EB7-BFA9-A5782645B1E9}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Graphics.Canvas.Interop.dll"/>
+    <ROW Component="Microsoft.Graphics.Canvas.dll" ComponentId="{A1CCF7D2-A1A3-4C1F-AED4-78E94C1A3086}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Graphics.Canvas.dll"/>
+    <ROW Component="Microsoft.Graphics.Display.dll" ComponentId="{BEEB5D1D-711E-4324-A6B1-C9B7FDB6B872}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Graphics.Display.dll"/>
+    <ROW Component="Microsoft.IO.RecyclableMemoryStream.dll" ComponentId="{8BC8FB6E-DE2C-479A-9B59-727A3804D6BB}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.IO.RecyclableMemoryStream.dll"/>
+    <ROW Component="Microsoft.InputStateManager.dll" ComponentId="{BD2CC891-6CC5-4FB9-A5AC-06F465C60676}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.InputStateManager.dll"/>
+    <ROW Component="Microsoft.InteractiveExperiences.Projection.dll" ComponentId="{F6DDF8B7-ECBE-41D8-AEC1-F335871B3F80}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.InteractiveExperiences.Projection.dll"/>
+    <ROW Component="Microsoft.Internal.FrameworkUdk.dll" ComponentId="{7A1A4AE1-35B0-4241-A24B-B49D434F55C4}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Internal.FrameworkUdk.dll"/>
+    <ROW Component="Microsoft.Maui.Controls.Compatibility.dll" ComponentId="{251811AB-DF22-43F1-8540-983A205996AF}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.Compatibility.dll"/>
+    <ROW Component="Microsoft.Maui.Controls.Xaml.dll" ComponentId="{68BE1F3A-88BA-4E63-878D-7C574C963AFA}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.Xaml.dll"/>
+    <ROW Component="Microsoft.Maui.Controls.dll" ComponentId="{77D9A1E7-C4EC-4C3C-97D6-37E4AB538A07}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.dll"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._100_dll" ComponentId="{4413D02C-9314-40FE-9AB7-34952E63F599}" Directory_="hi_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_10"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._101_dll" ComponentId="{FC5F574F-9228-4754-830C-C9B46EB56893}" Directory_="hr_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_11"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._102_dll" ComponentId="{2B66886D-96B7-44D7-A583-D8DAF01B0A1E}" Directory_="hu_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_12"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._103_dll" ComponentId="{56DCCD74-E17D-4126-9F30-69A6809D8B8E}" Directory_="id_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_13"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._104_dll" ComponentId="{339BACFA-7585-40F9-AF12-C0F9EE78DB23}" Directory_="it_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_14"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._105_dll" ComponentId="{BA6339F1-A9D4-4035-BC12-2AEF68230888}" Directory_="ja_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_15"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._106_dll" ComponentId="{59CE72C2-2C9F-43B2-974C-42795F3C9967}" Directory_="ko_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_16"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._107_dll" ComponentId="{2C609CA6-7F32-4867-B13D-AF70C3B24D84}" Directory_="ms_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_17"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._108_dll" ComponentId="{4D00F6AA-5421-4D94-B88E-795D01D04438}" Directory_="nb_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_18"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._109_dll" ComponentId="{D6E2D320-ECD3-4653-9D48-7D422FCAAC87}" Directory_="nl_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_19"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._110_dll" ComponentId="{BF1DBCC0-72DD-4DB1-8689-041B850928C2}" Directory_="pl_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_20"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._111_dll" ComponentId="{C98C822D-9E60-4225-BE60-107E5D51A0D0}" Directory_="pt_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_21"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._112_dll" ComponentId="{E27B0B54-4FE6-44E9-A46C-2B27E80E8CCA}" Directory_="ptBR_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_22"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._113_dll" ComponentId="{D2B70B96-5E46-4C5F-A6B8-172C0F7DEE57}" Directory_="ro_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_23"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._114_dll" ComponentId="{DCB44CD9-1C51-44A7-B130-D18843785B86}" Directory_="ru_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_24"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._115_dll" ComponentId="{DD1A925E-58E6-414F-ADE3-81B060103D20}" Directory_="sk_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_25"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._116_dll" ComponentId="{4F08F1A7-FD48-4F92-8707-E4A6BA368D6F}" Directory_="sv_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_26"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._117_dll" ComponentId="{CD6093CA-7F35-4B4E-9251-2BAA11CDA580}" Directory_="th_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_27"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._118_dll" ComponentId="{DBC50DE9-DD91-41B0-8F84-D1FFC7FC021A}" Directory_="tr_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_28"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._119_dll" ComponentId="{30F20283-2C35-4E59-B925-210B86460D91}" Directory_="uk_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_29"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._120_dll" ComponentId="{2EA9D94D-5B2D-41F9-A6D3-2D67C058D245}" Directory_="vi_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_30"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._121_dll" ComponentId="{8955E0CE-E085-44EE-B72F-81029F278354}" Directory_="zhHans_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_31"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._122_dll" ComponentId="{ABFD988E-6986-43FD-B73E-699084D56040}" Directory_="zhHant_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_32"/>
+    <ROW Component="Microsoft.Maui.Controls.resources._123_dll" ComponentId="{5203E262-15E3-4780-9949-C6194D10B529}" Directory_="zhHK_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_33"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll" ComponentId="{96339D82-F484-4784-9B22-E2356D890322}" Directory_="ar_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_1" ComponentId="{78FD0D52-525E-45DF-85D2-0086D083F132}" Directory_="ca_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_1"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_2" ComponentId="{65AF96F7-FF15-4569-8CA2-2A35D1FDD178}" Directory_="cs_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_2"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_3" ComponentId="{D2C1B3AE-B1D3-4F9A-9B67-0F02060FCECF}" Directory_="da_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_3"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_4" ComponentId="{08C3BC6A-0471-4A19-9D1C-83A606C4B29B}" Directory_="de_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_4"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_5" ComponentId="{C91E3531-C2F9-4F7C-9371-A9CAFE8626C7}" Directory_="el_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_5"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_6" ComponentId="{A5484BA6-2AB8-49B4-B8A9-AEFAFD899A53}" Directory_="es_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_6"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_7" ComponentId="{71924B18-52DF-4F8F-8FBF-25E4B1985D71}" Directory_="fi_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_7"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_8" ComponentId="{D9C2784E-AACB-4511-B926-1E489F685B1B}" Directory_="fr_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_8"/>
+    <ROW Component="Microsoft.Maui.Controls.resources.dll_9" ComponentId="{F4F1B979-0313-43D2-9AA9-A68135DCB690}" Directory_="he_Dir" Attributes="0" KeyPath="Microsoft.Maui.Controls.resources.dll_9"/>
+    <ROW Component="Microsoft.Maui.Essentials.dll" ComponentId="{F25C4B19-6669-49EF-BE22-3DCD61026B0E}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Essentials.dll"/>
+    <ROW Component="Microsoft.Maui.Graphics.Win2D.WinUI.Desktop.dll" ComponentId="{F3F4B811-2751-4B8E-AB79-3BD523897E8F}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Graphics.Win2D.WinUI.Desktop.dll"/>
+    <ROW Component="Microsoft.Maui.Graphics.dll" ComponentId="{69391EC8-146D-4A0A-B076-F20AB5636726}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.Graphics.dll"/>
+    <ROW Component="Microsoft.Maui.dll" ComponentId="{BA784A1C-A060-4B39-AF6C-FE01CEF8AAF3}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Maui.dll"/>
+    <ROW Component="Microsoft.UI.Composition.OSSupport.dll" ComponentId="{120FD8A0-8ACD-4B37-B118-CE17482B0697}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Composition.OSSupport.dll"/>
+    <ROW Component="Microsoft.UI.Input.dll" ComponentId="{41542295-F9A2-429D-840B-9D8A563C7359}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Input.dll"/>
+    <ROW Component="Microsoft.UI.Windowing.Core.dll" ComponentId="{59A81E9C-B428-4203-AE0F-144A197054BA}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Windowing.Core.dll"/>
+    <ROW Component="Microsoft.UI.Windowing.dll" ComponentId="{7918962B-2774-4E0F-9504-F4844A86454E}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Windowing.dll"/>
+    <ROW Component="Microsoft.UI.Xaml.Controls.dll" ComponentId="{A8D1D264-6B98-48F6-8291-862C869C2F51}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Xaml.Controls.dll"/>
+    <ROW Component="Microsoft.UI.Xaml.Internal.dll" ComponentId="{EDDEA684-9713-4259-96AE-84D055FDED31}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Xaml.Internal.dll"/>
+    <ROW Component="Microsoft.UI.Xaml.Phone.dll" ComponentId="{0CEA5278-A1B2-4313-A9A9-0D841E22F41D}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.Xaml.Phone.dll"/>
+    <ROW Component="Microsoft.UI.dll" ComponentId="{BE9F20B4-F012-4E1C-A58A-A0EE4E80AA00}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.UI.dll"/>
+    <ROW Component="Microsoft.Web.WebView2.Core.dll" ComponentId="{0991EC9E-EDB3-42AA-B9FB-095C369F160E}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Web.WebView2.Core.dll"/>
+    <ROW Component="Microsoft.WinUI.dll" ComponentId="{ADA7AC77-B5B5-4631-ACA1-7C65C5B95FAD}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.WinUI.dll"/>
+    <ROW Component="Microsoft.Windows.AppLifecycle.Projection.dll" ComponentId="{784939E2-2A64-46E4-8442-3BA87363E269}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.AppLifecycle.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.AppNotifications.Builder.Projection.dll" ComponentId="{95EDA47F-B0DE-4DE7-A978-133AD68846DD}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.AppNotifications.Builder.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.AppNotifications.Projection.dll" ComponentId="{70005A2F-8CD2-4715-BE0B-AD3E68D24C26}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.AppNotifications.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" ComponentId="{9D795FDD-D7BA-4D98-875F-F6FE26947BEF}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.ApplicationModel.Resources.dll" ComponentId="{A3F4992E-DB70-4972-9A5A-5E467B1C58B9}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Windows.ApplicationModel.Resources.dll"/>
+    <ROW Component="Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" ComponentId="{E7E42C7E-BB0C-43F4-94E5-EB6299F1204C}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.ApplicationModel_1_.Resources.Projection.dll" ComponentId="{B5B1B091-E778-433B-949C-EEF222D40F5D}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.ApplicationModel.Resources.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.Management.Deployment.Projection.dll" ComponentId="{981FD469-0FA1-4F09-B1CC-078351A44E14}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.Management.Deployment.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.PushNotifications.Projection.dll" ComponentId="{E92F68BE-9B2C-4018-BC25-15E5150488DD}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.PushNotifications.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.SDK.NET.dll" ComponentId="{70A8F79A-22F9-484F-A482-638A8C9F4F50}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.SDK.NET.dll"/>
+    <ROW Component="Microsoft.Windows.Security.AccessControl.Projection.dll" ComponentId="{BCD222F9-9E7B-4EEF-9E01-CFAFC03BF64F}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.Security.AccessControl.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.System.Power.Projection.dll" ComponentId="{0C6F3763-E58E-4885-A6BC-7FC17EF86539}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.System.Power.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.System.Projection.dll" ComponentId="{ABC4438D-C519-4297-AD82-AB96F95D3BAA}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.System.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.Widgets.Projection.dll" ComponentId="{2A750F1F-7826-472C-B840-0CFF86B6D27B}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.Windows.Widgets.Projection.dll"/>
+    <ROW Component="Microsoft.Windows.Widgets.dll" ComponentId="{495586E4-608A-43B0-9B8B-C164BC7CE530}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.Windows.Widgets.dll"/>
+    <ROW Component="Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" ComponentId="{C2C87B43-60A5-4DF4-9AFE-DDA2CFAB98E6}" Directory_="win10x64_Dir" Attributes="0" KeyPath="Microsoft.WindowsAppRuntime.Bootstrap.Net.dll"/>
+    <ROW Component="Microsoft.WindowsAppRuntime.Bootstrap.dll" ComponentId="{096AEAD3-06ED-4D53-887F-C618DFE8953F}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.WindowsAppRuntime.Bootstrap.dll"/>
+    <ROW Component="Microsoft.WindowsAppRuntime.Insights.Resource.dll" ComponentId="{254CE06B-33E8-489C-95B3-735634262BC5}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.WindowsAppRuntime.Insights.Resource.dll"/>
+    <ROW Component="Microsoft.WindowsAppRuntime.dll" ComponentId="{F419D2E4-B1BB-4FF5-8709-78892E98FDBA}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.WindowsAppRuntime.dll"/>
+    <ROW Component="Microsoft.ui.xaml.dll" ComponentId="{5AF6A19D-1A7F-4637-B55A-5DA094FE3E81}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.ui.xaml.dll"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui" ComponentId="{247BD91A-69EC-44CA-AA43-B6E4F4CA16D0}" Directory_="afZA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_1" ComponentId="{C74590FB-5BE0-44BC-9C0A-20B9288BCF73}" Directory_="amET_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_1" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_10" ComponentId="{4EC407B7-8500-41BE-9C2B-5F1FE4604146}" Directory_="csCZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_10" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_11" ComponentId="{6BCFE8E2-E279-42D5-A8EF-55674588C955}" Directory_="cyGB_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_11" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_12" ComponentId="{AAFEB46B-3B6E-4D32-B15D-2029664EA991}" Directory_="daDK_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_12" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_13" ComponentId="{FF7EF99E-CEA5-47C7-B564-36F845A097CF}" Directory_="deDE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_13" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_14" ComponentId="{B0B1018B-A685-46DC-94A5-E93A62FAA768}" Directory_="elGR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_14" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_15" ComponentId="{DBF2855E-AB8E-45D2-B0A8-37C7F3C3E472}" Directory_="enGB_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_15" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_16" ComponentId="{0CE6C70C-BED3-4299-9AFE-FECEEB12D2A5}" Directory_="enus_Dir" Attributes="256" KeyPath="Microsoft.ui.xaml.dll.mui_16" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_17" ComponentId="{76685778-FAE9-4CA8-8B34-1FC715B19A6F}" Directory_="esES_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_17" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_18" ComponentId="{FE574B45-484A-41CE-90B5-09B75B12DF92}" Directory_="esMX_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_18" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_19" ComponentId="{DB207D18-5E6D-4E76-BF49-DC05D6D1B959}" Directory_="etEE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_19" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_2" ComponentId="{B46B54DB-B47F-480A-97C4-587FC8C3285A}" Directory_="arSA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_2" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_20" ComponentId="{C7BE2ECE-9ACA-44BD-A0B1-A7EA18306495}" Directory_="euES_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_20" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_21" ComponentId="{CC7F0E46-9023-4083-834C-53A3160C70CC}" Directory_="faIR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_21" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_22" ComponentId="{2D7FF147-6C83-4257-A82D-21C51578820B}" Directory_="fiFI_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_22" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_23" ComponentId="{2E283A6D-DB38-42CC-8D53-3F7BA4A26487}" Directory_="filPH_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_23" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_24" ComponentId="{64D5B44E-DA5D-4E2E-B91F-53BAB35DC36C}" Directory_="frCA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_24" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_25" ComponentId="{A4B4A947-4C90-463E-B4B4-64088CAD81FE}" Directory_="frFR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_25" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_26" ComponentId="{EF73C06F-E2E8-42D6-A535-A046DBDC8579}" Directory_="gaIE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_26" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_27" ComponentId="{931D8FC4-902E-4577-B0A0-3368BBD3DDAB}" Directory_="gdgb_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_27" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_28" ComponentId="{3F1A77CC-6955-49EE-AF14-9C6BAA8ACDFC}" Directory_="glES_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_28" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_29" ComponentId="{86D71584-E2AA-46D1-8608-E1451EEAFB7A}" Directory_="guIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_29" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_3" ComponentId="{3596779C-9EAF-4432-9451-111DEB89B074}" Directory_="asIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_3" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_30" ComponentId="{6504D0DE-594F-4018-8753-BDE41AF2AF98}" Directory_="heIL_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_30" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_31" ComponentId="{BB113FB1-64A5-4ED6-9543-8FBDFB4CF229}" Directory_="hiIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_31" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_32" ComponentId="{56E7BB20-D745-4A1E-BEB8-77EBE04ECA74}" Directory_="hrHR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_32" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_33" ComponentId="{C7939BB8-A1C8-40B1-99E5-D8505EB087B7}" Directory_="huHU_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_33" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_34" ComponentId="{275BCF42-C2E8-4FA0-8CF9-1FCBD00142D7}" Directory_="hyAM_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_34" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_35" ComponentId="{FDAC0FC5-4791-49FD-8A7E-7A54B830F4B0}" Directory_="idID_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_35" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_36" ComponentId="{8053F3D2-A35F-4DCE-A9A7-210EBFE5C4E2}" Directory_="isIS_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_36" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_37" ComponentId="{BC2722E3-1116-46E0-B2EE-F2073260C1C0}" Directory_="itIT_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_37" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_38" ComponentId="{ADD618A8-B327-47CB-BECC-C7ADC62C4D74}" Directory_="jaJP_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_38" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_39" ComponentId="{CCF3746B-5FD7-4221-A0F6-280DC41CBD7E}" Directory_="kaGE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_39" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_4" ComponentId="{F3379D0D-BA79-49F1-8074-C045CF3D98C3}" Directory_="azLatnAZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_4" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_40" ComponentId="{3DBD0271-EFD6-4BD0-8A27-C89876908F52}" Directory_="kkKZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_40" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_41" ComponentId="{4277A764-BD59-4A6C-AEB2-A59114483A4B}" Directory_="kmKH_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_41" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_42" ComponentId="{DF69E7AB-0DFB-45F3-A9ED-463D42F6B283}" Directory_="knIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_42" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_43" ComponentId="{594F84A5-8F8E-4548-90D1-0F99FC91D9DD}" Directory_="koKR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_43" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_44" ComponentId="{A0781A50-D75B-4E95-A684-0848DA87D4D3}" Directory_="kokIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_44" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_45" ComponentId="{AA658AF8-8C60-4FBC-94C0-BAF6CF3C7558}" Directory_="lbLU_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_45" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_46" ComponentId="{D53FE68B-994E-42F9-96D7-4D29C410C24C}" Directory_="loLA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_46" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_47" ComponentId="{1E9955B4-9920-40FC-B785-C85574C2B087}" Directory_="ltLT_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_47" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_48" ComponentId="{B60CB852-2F86-4406-94F9-8667E670B3A7}" Directory_="lvLV_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_48" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_49" ComponentId="{01200415-5D93-4491-A6D6-08D47DC80FD6}" Directory_="miNZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_49" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_5" ComponentId="{C74EB52D-3099-4701-A5A1-EF52A619F77A}" Directory_="bgBG_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_5" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_50" ComponentId="{AD841137-EB79-4DDB-8529-060802573EF7}" Directory_="mkMK_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_50" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_51" ComponentId="{FE99AB49-2EA8-4725-90CD-2B12F51E2B18}" Directory_="mlIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_51" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_52" ComponentId="{44A9214A-1F03-4527-B040-AE20F5290939}" Directory_="mrIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_52" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_53" ComponentId="{FEED3CAA-4B42-4B3F-BB55-F37D9D4C9BEC}" Directory_="msMY_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_53" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_54" ComponentId="{A1A21B92-7FFD-400E-8E96-8D3D895FCDB2}" Directory_="mtMT_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_54" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_55" ComponentId="{34CAF178-71FD-44ED-AC09-D59D28336967}" Directory_="nbNO_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_55" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_56" ComponentId="{BBA25378-2338-47B2-9AC1-13EFA6321A15}" Directory_="neNP_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_56" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_57" ComponentId="{6D0F71FD-CE8C-4EC8-8CBE-97AEFF421CB8}" Directory_="nlNL_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_57" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_58" ComponentId="{30631CF4-314A-4681-A7ED-7CF05EC3F54F}" Directory_="nnNO_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_58" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_59" ComponentId="{E651D811-2972-44C1-8250-90440A9760B7}" Directory_="orIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_59" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_6" ComponentId="{E6C63A86-113F-4DDE-BA6F-5C488587F740}" Directory_="bnIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_6" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_60" ComponentId="{76BE1DE3-AEFF-4924-ACE2-A33D718B9C5A}" Directory_="paIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_60" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_61" ComponentId="{2E607B5A-538E-4A96-8D9B-89A8D48F27D6}" Directory_="plPL_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_61" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_62" ComponentId="{7B4A2E24-9C37-4BE3-B7AB-2633D213D6B3}" Directory_="ptBR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_62" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_63" ComponentId="{DBF2F9F8-A314-4723-89C8-0AC207BD3FF6}" Directory_="ptPT_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_63" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_64" ComponentId="{F0E8D2C9-D80F-49CB-A83D-E1ECFA192D50}" Directory_="quzPE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_64" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_65" ComponentId="{D2E0C6AD-AD9F-4FC2-B386-C8FE6410016C}" Directory_="roRO_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_65" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_66" ComponentId="{1DE65B14-40C7-4F75-82BA-10656D667BEE}" Directory_="ruRU_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_66" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_67" ComponentId="{3C89B8CD-713B-4815-93CF-C6371DE19351}" Directory_="skSK_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_67" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_68" ComponentId="{577A4CD4-1F3B-492F-B9C7-6F736AE5B0E3}" Directory_="slSI_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_68" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_69" ComponentId="{BF50EEC5-3EFC-46DA-9D86-7876727D0154}" Directory_="sqAL_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_69" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_7" ComponentId="{BA24858B-E26C-41BD-91B4-81A604211CC7}" Directory_="bsLatnBA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_7" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_70" ComponentId="{D136997E-3B9B-4542-AFE5-8BEB3749E830}" Directory_="srCyrlBA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_70" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_71" ComponentId="{6F941D83-092A-4ACF-B028-11BD91F4F5B2}" Directory_="srCyrlRS_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_71" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_72" ComponentId="{41451EE4-01ED-4A5F-840E-9CBED97C63D4}" Directory_="srLatnRS_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_72" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_73" ComponentId="{7D8AF3D1-2181-483C-9BE2-7DDEB7B8D18A}" Directory_="svSE_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_73" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_74" ComponentId="{5415DF46-95F8-4BA2-AA37-24E789EC13A3}" Directory_="taIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_74" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_75" ComponentId="{65715786-6023-4BAB-A4C9-C31D6809057C}" Directory_="teIN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_75" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_76" ComponentId="{53EC812E-FA52-48D5-9D2D-2D63F1D19862}" Directory_="thTH_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_76" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_77" ComponentId="{F12552C8-C68A-44A8-AD09-5629602F6C28}" Directory_="trTR_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_77" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_78" ComponentId="{EDF14292-854E-4D14-A658-07C66AF93176}" Directory_="ttRU_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_78" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_79" ComponentId="{0712D9CF-786D-43B0-81F0-E283ACEE1258}" Directory_="ugCN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_79" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_8" ComponentId="{DBE54D8B-8997-41B7-B046-991190784215}" Directory_="caES_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_8" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_80" ComponentId="{93B00957-D23A-4AB2-A42D-13363A65532B}" Directory_="ukUA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_80" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_81" ComponentId="{BF9D7D31-87EE-4FDE-A051-EA5508742E53}" Directory_="urPK_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_81" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_82" ComponentId="{E044FF80-5EE0-4B4B-8724-D8BA52A3F86E}" Directory_="uzLatnUZ_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_82" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_83" ComponentId="{AE36168C-00AD-499D-8F50-46224167F11D}" Directory_="viVN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_83" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_84" ComponentId="{7B8B37F4-10B6-4AE2-90C7-1B2BA1F5399B}" Directory_="zhCN_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_84" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_85" ComponentId="{FB7F63B1-D572-4867-8F93-23D0CE7656C9}" Directory_="zhTW_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_85" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.dll.mui_9" ComponentId="{303CABE4-3112-45DD-8E3A-2A13A9CD266E}" Directory_="caEsVALENCIA_Dir" Attributes="0" KeyPath="Microsoft.ui.xaml.dll.mui_9" Type="0"/>
+    <ROW Component="Microsoft.ui.xaml.resources.19h1.dll" ComponentId="{B67020D3-2A72-46CE-B3A8-19668A4DF01A}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.ui.xaml.resources.19h1.dll"/>
+    <ROW Component="Microsoft.ui.xaml.resources.common.dll" ComponentId="{BC87A90B-8D4D-480A-B3B7-7AF3ED63BE3F}" Directory_="win10x64_Dir" Attributes="256" KeyPath="Microsoft.ui.xaml.resources.common.dll"/>
     <ROW Component="ProductInformation" ComponentId="{B98352EE-D6A2-48C7-8693-EB46026112B2}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
-    <ROW Component="PushNotificationsLongRunningTask.ProxyStub.dll" ComponentId="{684EB4CF-0EBD-47D0-8512-481E22C68CD5}" Directory_="win10x64_Dir" Attributes="256" KeyPath="PushNotificationsLongRunningTask.ProxyStub.dll"/>
-    <ROW Component="RFIDSQLite.dll" ComponentId="{33C3AB20-C30D-429F-9830-28C553E075A6}" Directory_="win10x64_Dir" Attributes="256" KeyPath="RFIDSQLite.dll"/>
-    <ROW Component="RFIDSQLite.exe" ComponentId="{FAC720E4-3A61-4A80-BA2D-5217FA343487}" Directory_="win10x64_Dir" Attributes="256" KeyPath="RFIDSQLite.exe"/>
-    <ROW Component="RestartAgent.exe" ComponentId="{03351F6B-D813-41A4-94CB-5F101AE12B49}" Directory_="win10x64_Dir" Attributes="256" KeyPath="RestartAgent.exe"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{7D128F08-EB4F-4AFB-A008-09C27563FFCE}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="SQLitePCLRaw.batteries_v2.dll" ComponentId="{87EFDB25-5FCB-4625-8C55-5506BA759F65}" Directory_="win10x64_Dir" Attributes="0" KeyPath="SQLitePCLRaw.batteries_v2.dll"/>
-    <ROW Component="SQLitePCLRaw.core.dll" ComponentId="{D4949C55-3CD0-4F2B-A336-0ABCAAF9120F}" Directory_="win10x64_Dir" Attributes="0" KeyPath="SQLitePCLRaw.core.dll"/>
-    <ROW Component="SQLitePCLRaw.provider.e_sqlite3.dll" ComponentId="{53021BF3-19B4-4ADE-A132-ADEAFF67C736}" Directory_="win10x64_Dir" Attributes="0" KeyPath="SQLitePCLRaw.provider.e_sqlite3.dll"/>
-    <ROW Component="SQLitenet.dll" ComponentId="{D587EC86-91C2-4834-814E-B934E150C5D1}" Directory_="win10x64_Dir" Attributes="0" KeyPath="SQLitenet.dll"/>
-    <ROW Component="System.CodeDom.dll" ComponentId="{C5361F02-6CED-4ECE-BF01-4A4CBD60D6F2}" Directory_="win10x64_Dir" Attributes="0" KeyPath="System.CodeDom.dll"/>
-    <ROW Component="System.IO.Ports.dll" ComponentId="{20BE4C6A-0F33-49FD-882E-4540D4B9CF44}" Directory_="win10x64_Dir" Attributes="0" KeyPath="System.IO.Ports.dll"/>
-    <ROW Component="System.Management.dll" ComponentId="{FC85A5FC-6AD8-4091-A087-B47D6D8BA251}" Directory_="win10x64_Dir" Attributes="0" KeyPath="System.Management.dll"/>
-    <ROW Component="System.Speech.dll" ComponentId="{9A4D637B-7C7F-4139-82B9-1169E70300A1}" Directory_="win10x64_Dir" Attributes="0" KeyPath="System.Speech.dll"/>
-    <ROW Component="WinRT.Runtime.dll" ComponentId="{0F4ADC3D-25C3-4E80-89F0-B590158B4BD1}" Directory_="win10x64_Dir" Attributes="0" KeyPath="WinRT.Runtime.dll"/>
-    <ROW Component="WinUIEdit.dll" ComponentId="{B7547F02-91E3-45D6-9237-7E1D14FFDEFA}" Directory_="win10x64_Dir" Attributes="256" KeyPath="WinUIEdit.dll"/>
-    <ROW Component="WindowsAppSdk.AppxDeploymentExtens_1_ions.Desktop.dll" ComponentId="{BFD223E5-E803-4CD4-A50E-0BF9BE63CA44}" Directory_="win10x64_Dir" Attributes="256" KeyPath="WindowsAppSdk.AppxDeploymentExtensions.Desktop.dll"/>
-    <ROW Component="WindowsAppSdk.AppxDeploymentExtensions.DesktopEventLogInstrumentation.dl" ComponentId="{F764458E-8887-44C8-9208-9FACE6E63255}" Directory_="win10x64_Dir" Attributes="256" KeyPath="WindowsAppSdk.AppxDeploymentExtensions.DesktopEventLogInstrumentation"/>
-    <ROW Component="a1.scale100.png" ComponentId="{D2B63347-6EFE-47A2-A7E1-AC91C1CD1850}" Directory_="win10x64_Dir" Attributes="0" KeyPath="a1.scale100.png" Type="0"/>
-    <ROW Component="dcompi.dll" ComponentId="{A33BC9C5-B4B2-413D-83A0-EA426ABEC622}" Directory_="win10x64_Dir" Attributes="256" KeyPath="dcompi.dll"/>
-    <ROW Component="dwmcorei.dll" ComponentId="{A62C76F3-A24B-4B22-8390-BF7AA61BB05F}" Directory_="win10x64_Dir" Attributes="256" KeyPath="dwmcorei.dll"/>
-    <ROW Component="e_sqlite3.dll" ComponentId="{66C51F0B-40E5-413E-9A71-85C4D8639F0A}" Directory_="win10x64_Dir" Attributes="256" KeyPath="e_sqlite3.dll"/>
-    <ROW Component="map.html" ComponentId="{1B6DE480-BC92-426D-ACB9-0473670C35D9}" Directory_="Assets_Dir" Attributes="0" KeyPath="map.html" Type="0"/>
-    <ROW Component="marshal.dll" ComponentId="{90AB79D4-6B71-4E4C-92EF-222C8DF0DA7D}" Directory_="win10x64_Dir" Attributes="256" KeyPath="marshal.dll"/>
-    <ROW Component="wuceffectsi.dll" ComponentId="{4A1659F0-78A8-4F08-B195-40E71188661A}" Directory_="win10x64_Dir" Attributes="256" KeyPath="wuceffectsi.dll"/>
+    <ROW Component="PushNotificationsLongRunningTask.ProxyStub.dll" ComponentId="{FBE3D0B9-0EFD-4C9B-BA51-2EE7BC1AF2D5}" Directory_="win10x64_Dir" Attributes="256" KeyPath="PushNotificationsLongRunningTask.ProxyStub.dll"/>
+    <ROW Component="RFIDSQLite.dll" ComponentId="{B63FBC83-D31D-4AF0-978A-54A8517630D6}" Directory_="win10x64_Dir" Attributes="256" KeyPath="RFIDSQLite.dll"/>
+    <ROW Component="RFIDSQLite.exe" ComponentId="{C5EFD1B4-9327-4379-A47D-150E3BAACECA}" Directory_="win10x64_Dir" Attributes="256" KeyPath="RFIDSQLite.exe"/>
+    <ROW Component="RestartAgent.exe" ComponentId="{92C60B6B-1EBC-4A0F-A731-1B724C04A1E2}" Directory_="win10x64_Dir" Attributes="256" KeyPath="RestartAgent.exe"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{86037BE2-612D-4DE1-96AE-8BE4218CFAF5}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="SQLitePCLRaw.batteries_v2.dll" ComponentId="{77C0BC2E-76A2-4FE7-B8FE-282698DA7F3F}" Directory_="win10x64_Dir" Attributes="0" KeyPath="SQLitePCLRaw.batteries_v2.dll"/>
+    <ROW Component="SQLitePCLRaw.core.dll" ComponentId="{4DC50E63-13F3-476F-B24C-1C5340AE4553}" Directory_="win10x64_Dir" Attributes="0" KeyPath="SQLitePCLRaw.core.dll"/>
+    <ROW Component="SQLitePCLRaw.provider.e_sqlite3.dll" ComponentId="{1D8C69F6-BF26-404C-A45A-1E0B9C1300F0}" Directory_="win10x64_Dir" Attributes="0" KeyPath="SQLitePCLRaw.provider.e_sqlite3.dll"/>
+    <ROW Component="SQLitenet.dll" ComponentId="{14DAF95B-A831-49DB-B83F-8A409AB2BC92}" Directory_="win10x64_Dir" Attributes="0" KeyPath="SQLitenet.dll"/>
+    <ROW Component="System.CodeDom.dll" ComponentId="{AFF053F8-6D1B-4404-91D2-33A7C1AB0264}" Directory_="win10x64_Dir" Attributes="0" KeyPath="System.CodeDom.dll"/>
+    <ROW Component="System.IO.Ports.dll" ComponentId="{11932F22-05B3-4C58-B7D2-E49444705774}" Directory_="win10x64_Dir" Attributes="0" KeyPath="System.IO.Ports.dll"/>
+    <ROW Component="System.Management.dll" ComponentId="{87E8A15A-194A-469A-B0F0-F7C96CA2DB87}" Directory_="win10x64_Dir" Attributes="0" KeyPath="System.Management.dll"/>
+    <ROW Component="System.Speech.dll" ComponentId="{FC04DF2E-CCB1-4870-9DF4-C40178C41C96}" Directory_="win10x64_Dir" Attributes="0" KeyPath="System.Speech.dll"/>
+    <ROW Component="WinRT.Runtime.dll" ComponentId="{16C38A20-908B-4E9B-8B67-6EA57BDAB12D}" Directory_="win10x64_Dir" Attributes="0" KeyPath="WinRT.Runtime.dll"/>
+    <ROW Component="WinUIEdit.dll" ComponentId="{277622F6-5233-4453-9716-DB0DF52F857E}" Directory_="win10x64_Dir" Attributes="256" KeyPath="WinUIEdit.dll"/>
+    <ROW Component="WindowsAppSdk.AppxDeploymentExtens_1_ions.Desktop.dll" ComponentId="{0E14435E-F1D4-453A-84F4-1E2F53464813}" Directory_="win10x64_Dir" Attributes="256" KeyPath="WindowsAppSdk.AppxDeploymentExtensions.Desktop.dll"/>
+    <ROW Component="WindowsAppSdk.AppxDeploymentExtensions.DesktopEventLogInstrumentation.dl" ComponentId="{0B5A5555-40E5-4C53-AAF3-0A37CA96816B}" Directory_="win10x64_Dir" Attributes="256" KeyPath="WindowsAppSdk.AppxDeploymentExtensions.DesktopEventLogInstrumentation"/>
+    <ROW Component="a1.scale100.png" ComponentId="{B9AECF6A-AB8A-4722-B98C-517EA019F140}" Directory_="win10x64_Dir" Attributes="0" KeyPath="a1.scale100.png" Type="0"/>
+    <ROW Component="dcompi.dll" ComponentId="{3F5B5CC0-655B-4992-A2A6-4C091A3BC16B}" Directory_="win10x64_Dir" Attributes="256" KeyPath="dcompi.dll"/>
+    <ROW Component="dwmcorei.dll" ComponentId="{A23CD874-3633-4036-9DC2-E7B5F1109137}" Directory_="win10x64_Dir" Attributes="256" KeyPath="dwmcorei.dll"/>
+    <ROW Component="e_sqlite3.dll" ComponentId="{6877649B-4B73-4848-8B98-9E92A14B8BFF}" Directory_="win10x64_Dir" Attributes="256" KeyPath="e_sqlite3.dll"/>
+    <ROW Component="map.html" ComponentId="{791AA705-C788-4B20-9A77-BB7F6E52E75F}" Directory_="Assets_Dir" Attributes="0" KeyPath="map.html" Type="0"/>
+    <ROW Component="marshal.dll" ComponentId="{4F6C8833-F192-4F1D-815C-16B53D8BDECD}" Directory_="win10x64_Dir" Attributes="256" KeyPath="marshal.dll"/>
+    <ROW Component="wuceffectsi.dll" ComponentId="{CB03C4C7-7A1A-46AA-B22A-883230BF75DC}" Directory_="win10x64_Dir" Attributes="256" KeyPath="wuceffectsi.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="A0BFC224E0E9125ADE0B2DBF343" Title=".NET Desktop Runtime 8.0.12 x64" Description=".NET Desktop Runtime 8.0.12 x64" Display="3" Level="1" Attributes="0"/>
@@ -1179,14 +1179,14 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.WinUI.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_50"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_51"/>
+    <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
+    <ROW Feature_="MainFeature" Component_="AI_CustomARPName"/>
+    <ROW Feature_="MainFeature" Component_="AI_SHORTCUTSREG"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_52"/>
     <ROW Feature_="MainFeature" Component_="MRM.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Maui.Controls.resources._107_dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_53"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_54"/>
-    <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
-    <ROW Feature_="MainFeature" Component_="AI_CustomARPName"/>
-    <ROW Feature_="MainFeature" Component_="AI_SHORTCUTSREG"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Maui.Controls.resources._108_dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_55"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_56"/>
@@ -1248,14 +1248,15 @@
     <ROW Feature_="MainFeature" Component_="WinUIEdit.dll"/>
     <ROW Feature_="MainFeature" Component_="wuceffectsi.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_84"/>
+    <ROW Feature_="A0BFC224E0E9125ADE0B2DBF343" Component_="A0BFC224E0E9125ADE0B2DBF343"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Maui.Controls.resources._121_dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Maui.Controls.resources._122_dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Maui.Controls.resources._123_dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.ui.xaml.dll.mui_85"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
-    <ROW Feature_="A0BFC224E0E9125ADE0B2DBF343" Component_="A0BFC224E0E9125ADE0B2DBF343"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="RFIDSQLite.exe" SourcePath="RFIDSQLite\bin\Debug\net8.0-windows10.0.22621.0\win10-x64\RFIDSQLite.exe" Index="0"/>
     <ROW Name="a2icon.exe" SourcePath="RFIDSQLite\bin\Debug\net8.0-windows10.0.22621.0\win10-x64\a2icon.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
@@ -1366,9 +1367,9 @@
     <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="RFIDSQLite" Directory_="SHORTCUTDIR" Name="RFIDSQ~1|RFIDSQLite" Component_="RFIDSQLite.exe" Target="[#RFIDSQLite.exe]" Hotkey="0" Icon_="a2icon.exe" IconIndex="0" ShowCmd="1" WkDir="win10x64_Dir"/>
-    <ROW Shortcut="RFIDSQLite_1" Directory_="DesktopFolder" Name="RFIDSQ~1|RFIDSQLite" Component_="RFIDSQLite.exe" Target="[#RFIDSQLite.exe]" Hotkey="0" Icon_="a2icon.exe" IconIndex="0" ShowCmd="1" WkDir="win10x64_Dir"/>
-    <ROW Shortcut="RFIDSQLite_2" Directory_="StartMenuFolder" Name="RFIDSQ~1|RFIDSQLite" Component_="RFIDSQLite.exe" Target="[#RFIDSQLite.exe]" Hotkey="0" Icon_="a2icon.exe" IconIndex="0" ShowCmd="1" WkDir="win10x64_Dir"/>
+    <ROW Shortcut="RFIDSQLite" Directory_="SHORTCUTDIR" Name="RFIDSQ~1|RFIDSQLite" Component_="RFIDSQLite.exe" Target="[#RFIDSQLite.exe]" Hotkey="0" Icon_="RFIDSQLite.exe" IconIndex="0" ShowCmd="1" WkDir="win10x64_Dir"/>
+    <ROW Shortcut="RFIDSQLite_1" Directory_="DesktopFolder" Name="RFIDSQ~1|RFIDSQLite" Component_="RFIDSQLite.exe" Target="[#RFIDSQLite.exe]" Hotkey="0" Icon_="RFIDSQLite.exe" IconIndex="0" ShowCmd="1" WkDir="win10x64_Dir"/>
+    <ROW Shortcut="RFIDSQLite_2" Directory_="StartMenuFolder" Name="RFIDSQ~1|RFIDSQLite" Component_="RFIDSQLite.exe" Target="[#RFIDSQLite.exe]" Hotkey="0" Icon_="RFIDSQLite.exe" IconIndex="0" ShowCmd="1" WkDir="win10x64_Dir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="appinstaller"/>
